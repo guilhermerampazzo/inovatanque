@@ -11,7 +11,7 @@
     'brand' => ['@type' => 'Brand', 'name' => 'Inova Tanque'],
     'offers' => [
         '@type' => 'Offer',
-        'availability' => $produto['disponivel'] ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+        'availability' => ($produto['status'] === 'disponivel' || $produto['status'] === 'pronta_entrega') ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
         'priceCurrency' => 'BRL',
         'url' => url('/produto/' . $produto['slug']),
     ],

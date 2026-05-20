@@ -113,6 +113,7 @@ class AdminProdutoController extends Controller
 
         $imagemModel = new ProdutoImagem();
         $files = $_FILES['imagens'];
+        $existePrincipal = (bool) $imagemModel->findBy('produto_id', $produtoId);
 
         for ($i = 0; $i < count($files['name']); $i++) {
             $file = [
@@ -125,12 +126,14 @@ class AdminProdutoController extends Controller
 
             $path = upload_image($file, 'uploads/produtos');
             if ($path) {
+                $principal = (!$existePrincipal && $i === 0) ? 1 : 0;
                 $imagemModel->insert([
                     'produto_id' => $produtoId,
                     'arquivo' => $path,
                     'ordem' => $i,
-                    'principal' => ($i === 0 && !$imagemModel->findBy('produto_id', $produtoId)) ? 1 : 0,
+                    'principal' => $principal,
                 ]);
+                if ($principal) $existePrincipal = true;
             }
         }
     }

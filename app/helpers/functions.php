@@ -91,7 +91,11 @@ function upload_image(array $file, string $directory = 'uploads'): ?string
     };
 
     $filename = uniqid() . '_' . time() . '.' . $ext;
-    $destination = APP_ROOT . '/public/' . $directory . '/' . $filename;
+    $destDir = APP_ROOT . '/public/' . $directory;
+    if (!is_dir($destDir)) {
+        mkdir($destDir, 0755, true);
+    }
+    $destination = $destDir . '/' . $filename;
 
     if (move_uploaded_file($file['tmp_name'], $destination)) {
         return $directory . '/' . $filename;
