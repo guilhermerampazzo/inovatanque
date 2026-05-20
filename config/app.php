@@ -1,7 +1,7 @@
 <?php
 
 define('APP_NAME', 'Inova Tanque');
-define('APP_URL', 'http://localhost');
+define('APP_URL', getenv('APP_URL') ?: ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost')));
 define('APP_ROOT', dirname(__DIR__));
 
 define('WHATSAPP_PRINCIPAL', '5519974060706');

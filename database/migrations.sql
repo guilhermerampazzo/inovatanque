@@ -1,8 +1,6 @@
 -- Banco de dados: inovatanque
 -- Charset: utf8mb4
-
-CREATE DATABASE IF NOT EXISTS inovatanque CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE inovatanque;
+-- Uso: mysql -u USUARIO -pSENHA BANCO < migrations.sql
 
 -- Admins
 CREATE TABLE admins (

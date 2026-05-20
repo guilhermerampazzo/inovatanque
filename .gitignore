@@ -1,6 +1,7 @@
 # Dependências e ambiente
 /vendor/
 *.log
+.env
 
 # Uploads (gerados em runtime)
 public/uploads/*
