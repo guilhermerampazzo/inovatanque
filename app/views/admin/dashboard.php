@@ -3,31 +3,31 @@
 
 <div class="admin-header">
     <h1>Dashboard</h1>
-    <span style="font-size: 14px; color: var(--color-on-surface-variant); background: var(--color-surface); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(75,69,71,0.12);">👋 Olá, <?= Session::get('admin_nome') ?></span>
+    <span style="font-size: 14px; color: var(--color-text-secondary);">Olá, <?= Session::get('admin_nome') ?></span>
 </div>
 
-<div class="cliente-stats" style="margin-bottom: 40px;">
-    <div class="cliente-stat-card">
-        <div class="number"><?= $cotacoesNovas ?></div>
-        <div class="label">Cotações Novas</div>
+<div class="admin-stats">
+    <div class="admin-stat-card stat-accent">
+        <div class="stat-label">Cotações Novas</div>
+        <div class="stat-number"><?= $cotacoesNovas ?></div>
     </div>
-    <div class="cliente-stat-card">
-        <div class="number"><?= $totalCotacoes ?></div>
-        <div class="label">Total Cotações</div>
+    <div class="admin-stat-card">
+        <div class="stat-label">Total Cotações</div>
+        <div class="stat-number"><?= $totalCotacoes ?></div>
     </div>
-    <div class="cliente-stat-card">
-        <div class="number"><?= $totalClientes ?></div>
-        <div class="label">Clientes</div>
+    <div class="admin-stat-card stat-success">
+        <div class="stat-label">Clientes</div>
+        <div class="stat-number"><?= $totalClientes ?></div>
     </div>
-    <div class="cliente-stat-card">
-        <div class="number"><?= $totalProdutos ?></div>
-        <div class="label">Produtos</div>
+    <div class="admin-stat-card">
+        <div class="stat-label">Produtos</div>
+        <div class="stat-number"><?= $totalProdutos ?></div>
     </div>
 </div>
 
-<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
-    <h2 style="font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--color-primary);">Últimas Cotações</h2>
-    <a href="/admin/cotacoes" style="font-size: 13px; color: var(--color-gold); text-decoration: none;">Ver todas &rarr;</a>
+<div class="admin-section-header">
+    <h2>Últimas Cotações</h2>
+    <a href="/admin/cotacoes">Ver todas &rarr;</a>
 </div>
 
 <?php if (!empty($ultimasCotacoes)): ?>
@@ -45,7 +45,7 @@
                 <?php foreach ($ultimasCotacoes as $cot): ?>
                     <tr>
                         <td><?= date('d/m/Y H:i', strtotime($cot['created_at'])) ?></td>
-                        <td><a href="/admin/cotacoes/<?= $cot['id'] ?>" style="color: var(--color-gold); font-weight: 500;"><?= sanitize($cot['nome']) ?></a></td>
+                        <td><a href="/admin/cotacoes/<?= $cot['id'] ?>"><?= sanitize($cot['nome']) ?></a></td>
                         <td><?= sanitize($cot['email']) ?></td>
                         <td><span class="status-badge status-<?= $cot['status'] ?>"><?= ucfirst(str_replace('_', ' ', $cot['status'])) ?></span></td>
                     </tr>
@@ -54,8 +54,8 @@
         </table>
     </div>
 <?php else: ?>
-    <div style="text-align: center; padding: 48px 24px; background: var(--color-surface); border-radius: 12px; border: 1px solid rgba(75,69,71,0.12);">
-        <p style="color: var(--color-on-surface-variant); font-size: 15px;">Nenhuma cotação recebida ainda.</p>
+    <div style="text-align: center; padding: 48px 24px; background: #fff; border-radius: 12px; box-shadow: var(--shadow-sm);">
+        <p style="color: var(--color-text-secondary); font-size: 15px;">Nenhuma cotação recebida ainda.</p>
     </div>
 <?php endif; ?>
 
