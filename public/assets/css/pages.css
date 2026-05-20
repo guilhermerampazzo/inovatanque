@@ -121,6 +121,11 @@
     border-bottom: 1px solid var(--color-border-light);
 }
 
+.catalogo-main .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
 .catalogo-topbar .result-count {
     font-size: 14px;
     color: var(--color-text-secondary);

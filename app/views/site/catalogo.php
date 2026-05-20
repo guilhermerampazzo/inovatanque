@@ -112,7 +112,7 @@
                             <a href="/produto/<?= $produto['slug'] ?>" class="card-metallic">
                                 <div class="card-image">
                                     <?php if (!empty($produto['imagem_principal'])): ?>
-                                        <img src="<?= url($produto['imagem_principal']) ?>" alt="<?= sanitize($produto['titulo']) ?>">
+                                        <img src="<?= url($produto['imagem_principal']) ?>" alt="<?= sanitize($produto['titulo']) ?>" loading="lazy">
                                     <?php endif; ?>
                                     <?php if ($produto['status'] === 'pronta_entrega'): ?>
                                         <div class="card-badge"><span>Pronta Entrega</span></div>
@@ -121,13 +121,19 @@
                                 <div class="card-body">
                                     <h3><?= sanitize($produto['titulo']) ?></h3>
                                     <p>
-                                        <?= $produto['capacidade'] ? number_format($produto['capacidade'], 0, ',', '.') . 'L' : '' ?>
-                                        <?= $produto['configuracao'] ? '• ' . sanitize($produto['configuracao']) : '' ?>
-                                        <?= $produto['ano'] ? '• ' . $produto['ano'] : '' ?>
+                                        <?php if ($produto['capacidade']): ?>
+                                            <span><?= number_format($produto['capacidade'], 0, ',', '.') ?>L</span>
+                                        <?php endif; ?>
+                                        <?php if ($produto['configuracao']): ?>
+                                            <span>•</span><span><?= sanitize($produto['configuracao']) ?></span>
+                                        <?php endif; ?>
+                                        <?php if ($produto['ano']): ?>
+                                            <span>•</span><span><?= $produto['ano'] ?></span>
+                                        <?php endif; ?>
                                     </p>
                                     <div class="card-footer">
                                         <span class="text-label"><?= sanitize($produto['modalidade'] ?? 'Consulte') ?></span>
-                                        <span class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Ver detalhes</span>
+                                        <span class="btn">Ver detalhes →</span>
                                     </div>
                                 </div>
                             </a>

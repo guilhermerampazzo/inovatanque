@@ -95,6 +95,23 @@
         gap: 12px;
     }
 
+    .card-metallic .card-image {
+        height: 160px;
+    }
+
+    .card-metallic .card-body {
+        padding: 14px;
+        gap: 6px;
+    }
+
+    .card-metallic .card-body h3 {
+        font-size: 13px;
+    }
+
+    .card-metallic .card-footer {
+        padding-top: 10px;
+    }
+
     .product-image {
         height: 140px;
     }
@@ -172,6 +189,10 @@
     .products-grid {
         grid-template-columns: 1fr;
         gap: 12px;
+    }
+
+    .card-metallic .card-image {
+        height: 180px;
     }
 
     .product-card {
