@@ -1,9 +1,3 @@
-/* ============================================
-   INOVA TANQUE - Design System
-   Conceito: "Pantera Negra" - Industrial Premium
-   Gerado via Google Stitch, adaptado para CSS vanilla
-   ============================================ */
-
 /* === RESET & BASE === */
 *, *::before, *::after {
     margin: 0;
@@ -12,38 +6,38 @@
 }
 
 :root {
-    /* Cores */
-    --color-bg: #121212;
-    --color-surface: #141313;
-    --color-surface-container: #201F1F;
-    --color-surface-high: #2b2a2a;
-    --color-surface-highest: #363434;
-    --color-surface-lowest: #0f0e0e;
-    --color-primary: #c9c6c5;
-    --color-on-surface: #e5e2e1;
-    --color-on-surface-variant: #cec4c7;
-    --color-outline: #978e91;
-    --color-outline-variant: #4b4547;
-    --color-gold: #F5B041;
-    --color-gold-dark: #D68910;
-    --color-error: #ffb4ab;
-    --color-success: #4CAF50;
+    --color-bg: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-container: #f5f5f5;
+    --color-surface-high: #eeeeee;
+    --color-surface-highest: #e0e0e0;
+    --color-surface-lowest: #fafafa;
+    --color-primary: #1a1a1a;
+    --color-on-surface: #333333;
+    --color-on-surface-variant: #666666;
+    --color-outline: #cccccc;
+    --color-outline-variant: #e0e0e0;
+    --color-gold: #E67E22;
+    --color-gold-dark: #D35400;
+    --color-error: #e74c3c;
+    --color-success: #27ae60;
 
-    /* Tipografia */
     --font-display: 'Montserrat', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    /* Espaçamento */
     --container-max: 1280px;
-    --margin-desktop: 48px;
+    --margin-desktop: 32px;
     --margin-mobile: 16px;
-    --gutter: 24px;
+    --gutter: 20px;
     --unit: 8px;
 
-    /* Border radius */
-    --radius-sm: 2px;
-    --radius-md: 4px;
-    --radius-lg: 8px;
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 10px;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
 }
 
 html {
@@ -134,23 +128,20 @@ ul, ol {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px 24px;
+    padding: 10px 20px;
     font-family: var(--font-body);
     font-size: 14px;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     border: none;
     border-radius: var(--radius-md);
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s;
     text-decoration: none;
 }
 
 .btn-primary {
     background-color: var(--color-gold);
-    color: var(--color-surface);
-    border-top: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
 }
 
 .btn-primary:hover {
@@ -159,7 +150,7 @@ ul, ol {
 
 .btn-secondary {
     background: transparent;
-    border: 1px solid var(--color-outline-variant);
+    border: 1px solid var(--color-outline);
     color: var(--color-on-surface);
 }
 
@@ -169,14 +160,14 @@ ul, ol {
 }
 
 .btn-lg {
-    padding: 16px 32px;
-    font-size: 16px;
+    padding: 14px 28px;
+    font-size: 15px;
 }
 
 .btn-whatsapp {
     background-color: #25D366;
     color: #fff;
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-radius: var(--radius-md);
     font-weight: 600;
     font-size: 14px;
