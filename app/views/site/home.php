@@ -250,6 +250,36 @@
 </section>
 <?php endif; ?>
 
+<!-- Prova Social e Números -->
+<section class="section-prova-social">
+    <div class="container">
+        <div class="prova-social-grid">
+            <div class="prova-social-item">
+                <div class="prova-numero">500+</div>
+                <div class="prova-label">Carretas locadas</div>
+            </div>
+            <div class="prova-social-item">
+                <div class="prova-numero">15</div>
+                <div class="prova-label">Anos de mercado</div>
+            </div>
+            <div class="prova-social-item">
+                <div class="prova-numero">200+</div>
+                <div class="prova-label">Clientes ativos</div>
+            </div>
+            <div class="prova-social-item">
+                <div class="prova-numero">100%</div>
+                <div class="prova-label">Frota segurada</div>
+            </div>
+        </div>
+        <div class="prova-certificacoes">
+            <span class="prova-cert-badge">ANTT</span>
+            <span class="prova-cert-badge">INMETRO</span>
+            <span class="prova-cert-badge">NR-13</span>
+            <span class="prova-cert-badge">ISO 9001</span>
+        </div>
+    </div>
+</section>
+
 <!-- Depoimentos -->
 <?php if (!empty($depoimentos)): ?>
 <section style="padding: 64px 0;">
