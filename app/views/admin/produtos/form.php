@@ -5,9 +5,9 @@
     <h1><?= $produto ? 'Editar Produto' : 'Novo Produto' ?></h1>
     <div style="display: flex; gap: 10px;">
         <?php if ($produto): ?>
-            <a href="/produto/<?= $produto['slug'] ?>" class="btn btn-secondary" target="_blank">👁 Ver no Site</a>
+            <a href="/produto/<?= $produto['slug'] ?>" class="btn btn-secondary" target="_blank">Ver no Site</a>
         <?php endif; ?>
-        <a href="/admin/produtos" class="btn btn-secondary">← Voltar</a>
+        <a href="/admin/produtos" class="btn btn-secondary">Voltar</a>
     </div>
 </div>
 

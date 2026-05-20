@@ -29,7 +29,7 @@
                     <td><span class="status-badge status-<?= $p['status'] ?>"><?= ucfirst(str_replace('_', ' ', $p['status'])) ?></span></td>
                     <td><?= $p['destaque'] ? 'Sim' : '-' ?></td>
                     <td style="display: flex; gap: 8px;">
-                        <a href="/produto/<?= $p['slug'] ?>" class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px;" target="_blank">👁 Ver</a>
+                        <a href="/produto/<?= $p['slug'] ?>" class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px;" target="_blank">Ver</a>
                         <a href="/admin/produtos/editar/<?= $p['id'] ?>" class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px;">Editar</a>
                         <form method="POST" action="/admin/produtos/excluir/<?= $p['id'] ?>" onsubmit="return confirm('Excluir este produto?')">
                             <?= csrf_field() ?>
