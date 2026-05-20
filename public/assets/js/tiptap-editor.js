@@ -8,6 +8,29 @@ const editorEl = document.querySelector('#editor');
 const hiddenInput = document.querySelector('#conteudo-hidden');
 const toolbar = document.querySelector('#toolbar');
 
+function getCsrfToken() {
+    const input = document.querySelector('input[name="_csrf_token"]');
+    return input ? input.value : '';
+}
+
+async function uploadImage(file) {
+    const formData = new FormData();
+    formData.append('imagem', file);
+    formData.append('_csrf_token', getCsrfToken());
+
+    const res = await fetch('/admin/upload-imagem', {
+        method: 'POST',
+        body: formData,
+    });
+
+    const data = await res.json();
+    if (data.error) {
+        alert(data.error);
+        return null;
+    }
+    return data.url;
+}
+
 if (editorEl && hiddenInput) {
     const editor = new Editor({
         element: editorEl,
@@ -27,6 +50,42 @@ if (editorEl && hiddenInput) {
         content: hiddenInput.value || '',
         onUpdate({ editor }) {
             hiddenInput.value = editor.getHTML();
+        },
+        editorProps: {
+            handleDrop(view, event) {
+                const files = event.dataTransfer?.files;
+                if (files && files.length > 0) {
+                    const file = files[0];
+                    if (file.type.startsWith('image/')) {
+                        event.preventDefault();
+                        uploadImage(file).then((url) => {
+                            if (url) {
+                                editor.chain().focus().setImage({ src: url }).run();
+                            }
+                        });
+                        return true;
+                    }
+                }
+                return false;
+            },
+            handlePaste(view, event) {
+                const items = event.clipboardData?.items;
+                if (items) {
+                    for (const item of items) {
+                        if (item.type.startsWith('image/')) {
+                            event.preventDefault();
+                            const file = item.getAsFile();
+                            uploadImage(file).then((url) => {
+                                if (url) {
+                                    editor.chain().focus().setImage({ src: url }).run();
+                                }
+                            });
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            },
         },
     });
 
@@ -76,10 +135,19 @@ if (editorEl && hiddenInput) {
                     break;
                 }
                 case 'image': {
-                    const src = prompt('URL da imagem:');
-                    if (src) {
-                        editor.chain().focus().setImage({ src }).run();
-                    }
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+                    input.onchange = async () => {
+                        const file = input.files[0];
+                        if (file) {
+                            const url = await uploadImage(file);
+                            if (url) {
+                                editor.chain().focus().setImage({ src: url }).run();
+                            }
+                        }
+                    };
+                    input.click();
                     break;
                 }
                 case 'undo':

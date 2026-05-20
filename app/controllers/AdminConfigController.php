@@ -33,4 +33,24 @@ class AdminConfigController extends Controller
         Session::flash('success', 'Configurações atualizadas.');
         $this->redirect('/admin/configuracoes');
     }
+
+    public function uploadImagem(): void
+    {
+        header('Content-Type: application/json');
+
+        if (empty($_FILES['imagem'])) {
+            echo json_encode(['error' => 'Nenhum arquivo enviado.']);
+            exit;
+        }
+
+        $path = upload_image($_FILES['imagem'], 'uploads/editor');
+
+        if (!$path) {
+            echo json_encode(['error' => 'Formato inválido. Use JPG, PNG, WebP ou GIF.']);
+            exit;
+        }
+
+        echo json_encode(['url' => '/' . $path]);
+        exit;
+    }
 }

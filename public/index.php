@@ -90,6 +90,7 @@ $router->post('/admin/parceiros/excluir/{id}', 'AdminParceiroController', 'destr
 $router->get('/admin/paginas', 'AdminPaginaController', 'index');
 $router->get('/admin/paginas/editar/{id}', 'AdminPaginaController', 'edit');
 $router->post('/admin/paginas/editar/{id}', 'AdminPaginaController', 'update');
+$router->post('/admin/upload-imagem', 'AdminConfigController', 'uploadImagem');
 $router->get('/admin/configuracoes', 'AdminConfigController', 'index');
 $router->post('/admin/configuracoes', 'AdminConfigController', 'update');
 $router->get('/admin/usuarios', 'AdminUsuarioController', 'index');
