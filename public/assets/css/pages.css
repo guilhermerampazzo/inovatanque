@@ -1,0 +1,308 @@
+/* === CATÁLOGO === */
+.catalogo-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+}
+
+.catalogo-sidebar {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.filter-group {
+    margin-bottom: 32px;
+}
+
+.filter-group h3 {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-on-surface-variant);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(75, 69, 71, 0.2);
+    margin-bottom: 12px;
+}
+
+.filter-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--color-on-surface);
+    transition: color 0.2s;
+}
+
+.filter-group label:hover {
+    color: var(--color-gold);
+}
+
+.filter-group input[type="checkbox"],
+.filter-group input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-gold);
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 8px 12px;
+    background: var(--color-surface-container);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: var(--radius-md);
+    color: var(--color-on-surface);
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--color-gold);
+}
+
+.catalogo-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(75, 69, 71, 0.2);
+}
+
+.catalogo-topbar .result-count {
+    font-size: 14px;
+    color: var(--color-on-surface-variant);
+}
+
+.catalogo-topbar .result-count strong {
+    color: var(--color-primary);
+}
+
+.catalogo-topbar select {
+    padding: 8px 12px;
+    background: var(--color-surface-container);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: var(--radius-md);
+    color: var(--color-on-surface);
+    font-size: 14px;
+}
+
+/* === PAGINAÇÃO === */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 48px;
+}
+
+.pagination a,
+.pagination span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-outline-variant);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    color: var(--color-on-surface-variant);
+    transition: all 0.2s;
+}
+
+.pagination a:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+}
+
+.pagination .active {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-surface);
+    font-weight: 600;
+}
+
+/* === PÁGINA DE PRODUTO === */
+.breadcrumb {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 13px;
+    color: var(--color-on-surface-variant);
+    margin-bottom: 32px;
+}
+
+.breadcrumb a {
+    color: var(--color-on-surface-variant);
+}
+
+.breadcrumb a:hover {
+    color: var(--color-gold);
+}
+
+.breadcrumb span {
+    color: var(--color-outline);
+}
+
+.produto-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-bottom: 64px;
+}
+
+.produto-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.produto-gallery .main-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--color-surface-container);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(75, 69, 71, 0.2);
+}
+
+.produto-gallery .main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.produto-gallery .thumbnails {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+}
+
+.produto-gallery .thumbnails img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 2px solid transparent;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.2s;
+}
+
+.produto-gallery .thumbnails img:hover,
+.produto-gallery .thumbnails img.active {
+    border-color: var(--color-gold);
+    opacity: 1;
+}
+
+.produto-info h1 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+}
+
+.produto-info .sku {
+    font-size: 13px;
+    color: var(--color-on-surface-variant);
+    margin-bottom: 24px;
+}
+
+.produto-specs {
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.produto-specs tr {
+    border-bottom: 1px solid rgba(75, 69, 71, 0.15);
+}
+
+.produto-specs tr:nth-child(even) {
+    background: rgba(32, 31, 31, 0.5);
+}
+
+.produto-specs td {
+    padding: 12px 16px;
+    font-size: 14px;
+}
+
+.produto-specs td:first-child {
+    color: var(--color-on-surface-variant);
+    font-weight: 500;
+    width: 40%;
+}
+
+.produto-specs td:last-child {
+    color: var(--color-on-surface);
+}
+
+.produto-ctas {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.produto-descricao {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(75, 69, 71, 0.2);
+}
+
+.produto-descricao h2 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+}
+
+.produto-descricao p,
+.produto-descricao li {
+    font-size: 15px;
+    color: var(--color-on-surface-variant);
+    line-height: 1.7;
+}
+
+/* === RESPONSIVO CATÁLOGO/PRODUTO === */
+@media (max-width: 1024px) {
+    .catalogo-layout {
+        grid-template-columns: 240px 1fr;
+        gap: 32px;
+    }
+
+    .produto-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .catalogo-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .catalogo-sidebar {
+        position: static;
+        max-height: none;
+        display: none;
+    }
+
+    .catalogo-sidebar.open {
+        display: block;
+    }
+
+    .filter-toggle {
+        display: flex;
+    }
+
+    .produto-ctas {
+        flex-direction: column;
+    }
+}

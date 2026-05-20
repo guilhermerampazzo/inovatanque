@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="<?= asset('css/components.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/sections.css') ?>">
     <link rel="stylesheet" href="<?= asset('css/responsive.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/pages.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/blog-forms.css') ?>">
+    <link rel="stylesheet" href="<?= asset('css/admin.css') ?>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
