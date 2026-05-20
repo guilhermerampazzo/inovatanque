@@ -140,6 +140,142 @@
     </div>
 </section>
 
+<!-- Pronta Entrega -->
+<?php if (!empty($prontaEntrega)): ?>
+<section class="section-produtos">
+    <div class="container">
+        <div class="section-header">
+            <div>
+                <h2>Pronta Entrega</h2>
+                <p>Equipamentos disponíveis para retirada imediata</p>
+            </div>
+            <a href="/catalogo?status=pronta_entrega">Ver todos &rarr;</a>
+        </div>
+        <div class="products-grid">
+            <?php foreach ($prontaEntrega as $produto): ?>
+                <a href="/produto/<?= $produto['slug'] ?>" class="product-card">
+                    <div class="product-image">
+                        <?php if ($produto['imagem_principal']): ?>
+                            <img src="<?= url($produto['imagem_principal']) ?>" alt="<?= sanitize($produto['titulo']) ?>">
+                        <?php else: ?>
+                            <div class="product-no-image"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+                        <?php endif; ?>
+                        <span class="product-badge badge-pronta">Pronta Entrega</span>
+                    </div>
+                    <div class="product-info">
+                        <h3><?= sanitize($produto['titulo']) ?></h3>
+                        <div class="product-specs">
+                            <?php if ($produto['capacidade']): ?>
+                                <span class="spec"><?= number_format($produto['capacidade'], 0, ',', '.') ?>L</span>
+                            <?php endif; ?>
+                            <?php if (!empty($produto['configuracao'])): ?>
+                                <span class="spec"><?= sanitize($produto['configuracao']) ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="product-bottom">
+                            <span class="product-modalidade"><?= sanitize($produto['modalidade'] ?? 'Consulte') ?></span>
+                            <span class="product-cta">Ver detalhes</span>
+                        </div>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
+<!-- Locação -->
+<?php if (!empty($locacao)): ?>
+<section class="section-produtos">
+    <div class="container">
+        <div class="section-header">
+            <div>
+                <h2>Locação</h2>
+                <p>Carretas-tanque disponíveis para locação</p>
+            </div>
+            <a href="/catalogo?modalidade=Locação">Ver todos &rarr;</a>
+        </div>
+        <div class="products-grid">
+            <?php foreach ($locacao as $produto): ?>
+                <a href="/produto/<?= $produto['slug'] ?>" class="product-card">
+                    <div class="product-image">
+                        <?php if ($produto['imagem_principal']): ?>
+                            <img src="<?= url($produto['imagem_principal']) ?>" alt="<?= sanitize($produto['titulo']) ?>">
+                        <?php else: ?>
+                            <div class="product-no-image"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+                        <?php endif; ?>
+                        <?php if ($produto['status'] === 'pronta_entrega'): ?>
+                            <span class="product-badge badge-pronta">Pronta Entrega</span>
+                        <?php endif; ?>
+                    </div>
+                    <div class="product-info">
+                        <h3><?= sanitize($produto['titulo']) ?></h3>
+                        <div class="product-specs">
+                            <?php if ($produto['capacidade']): ?>
+                                <span class="spec"><?= number_format($produto['capacidade'], 0, ',', '.') ?>L</span>
+                            <?php endif; ?>
+                            <?php if (!empty($produto['configuracao'])): ?>
+                                <span class="spec"><?= sanitize($produto['configuracao']) ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="product-bottom">
+                            <span class="product-modalidade">Locação</span>
+                            <span class="product-cta">Ver detalhes</span>
+                        </div>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
+<!-- Venda -->
+<?php if (!empty($venda)): ?>
+<section class="section-produtos">
+    <div class="container">
+        <div class="section-header">
+            <div>
+                <h2>Venda</h2>
+                <p>Carretas-tanque disponíveis para compra</p>
+            </div>
+            <a href="/catalogo?modalidade=Venda">Ver todos &rarr;</a>
+        </div>
+        <div class="products-grid">
+            <?php foreach ($venda as $produto): ?>
+                <a href="/produto/<?= $produto['slug'] ?>" class="product-card">
+                    <div class="product-image">
+                        <?php if ($produto['imagem_principal']): ?>
+                            <img src="<?= url($produto['imagem_principal']) ?>" alt="<?= sanitize($produto['titulo']) ?>">
+                        <?php else: ?>
+                            <div class="product-no-image"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+                        <?php endif; ?>
+                        <?php if ($produto['status'] === 'pronta_entrega'): ?>
+                            <span class="product-badge badge-pronta">Pronta Entrega</span>
+                        <?php endif; ?>
+                    </div>
+                    <div class="product-info">
+                        <h3><?= sanitize($produto['titulo']) ?></h3>
+                        <div class="product-specs">
+                            <?php if ($produto['capacidade']): ?>
+                                <span class="spec"><?= number_format($produto['capacidade'], 0, ',', '.') ?>L</span>
+                            <?php endif; ?>
+                            <?php if (!empty($produto['configuracao'])): ?>
+                                <span class="spec"><?= sanitize($produto['configuracao']) ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="product-bottom">
+                            <span class="product-modalidade">Venda</span>
+                            <span class="product-cta">Ver detalhes</span>
+                        </div>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
 <!-- Por que a Inova Tanque -->
 <section class="section-diferenciais">
     <div class="container">
