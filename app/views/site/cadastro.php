@@ -42,19 +42,27 @@
                 <!-- Dados principais -->
                 <div class="form-section-title">Dados principais</div>
 
-                <div class="form-group">
-                    <label for="nome_razao">Nome / Razão Social *</label>
-                    <input type="text" id="nome_razao" name="nome_razao" required value="<?= old('nome_razao') ?>" placeholder="Nome completo ou razão social">
+                <div class="form-group" id="group-nome">
+                    <label for="nome_razao" id="label-nome">Nome completo *</label>
+                    <input type="text" id="nome_razao" name="nome_razao" required value="<?= old('nome_razao') ?>" placeholder="Seu nome completo">
                 </div>
 
-                <div class="form-row">
+                <div class="form-row" id="group-doc-pf">
                     <div class="form-group">
-                        <label for="cpf_cnpj">CPF / CNPJ</label>
+                        <label for="cpf_cnpj">CPF</label>
                         <input type="text" id="cpf_cnpj" name="cpf_cnpj" value="<?= old('cpf_cnpj') ?>" placeholder="000.000.000-00">
+                    </div>
+                    <div class="form-group"></div>
+                </div>
+
+                <div class="form-row" id="group-doc-pj" style="display: none;">
+                    <div class="form-group">
+                        <label for="cpf_cnpj_pj">CNPJ</label>
+                        <input type="text" id="cpf_cnpj_pj" name="cpf_cnpj" value="<?= old('cpf_cnpj') ?>" placeholder="00.000.000/0000-00" disabled>
                     </div>
                     <div class="form-group">
                         <label for="ie">Inscrição Estadual</label>
-                        <input type="text" id="ie" name="ie" value="<?= old('ie') ?>" placeholder="Opcional">
+                        <input type="text" id="ie" name="ie" value="<?= old('ie') ?>" placeholder="Opcional" disabled>
                     </div>
                 </div>
 
@@ -178,5 +186,38 @@
     border-bottom: 1px solid var(--color-border-light);
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const radios = document.querySelectorAll('input[name="tipo"]');
+    const labelNome = document.getElementById('label-nome');
+    const inputNome = document.getElementById('nome_razao');
+    const groupDocPf = document.getElementById('group-doc-pf');
+    const groupDocPj = document.getElementById('group-doc-pj');
+
+    function toggleFields() {
+        const tipo = document.querySelector('input[name="tipo"]:checked').value;
+
+        if (tipo === 'pf') {
+            labelNome.textContent = 'Nome completo *';
+            inputNome.placeholder = 'Seu nome completo';
+            groupDocPf.style.display = '';
+            groupDocPj.style.display = 'none';
+            groupDocPf.querySelectorAll('input').forEach(i => i.disabled = false);
+            groupDocPj.querySelectorAll('input').forEach(i => i.disabled = true);
+        } else {
+            labelNome.textContent = 'Razão Social *';
+            inputNome.placeholder = 'Razão social da empresa';
+            groupDocPf.style.display = 'none';
+            groupDocPj.style.display = '';
+            groupDocPf.querySelectorAll('input').forEach(i => i.disabled = true);
+            groupDocPj.querySelectorAll('input').forEach(i => i.disabled = false);
+        }
+    }
+
+    radios.forEach(r => r.addEventListener('change', toggleFields));
+    toggleFields();
+});
+</script>
 
 <?php require APP_ROOT . '/app/views/site/footer.php'; ?>
