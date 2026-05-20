@@ -1,5 +1,21 @@
 <?php $pageTitle = sanitize($post['titulo']) . ' - Blog Inova Tanque'; ?>
 <?php $pageDescription = sanitize($post['resumo'] ?? $post['titulo']); ?>
+<?php $ogType = 'article'; ?>
+<?php $ogImage = $post['imagem'] ? url($post['imagem']) : null; ?>
+<?php $schemaMarkup = json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'Article',
+    'headline' => $post['titulo'],
+    'description' => $post['resumo'] ?? '',
+    'image' => $post['imagem'] ? url($post['imagem']) : '',
+    'datePublished' => date('c', strtotime($post['publicado_em'])),
+    'author' => ['@type' => 'Organization', 'name' => 'Inova Tanque'],
+    'publisher' => [
+        '@type' => 'Organization',
+        'name' => 'Inova Tanque',
+        'logo' => ['@type' => 'ImageObject', 'url' => url('/logo.svg')],
+    ],
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>
 <?php require APP_ROOT . '/app/views/site/header.php'; ?>
 
 <article style="padding-top: 32px; padding-bottom: 96px;">

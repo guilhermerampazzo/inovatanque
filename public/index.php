@@ -9,6 +9,10 @@ Session::start();
 
 $router = new Router();
 
+// SEO
+$router->get('/sitemap.xml', 'SitemapController', 'index');
+$router->get('/robots.txt', 'SitemapController', 'robots');
+
 // Site público
 $router->get('/', 'HomeController', 'index');
 $router->get('/catalogo', 'CatalogoController', 'index');
@@ -18,6 +22,8 @@ $router->get('/blog/{slug}', 'BlogController', 'show');
 $router->get('/sobre', 'PaginaController', 'sobre');
 $router->get('/contato', 'PaginaController', 'contato');
 $router->post('/contato', 'PaginaController', 'enviarContato');
+$router->get('/politica-de-privacidade', 'PaginaController', 'privacidade');
+$router->get('/termos-de-uso', 'PaginaController', 'termos');
 $router->get('/login', 'AuthController', 'loginForm');
 $router->post('/login', 'AuthController', 'login');
 $router->get('/cadastro', 'AuthController', 'cadastroForm');

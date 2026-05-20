@@ -15,6 +15,8 @@
                         <li><a href="/sobre">Sobre Nós</a></li>
                         <li><a href="/blog">Blog</a></li>
                         <li><a href="/contato">Contato</a></li>
+                        <li><a href="/politica-de-privacidade">Política de Privacidade</a></li>
+                        <li><a href="/termos-de-uso">Termos de Uso</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

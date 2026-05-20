@@ -45,4 +45,18 @@ class PaginaController extends Controller
         Session::flash('success', 'Mensagem enviada com sucesso! Entraremos em contato em breve.');
         $this->redirect('/contato');
     }
+
+    public function privacidade(): void
+    {
+        $paginaModel = new Pagina();
+        $pagina = $paginaModel->findBy('slug', 'politica-de-privacidade');
+        $this->view('site/pagina', compact('pagina'));
+    }
+
+    public function termos(): void
+    {
+        $paginaModel = new Pagina();
+        $pagina = $paginaModel->findBy('slug', 'termos-de-uso');
+        $this->view('site/pagina', compact('pagina'));
+    }
 }

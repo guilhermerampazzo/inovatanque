@@ -1,5 +1,21 @@
 <?php $pageTitle = sanitize($produto['titulo']) . ' - Inova Tanque'; ?>
 <?php $pageDescription = sanitize($produto['titulo']) . ' - ' . ($produto['capacidade'] ? number_format($produto['capacidade'], 0, ',', '.') . 'L' : '') . '. Locação e venda de carretas-tanque.'; ?>
+<?php $ogImage = !empty($imagens) ? url($imagens[0]['arquivo']) : null; ?>
+<?php $ogType = 'product'; ?>
+<?php $schemaMarkup = json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'Product',
+    'name' => $produto['titulo'],
+    'description' => $pageDescription,
+    'image' => !empty($imagens) ? url($imagens[0]['arquivo']) : '',
+    'brand' => ['@type' => 'Brand', 'name' => 'Inova Tanque'],
+    'offers' => [
+        '@type' => 'Offer',
+        'availability' => $produto['disponivel'] ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+        'priceCurrency' => 'BRL',
+        'url' => url('/produto/' . $produto['slug']),
+    ],
+], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>
 <?php require APP_ROOT . '/app/views/site/header.php'; ?>
 
 <section style="padding-top: 32px; padding-bottom: 96px;">

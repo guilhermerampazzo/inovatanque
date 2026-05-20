@@ -4,6 +4,12 @@ class Configuracao extends Model
 {
     protected string $table = 'configuracoes';
 
+    public static function get(string $chave, string $default = ''): string
+    {
+        $instance = new self();
+        return $instance->getValue($chave, $default);
+    }
+
     public function getAll(): array
     {
         $stmt = $this->db->query("SELECT * FROM {$this->table}");
@@ -15,7 +21,7 @@ class Configuracao extends Model
         return $configs;
     }
 
-    public function get(string $chave, string $default = ''): string
+    public function getValue(string $chave, string $default = ''): string
     {
         $stmt = $this->db->prepare("SELECT valor FROM {$this->table} WHERE chave = ?");
         $stmt->execute([$chave]);
