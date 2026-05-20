@@ -62,7 +62,7 @@
 .filter-group select:focus {
     outline: none;
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 3px rgba(249, 178, 51, 0.15);
 }
 
 .catalogo-topbar {

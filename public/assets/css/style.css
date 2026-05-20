@@ -14,8 +14,9 @@
     --color-text: #111827;
     --color-text-secondary: #6b7280;
     --color-text-muted: #9ca3af;
-    --color-accent: #2563eb;
-    --color-accent-hover: #1d4ed8;
+    --color-accent: #f9b233;
+    --color-accent-hover: #e09f1f;
+    --color-accent-light: #fef7e6;
     --color-amber: #f59e0b;
     --color-amber-light: #fef3c7;
     --color-success: #10b981;
@@ -108,7 +109,7 @@ h1, h2, h3, h4 {
 
 .btn-primary {
     background: var(--color-accent);
-    color: #fff;
+    color: #1a1a1a;
 }
 
 .btn-primary:hover {

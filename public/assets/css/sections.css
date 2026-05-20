@@ -389,7 +389,7 @@
     justify-content: space-between;
     gap: 32px;
     padding: 36px 40px;
-    background: var(--color-accent);
+    background: #1a1a1a;
     border-radius: var(--radius-xl);
     color: #fff;
 }
@@ -403,7 +403,7 @@
 
 .cta-text p {
     font-size: 14px;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.7);
 }
 
 .cta-actions {
@@ -413,18 +413,18 @@
 }
 
 .cta-actions .btn-whatsapp {
-    background: #fff;
-    color: var(--color-whatsapp);
+    background: var(--color-whatsapp);
+    color: #fff;
     font-weight: 600;
 }
 
 .cta-actions .btn-whatsapp:hover {
-    background: #f0fdf4;
+    background: #1da851;
 }
 
 .cta-actions .btn-secondary {
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.4);
+    border: 1px solid rgba(255,255,255,0.3);
     color: #fff;
 }
 
