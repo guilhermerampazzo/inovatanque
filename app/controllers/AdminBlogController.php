@@ -89,10 +89,11 @@ class AdminBlogController extends Controller
     private function getData(): array
     {
         $titulo = sanitize($_POST['titulo'] ?? '');
+        $categoriaId = !empty($_POST['categoria_id']) ? (int) $_POST['categoria_id'] : null;
         return [
             'titulo' => $titulo,
             'slug' => $this->slugify($titulo),
-            'categoria_id' => (int) ($_POST['categoria_id'] ?? 0),
+            'categoria_id' => $categoriaId,
             'resumo' => sanitize($_POST['resumo'] ?? ''),
             'conteudo' => $_POST['conteudo'] ?? '',
             'autor_id' => Session::get('admin_id'),
