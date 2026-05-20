@@ -19,6 +19,12 @@ class AdminBannerController extends Controller
 
     public function create(): void
     {
+        $bannerModel = new Banner();
+        $total = count($bannerModel->findAll());
+        if ($total >= 5) {
+            Session::flash('error', 'Máximo de 5 banners atingido.');
+            $this->redirect('/admin/banners');
+        }
         $this->view('admin/banners/form', ['banner' => null]);
     }
 
@@ -29,9 +35,25 @@ class AdminBannerController extends Controller
             $this->redirect('/admin/banners/criar');
         }
 
+        $bannerModel = new Banner();
+        $total = count($bannerModel->findAll());
+        if ($total >= 5) {
+            Session::flash('error', 'Máximo de 5 banners atingido.');
+            $this->redirect('/admin/banners');
+        }
+
+        $tipo = $_POST['tipo'] ?? 'cor_texto';
+        if (!in_array($tipo, ['cor_texto', 'imagem_texto', 'imagem_link'])) {
+            $tipo = 'cor_texto';
+        }
+
         $data = [
+            'tipo' => $tipo,
+            'cor_fundo' => sanitize($_POST['cor_fundo'] ?? '#1a1a1a'),
             'titulo' => sanitize($_POST['titulo'] ?? ''),
             'subtitulo' => sanitize($_POST['subtitulo'] ?? ''),
+            'cta_texto' => sanitize($_POST['cta_texto'] ?? ''),
+            'cta_link' => sanitize($_POST['cta_link'] ?? ''),
             'link' => sanitize($_POST['link'] ?? ''),
             'ordem' => (int) ($_POST['ordem'] ?? 0),
             'ativo' => isset($_POST['ativo']) ? 1 : 0,
@@ -41,7 +63,6 @@ class AdminBannerController extends Controller
             $data['imagem'] = upload_image($_FILES['imagem'], 'uploads/banners');
         }
 
-        $bannerModel = new Banner();
         $bannerModel->insert($data);
 
         Session::flash('success', 'Banner criado com sucesso.');
@@ -65,9 +86,18 @@ class AdminBannerController extends Controller
             $this->redirect('/admin/banners/editar/' . $id);
         }
 
+        $tipo = $_POST['tipo'] ?? 'cor_texto';
+        if (!in_array($tipo, ['cor_texto', 'imagem_texto', 'imagem_link'])) {
+            $tipo = 'cor_texto';
+        }
+
         $data = [
+            'tipo' => $tipo,
+            'cor_fundo' => sanitize($_POST['cor_fundo'] ?? '#1a1a1a'),
             'titulo' => sanitize($_POST['titulo'] ?? ''),
             'subtitulo' => sanitize($_POST['subtitulo'] ?? ''),
+            'cta_texto' => sanitize($_POST['cta_texto'] ?? ''),
+            'cta_link' => sanitize($_POST['cta_link'] ?? ''),
             'link' => sanitize($_POST['link'] ?? ''),
             'ordem' => (int) ($_POST['ordem'] ?? 0),
             'ativo' => isset($_POST['ativo']) ? 1 : 0,

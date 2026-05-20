@@ -148,6 +148,8 @@ CREATE TABLE clientes_logos (
 -- Banners do hero
 CREATE TABLE banners (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    tipo ENUM('cor_texto', 'imagem_texto', 'imagem_link') NOT NULL DEFAULT 'cor_texto',
+    cor_fundo VARCHAR(7) DEFAULT '#1a1a1a',
     imagem VARCHAR(255) DEFAULT NULL,
     titulo VARCHAR(255) DEFAULT NULL,
     subtitulo TEXT DEFAULT NULL,

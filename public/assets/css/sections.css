@@ -4,7 +4,6 @@
     min-height: 320px;
     overflow: hidden;
     background: #111827;
-    border-radius: 0 0 var(--radius-xl) var(--radius-xl);
 }
 
 .hero-ecommerce .hero-slide {
@@ -27,7 +26,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.6;
+}
+
+.hero-ecommerce a.hero-slide img {
+    opacity: 1;
 }
 
 .hero-ecommerce .hero-overlay {

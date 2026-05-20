@@ -6,27 +6,52 @@
 <section class="hero-ecommerce">
     <?php if (!empty($banners)): ?>
         <?php foreach ($banners as $i => $banner): ?>
-            <div class="hero-slide <?= $i === 0 ? 'active' : '' ?>">
-                <?php if ($banner['imagem']): ?>
+            <?php $tipo = $banner['tipo'] ?? 'cor_texto'; ?>
+
+            <?php if ($tipo === 'imagem_link'): ?>
+                <!-- Tipo: só imagem clicável -->
+                <a href="<?= sanitize($banner['link'] ?? '#') ?>" class="hero-slide <?= $i === 0 ? 'active' : '' ?>" style="cursor: pointer;">
+                    <img src="<?= url($banner['imagem']) ?>" alt="<?= sanitize($banner['titulo'] ?? 'Banner') ?>">
+                </a>
+
+            <?php elseif ($tipo === 'imagem_texto'): ?>
+                <!-- Tipo: imagem + texto + botão -->
+                <div class="hero-slide <?= $i === 0 ? 'active' : '' ?>">
                     <img src="<?= url($banner['imagem']) ?>" alt="<?= sanitize($banner['titulo'] ?? '') ?>">
-                <?php endif; ?>
-                <div class="hero-overlay"></div>
-                <div class="container hero-content">
-                    <?php if ($banner['titulo']): ?>
-                        <h2><?= $banner['titulo'] ?></h2>
-                    <?php endif; ?>
-                    <?php if ($banner['subtitulo']): ?>
-                        <p><?= sanitize($banner['subtitulo']) ?></p>
-                    <?php endif; ?>
-                    <?php if (!empty($banner['cta_texto']) && !empty($banner['cta_link'])): ?>
-                        <a href="<?= sanitize($banner['cta_link']) ?>" class="btn btn-primary"><?= sanitize($banner['cta_texto']) ?></a>
-                    <?php endif; ?>
+                    <div class="hero-overlay"></div>
+                    <div class="container hero-content">
+                        <?php if ($banner['titulo']): ?>
+                            <h2><?= $banner['titulo'] ?></h2>
+                        <?php endif; ?>
+                        <?php if ($banner['subtitulo']): ?>
+                            <p><?= sanitize($banner['subtitulo']) ?></p>
+                        <?php endif; ?>
+                        <?php if (!empty($banner['cta_texto']) && !empty($banner['cta_link'])): ?>
+                            <a href="<?= sanitize($banner['cta_link']) ?>" class="btn btn-primary"><?= sanitize($banner['cta_texto']) ?></a>
+                        <?php endif; ?>
+                    </div>
                 </div>
-            </div>
+
+            <?php else: ?>
+                <!-- Tipo: cor de fundo + texto + botão -->
+                <div class="hero-slide <?= $i === 0 ? 'active' : '' ?>" style="background: <?= sanitize($banner['cor_fundo'] ?? '#1a1a1a') ?>;">
+                    <div class="container hero-content">
+                        <?php if ($banner['titulo']): ?>
+                            <h2><?= $banner['titulo'] ?></h2>
+                        <?php endif; ?>
+                        <?php if ($banner['subtitulo']): ?>
+                            <p><?= sanitize($banner['subtitulo']) ?></p>
+                        <?php endif; ?>
+                        <?php if (!empty($banner['cta_texto']) && !empty($banner['cta_link'])): ?>
+                            <a href="<?= sanitize($banner['cta_link']) ?>" class="btn btn-primary"><?= sanitize($banner['cta_texto']) ?></a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+
         <?php endforeach; ?>
     <?php else: ?>
-        <div class="hero-slide active">
-            <div class="hero-overlay" style="background: linear-gradient(135deg, rgba(18,18,18,0.9) 0%, rgba(18,18,18,0.5) 100%);"></div>
+        <div class="hero-slide active" style="background: #1a1a1a;">
             <div class="container hero-content">
                 <h2>Carretas-Tanque em <span class="text-gold">Pronta Entrega</span></h2>
                 <p>Locação e venda com manutenção própria e seguro incluso</p>
