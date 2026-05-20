@@ -8,15 +8,26 @@ class HomeController extends Controller
         $depoimentoModel = new Depoimento();
         $parceiroModel = new Parceiro();
         $produtoModel = new Produto();
+        $categoriaModel = new Categoria();
 
         $banners = $bannerModel->getAtivos();
         $depoimentos = $depoimentoModel->getAtivos();
         $parceiros = $parceiroModel->getAtivos();
         $destaques = $produtoModel->getDestaques();
-        $prontaEntrega = $produtoModel->getProntaEntrega(4);
-        $locacao = $produtoModel->getByModalidade('Locação', 4);
-        $venda = $produtoModel->getByModalidade('Venda', 4);
 
-        $this->view('site/home', compact('banners', 'depoimentos', 'parceiros', 'destaques', 'prontaEntrega', 'locacao', 'venda'));
+        // Busca categorias ativas e produtos de cada uma
+        $categorias = $categoriaModel->getAtivas();
+        $produtosPorCategoria = [];
+        foreach ($categorias as $cat) {
+            $produtos = $produtoModel->getByCategoria((int) $cat['id'], 4);
+            if (!empty($produtos)) {
+                $produtosPorCategoria[] = [
+                    'categoria' => $cat,
+                    'produtos' => $produtos,
+                ];
+            }
+        }
+
+        $this->view('site/home', compact('banners', 'depoimentos', 'parceiros', 'destaques', 'produtosPorCategoria'));
     }
 }

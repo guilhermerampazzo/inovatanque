@@ -25,6 +25,13 @@ class Produto extends Model
         return $stmt->fetchAll();
     }
 
+    public function getByCategoria(int $categoriaId, int $limit = 4): array
+    {
+        $stmt = $this->db->prepare("SELECT p.*, pi.arquivo as imagem_principal FROM {$this->table} p LEFT JOIN produto_imagens pi ON pi.produto_id = p.id AND pi.principal = 1 WHERE p.categoria_id = ? AND p.status IN ('disponivel','pronta_entrega') ORDER BY p.created_at DESC LIMIT ?");
+        $stmt->execute([$categoriaId, $limit]);
+        return $stmt->fetchAll();
+    }
+
     public function getRelacionados(int $excludeId, int $categoriaId, int $limit = 4): array
     {
         $stmt = $this->db->prepare("SELECT p.*, pi.arquivo as imagem_principal FROM {$this->table} p LEFT JOIN produto_imagens pi ON pi.produto_id = p.id AND pi.principal = 1 WHERE p.id != ? AND p.categoria_id = ? AND p.status IN ('disponivel','pronta_entrega') ORDER BY RAND() LIMIT ?");
