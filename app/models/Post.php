@@ -44,10 +44,15 @@ class Post extends Model
         return $stmt->fetch() ?: null;
     }
 
-    public function getRelacionados(int $excludeId, int $categoriaId, int $limit = 3): array
+    public function getRelacionados(int $excludeId, ?int $categoriaId, int $limit = 3): array
     {
-        $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE id != ? AND categoria_id = ? AND status = 'publicado' ORDER BY publicado_em DESC LIMIT ?");
-        $stmt->execute([$excludeId, $categoriaId, $limit]);
+        if (!$categoriaId) {
+            $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE id != ? AND status = 'publicado' ORDER BY publicado_em DESC LIMIT ?");
+            $stmt->execute([$excludeId, $limit]);
+        } else {
+            $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE id != ? AND categoria_id = ? AND status = 'publicado' ORDER BY publicado_em DESC LIMIT ?");
+            $stmt->execute([$excludeId, $categoriaId, $limit]);
+        }
         return $stmt->fetchAll();
     }
 }

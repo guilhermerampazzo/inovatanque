@@ -90,6 +90,10 @@ class AdminBlogController extends Controller
     {
         $titulo = sanitize($_POST['titulo'] ?? '');
         $categoriaId = !empty($_POST['categoria_id']) ? (int) $_POST['categoria_id'] : null;
+        $status = ($_POST['status'] ?? 'rascunho');
+        if (!in_array($status, ['rascunho', 'publicado'])) {
+            $status = 'rascunho';
+        }
         return [
             'titulo' => $titulo,
             'slug' => $this->slugify($titulo),
@@ -97,7 +101,7 @@ class AdminBlogController extends Controller
             'resumo' => sanitize($_POST['resumo'] ?? ''),
             'conteudo' => $_POST['conteudo'] ?? '',
             'autor_id' => Session::get('admin_id'),
-            'status' => sanitize($_POST['status'] ?? 'rascunho'),
+            'status' => $status,
             'publicado_em' => $_POST['publicado_em'] ?? date('Y-m-d H:i:s'),
             'created_at' => date('Y-m-d H:i:s'),
         ];

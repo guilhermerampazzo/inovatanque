@@ -93,8 +93,14 @@ function upload_image(array $file, string $directory = 'uploads'): ?string
     $filename = uniqid() . '_' . time() . '.' . $ext;
     $destDir = APP_ROOT . '/public/' . $directory;
     if (!is_dir($destDir)) {
-        mkdir($destDir, 0755, true);
+        @mkdir($destDir, 0775, true);
+        @chmod($destDir, 0775);
     }
+
+    if (!is_dir($destDir) || !is_writable($destDir)) {
+        return null;
+    }
+
     $destination = $destDir . '/' . $filename;
 
     if (move_uploaded_file($file['tmp_name'], $destination)) {

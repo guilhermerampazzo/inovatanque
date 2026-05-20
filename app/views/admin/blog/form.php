@@ -25,11 +25,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label>Status</label>
-            <select name="status">
-                <option value="rascunho" <?= ($post['status'] ?? 'rascunho') === 'rascunho' ? 'selected' : '' ?>>Rascunho</option>
-                <option value="publicado" <?= ($post['status'] ?? '') === 'publicado' ? 'selected' : '' ?>>Publicado</option>
-            </select>
+            <label>Data de Publicacao</label>
+            <input type="datetime-local" name="publicado_em" value="<?= $post ? date('Y-m-d\TH:i', strtotime($post['publicado_em'] ?? 'now')) : date('Y-m-d\TH:i') ?>">
         </div>
     </div>
 
@@ -83,7 +80,11 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-lg">Salvar Post</button>
+    <!-- Botoes de acao -->
+    <div style="display: flex; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--color-border-light);">
+        <button type="submit" name="status" value="publicado" class="btn btn-primary btn-lg">Publicar</button>
+        <button type="submit" name="status" value="rascunho" class="btn btn-secondary btn-lg">Salvar Rascunho</button>
+    </div>
 </form>
 
 <style>
