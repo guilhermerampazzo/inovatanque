@@ -11,6 +11,20 @@ class Produto extends Model
         return $stmt->fetchAll();
     }
 
+    public function getProntaEntrega(int $limit = 4): array
+    {
+        $stmt = $this->db->prepare("SELECT p.*, pi.arquivo as imagem_principal FROM {$this->table} p LEFT JOIN produto_imagens pi ON pi.produto_id = p.id AND pi.principal = 1 WHERE p.status = 'pronta_entrega' ORDER BY p.created_at DESC LIMIT ?");
+        $stmt->execute([$limit]);
+        return $stmt->fetchAll();
+    }
+
+    public function getByModalidade(string $modalidade, int $limit = 4): array
+    {
+        $stmt = $this->db->prepare("SELECT p.*, pi.arquivo as imagem_principal FROM {$this->table} p LEFT JOIN produto_imagens pi ON pi.produto_id = p.id AND pi.principal = 1 WHERE p.modalidade LIKE ? AND p.status IN ('disponivel','pronta_entrega') ORDER BY p.created_at DESC LIMIT ?");
+        $stmt->execute(['%' . $modalidade . '%', $limit]);
+        return $stmt->fetchAll();
+    }
+
     public function getRelacionados(int $excludeId, int $categoriaId, int $limit = 4): array
     {
         $stmt = $this->db->prepare("SELECT p.*, pi.arquivo as imagem_principal FROM {$this->table} p LEFT JOIN produto_imagens pi ON pi.produto_id = p.id AND pi.principal = 1 WHERE p.id != ? AND p.categoria_id = ? AND p.status IN ('disponivel','pronta_entrega') ORDER BY RAND() LIMIT ?");
