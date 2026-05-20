@@ -7,15 +7,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Hero carousel
+    // Hero carousel com texto por slide
     const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
     if (slides.length > 1) {
         let current = 0;
-        setInterval(function() {
+        let interval;
+
+        function goToSlide(index) {
             slides[current].classList.remove('active');
-            current = (current + 1) % slides.length;
+            if (dots[current]) dots[current].classList.remove('active');
+            current = index;
             slides[current].classList.add('active');
-        }, 5000);
+            if (dots[current]) dots[current].classList.add('active');
+        }
+
+        function nextSlide() {
+            goToSlide((current + 1) % slides.length);
+        }
+
+        function startAutoplay() {
+            interval = setInterval(nextSlide, 5000);
+        }
+
+        // Indicadores clicáveis
+        dots.forEach(function(dot, i) {
+            dot.addEventListener('click', function() {
+                clearInterval(interval);
+                goToSlide(i);
+                startAutoplay();
+            });
+        });
+
+        startAutoplay();
     }
 
     // Auto-dismiss alerts
@@ -27,4 +51,16 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() { alert.remove(); }, 300);
         }, 4000);
     });
+
+    // Gallery - product page
+    window.changeImage = function(thumb, src) {
+        var mainImg = document.getElementById('mainImg');
+        if (mainImg) {
+            mainImg.src = src;
+            document.querySelectorAll('.thumbnails img').forEach(function(t) {
+                t.classList.remove('active');
+            });
+            thumb.classList.add('active');
+        }
+    };
 });

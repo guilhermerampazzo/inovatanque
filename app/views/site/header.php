@@ -124,9 +124,7 @@
                     </ul>
                 </nav>
                 <div class="header-actions">
-                    <a href="<?= whatsapp_link(WHATSAPP_PRINCIPAL) ?>" class="btn-whatsapp" target="_blank">
-                        <?= TELEFONE ?>
-                    </a>
+                    <a href="/contato" class="btn-contato">Entre em Contato</a>
                     <?php if (Session::isLoggedIn()): ?>
                         <a href="/cliente/dashboard" class="btn-area-cliente">Minha Conta</a>
                     <?php else: ?>
