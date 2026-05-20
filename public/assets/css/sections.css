@@ -380,6 +380,45 @@
     color: var(--color-text-muted);
 }
 
+/* === FAIXA DE URGÊNCIA === */
+.urgency-bar {
+    padding: 20px 0;
+    background: var(--color-accent-light);
+    border-top: 1px solid rgba(249, 178, 51, 0.2);
+    border-bottom: 1px solid rgba(249, 178, 51, 0.2);
+}
+
+.urgency-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.urgency-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--color-text);
+}
+
+.urgency-text svg {
+    stroke: var(--color-accent-hover);
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .urgency-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .urgency-text {
+        justify-content: center;
+    }
+}
+
 /* === PROVA SOCIAL === */
 .section-prova-social {
     padding: 56px 0;
