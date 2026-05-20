@@ -87,6 +87,61 @@
     border-radius: 4px;
 }
 
+/* Hero Fallback */
+.hero-fallback {
+    background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #111827 100%);
+    position: relative;
+}
+
+.hero-fallback::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(249, 178, 51, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.hero-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(249, 178, 51, 0.15);
+    border: 1px solid rgba(249, 178, 51, 0.3);
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-outline-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-md);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
 /* === HIGHLIGHTS === */
 .quick-highlights {
     padding: 0;
