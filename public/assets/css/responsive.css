@@ -1,0 +1,158 @@
+/* === RESPONSIVO === */
+@media (max-width: 1024px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quality-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .partners-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .locacao-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --margin-desktop: 16px;
+    }
+
+    .nav-main {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .header-actions .btn-whatsapp {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero {
+        min-height: 60vh;
+    }
+
+    .text-display {
+        font-size: 36px;
+    }
+
+    .text-headline-lg {
+        font-size: 24px;
+    }
+
+    section {
+        padding: 64px 0;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quality-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .stat-item .number {
+        font-size: 36px;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .partners-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section-cta h2 {
+        font-size: 28px;
+    }
+
+    .locacao-content h2 {
+        font-size: 28px;
+    }
+}
+
+/* === MOBILE NAV OPEN === */
+.nav-mobile-open .nav-main {
+    display: flex;
+    position: fixed;
+    top: 73px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-surface);
+    z-index: 99;
+    padding: 32px;
+}
+
+.nav-mobile-open .nav-main ul {
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+.nav-mobile-open .nav-main .dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: transparent;
+    border: none;
+    padding-left: 16px;
+    margin-top: 8px;
+}
+
+.nav-mobile-open .nav-main .dropdown-sub {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: transparent;
+    border: none;
+    padding-left: 16px;
+    margin-top: 8px;
+}

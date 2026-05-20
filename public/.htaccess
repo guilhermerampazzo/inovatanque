@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteBase /
+
+# Servir logo.svg da raiz do projeto
+RewriteRule ^logo\.svg$ ../logo.svg [L]
+
+# Bloquear acesso a arquivos sensíveis
+RewriteRule ^(\.env|config|app|database) - [F,L]
+
+# Se não for arquivo ou diretório existente, redirecionar para index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]

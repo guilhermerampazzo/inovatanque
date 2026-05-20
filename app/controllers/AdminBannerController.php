@@ -1,0 +1,94 @@
+<?php
+
+class AdminBannerController extends Controller
+{
+    public function __construct()
+    {
+        if (!Session::isAdmin()) {
+            header('Location: /admin/login');
+            exit;
+        }
+    }
+
+    public function index(): void
+    {
+        $bannerModel = new Banner();
+        $banners = $bannerModel->findAll('ordem ASC');
+        $this->view('admin/banners/index', compact('banners'));
+    }
+
+    public function create(): void
+    {
+        $this->view('admin/banners/form', ['banner' => null]);
+    }
+
+    public function store(): void
+    {
+        if (!csrf_verify()) {
+            Session::flash('error', 'Token inválido.');
+            $this->redirect('/admin/banners/criar');
+        }
+
+        $data = [
+            'titulo' => sanitize($_POST['titulo'] ?? ''),
+            'subtitulo' => sanitize($_POST['subtitulo'] ?? ''),
+            'link' => sanitize($_POST['link'] ?? ''),
+            'ordem' => (int) ($_POST['ordem'] ?? 0),
+            'ativo' => isset($_POST['ativo']) ? 1 : 0,
+        ];
+
+        if (!empty($_FILES['imagem']['name'])) {
+            $data['imagem'] = upload_image($_FILES['imagem'], 'uploads/banners');
+        }
+
+        $bannerModel = new Banner();
+        $bannerModel->insert($data);
+
+        Session::flash('success', 'Banner criado com sucesso.');
+        $this->redirect('/admin/banners');
+    }
+
+    public function edit(string $id): void
+    {
+        $bannerModel = new Banner();
+        $banner = $bannerModel->findById((int) $id);
+        if (!$banner) {
+            $this->redirect('/admin/banners');
+        }
+        $this->view('admin/banners/form', compact('banner'));
+    }
+
+    public function update(string $id): void
+    {
+        if (!csrf_verify()) {
+            Session::flash('error', 'Token inválido.');
+            $this->redirect('/admin/banners/editar/' . $id);
+        }
+
+        $data = [
+            'titulo' => sanitize($_POST['titulo'] ?? ''),
+            'subtitulo' => sanitize($_POST['subtitulo'] ?? ''),
+            'link' => sanitize($_POST['link'] ?? ''),
+            'ordem' => (int) ($_POST['ordem'] ?? 0),
+            'ativo' => isset($_POST['ativo']) ? 1 : 0,
+        ];
+
+        if (!empty($_FILES['imagem']['name'])) {
+            $data['imagem'] = upload_image($_FILES['imagem'], 'uploads/banners');
+        }
+
+        $bannerModel = new Banner();
+        $bannerModel->update((int) $id, $data);
+
+        Session::flash('success', 'Banner atualizado.');
+        $this->redirect('/admin/banners');
+    }
+
+    public function destroy(string $id): void
+    {
+        $bannerModel = new Banner();
+        $bannerModel->delete((int) $id);
+        Session::flash('success', 'Banner excluído.');
+        $this->redirect('/admin/banners');
+    }
+}

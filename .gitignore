@@ -1,0 +1,25 @@
+# Dependências e ambiente
+/vendor/
+*.log
+
+# Uploads (gerados em runtime)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Config local
+config/database.local.php
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Stitch (arquivos temporários de geração)
+stitch_home.html
+stitch_raw_screen.json
