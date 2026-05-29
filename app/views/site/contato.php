@@ -60,15 +60,16 @@
 
                 <div class="contato-info-item">
                     <div>
-                        <strong>WhatsApp Consignação</strong>
-                        <a href="<?= whatsapp_link(WHATSAPP_CONSIGNACAO) ?>" style="color: var(--color-gold);">(19) 97416-2357</a>
+                        <strong>E-mail</strong>
+                        <a href="mailto:<?= EMAIL_CONTATO ?>" style="color: var(--color-gold);"><?= EMAIL_CONTATO ?></a>
                     </div>
                 </div>
 
                 <div class="contato-info-item">
                     <div>
-                        <strong>E-mail</strong>
-                        <a href="mailto:<?= EMAIL_CONTATO ?>" style="color: var(--color-gold);"><?= EMAIL_CONTATO ?></a>
+                        <strong>Redes Sociais</strong>
+                        <a href="<?= FACEBOOK_URL ?>" target="_blank" rel="noopener" style="color: var(--color-gold);">Facebook</a> &middot;
+                        <a href="<?= INSTAGRAM_URL ?>" target="_blank" rel="noopener" style="color: var(--color-gold);">Instagram</a>
                     </div>
                 </div>
 

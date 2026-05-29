@@ -9,6 +9,13 @@ class PaginaController extends Controller
         $this->view('site/sobre', compact('pagina'));
     }
 
+    public function nossaHistoria(): void
+    {
+        $paginaModel = new Pagina();
+        $pagina = $paginaModel->findBy('slug', 'nossa-historia');
+        $this->view('site/nossa-historia', compact('pagina'));
+    }
+
     public function contato(): void
     {
         $this->view('site/contato');

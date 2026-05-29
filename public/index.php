@@ -20,6 +20,7 @@ $router->get('/produto/{slug}', 'ProdutoController', 'show');
 $router->get('/blog', 'BlogController', 'index');
 $router->get('/blog/{slug}', 'BlogController', 'show');
 $router->get('/sobre', 'PaginaController', 'sobre');
+$router->get('/nossa-historia', 'PaginaController', 'nossaHistoria');
 $router->get('/contato', 'PaginaController', 'contato');
 $router->post('/contato', 'PaginaController', 'enviarContato');
 $router->get('/politica-de-privacidade', 'PaginaController', 'privacidade');
