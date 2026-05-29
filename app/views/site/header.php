@@ -140,6 +140,7 @@
                 </li>
                 <li class="cat-separator"></li>
                 <li><a href="/sobre">Sobre</a></li>
+                <li><a href="/nossa-historia">Nossa História</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/contato">Contato</a></li>
             </ul>

@@ -24,12 +24,12 @@
                     <p>Trabalhamos com uma ampla variedade de implementos rodoviários para atender diferentes segmentos do transporte de cargas:</p>
                     <ul>
                         <li>Aço Inox</li>
+                        <li>Asfáltica</li>
+                        <li>Graneleira</li>
                         <li>Aço Carbono</li>
                         <li>Alumínio</li>
-                        <li>Asfáltica</li>
-                        <li>Térmicas</li>
-                        <li>Graneleira</li>
                         <li>Sider</li>
+                        <li>Térmicas</li>
                         <li>Tanque para Chassis</li>
                     </ul>
 
