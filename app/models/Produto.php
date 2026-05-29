@@ -27,8 +27,8 @@ class Produto extends Model
 
     public function getByCategoria(int $categoriaId, int $limit = 4): array
     {
-        $stmt = $this->db->prepare("SELECT p.*, pi.arquivo as imagem_principal FROM {$this->table} p LEFT JOIN produto_imagens pi ON pi.produto_id = p.id AND pi.principal = 1 WHERE p.categoria_id = ? AND p.status IN ('disponivel','pronta_entrega') ORDER BY p.created_at DESC LIMIT ?");
-        $stmt->execute([$categoriaId, $limit]);
+        $stmt = $this->db->prepare("SELECT p.*, pi.arquivo as imagem_principal FROM {$this->table} p LEFT JOIN produto_imagens pi ON pi.produto_id = p.id AND pi.principal = 1 WHERE (p.categoria_id = ? OR p.categoria_id IN (SELECT id FROM categorias WHERE parent_id = ?)) AND p.status IN ('disponivel','pronta_entrega') ORDER BY p.created_at DESC LIMIT ?");
+        $stmt->execute([$categoriaId, $categoriaId, $limit]);
         return $stmt->fetchAll();
     }
 
@@ -73,7 +73,8 @@ class Produto extends Model
     {
         $p = $prefix ? $prefix . '.' : '';
         if (!empty($filters['categoria_id'])) {
-            $where .= " AND {$p}categoria_id = ?";
+            $where .= " AND ({$p}categoria_id = ? OR {$p}categoria_id IN (SELECT id FROM categorias WHERE parent_id = ?))";
+            $params[] = (int) $filters['categoria_id'];
             $params[] = (int) $filters['categoria_id'];
         }
         if (!empty($filters['configuracao'])) {
