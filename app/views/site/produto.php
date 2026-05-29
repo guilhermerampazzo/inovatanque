@@ -143,9 +143,9 @@
 </section>
 
 <!-- Modal Cotação -->
-<div id="cotacaoModal" style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; padding: 16px;">
+<div id="cotacaoModal" style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; padding: 16px;" onclick="if(event.target===this)closeCotacaoModal()">
     <div style="background: var(--color-surface-container); border: 1px solid var(--color-outline-variant); border-radius: var(--radius-lg); padding: 32px; max-width: 500px; width: 100%; position: relative;">
-        <button onclick="document.getElementById('cotacaoModal').style.display='none'" style="position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--color-on-surface-variant); font-size: 24px; cursor: pointer;">&times;</button>
+        <button type="button" onclick="closeCotacaoModal()" aria-label="Fechar" style="position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--color-on-surface-variant); font-size: 24px; cursor: pointer;">&times;</button>
         <h3 style="font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--color-primary); margin-bottom: 24px;">Solicitar Cotação</h3>
         <form method="POST" action="/cotacao">
             <?= csrf_field() ?>
@@ -167,12 +167,26 @@
             <div style="margin-bottom: 16px;">
                 <textarea name="mensagem" placeholder="Mensagem (opcional)" rows="3" style="width: 100%; padding: 12px; background: var(--color-surface); border: 1px solid var(--color-outline-variant); border-radius: var(--radius-md); color: var(--color-on-surface); font-size: 14px; resize: vertical;"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Cotação</button>
+            <div style="display: flex; gap: 12px;">
+                <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeCotacaoModal()">Cancelar</button>
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Enviar Cotação</button>
+            </div>
         </form>
     </div>
 </div>
 
 <script>
+function closeCotacaoModal() {
+    document.getElementById('cotacaoModal').style.display = 'none';
+}
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        var modal = document.getElementById('cotacaoModal');
+        if (modal && modal.style.display !== 'none' && modal.style.display !== '') {
+            closeCotacaoModal();
+        }
+    }
+});
 function changeImage(thumb, src) {
     document.getElementById('mainImg').src = src;
     document.querySelectorAll('.thumbnails img').forEach(function(img) {

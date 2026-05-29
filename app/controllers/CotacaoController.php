@@ -9,11 +9,26 @@ class CotacaoController extends Controller
             $this->redirect($_SERVER['HTTP_REFERER'] ?? '/');
         }
 
+        $clienteId = Session::get('cliente_id');
+        $nome = sanitize($_POST['nome'] ?? '');
+        $email = sanitize($_POST['email'] ?? '');
+        $telefone = sanitize($_POST['telefone'] ?? '');
+
+        if ($clienteId) {
+            $clienteModel = new Cliente();
+            $cliente = $clienteModel->findById((int) $clienteId);
+            if ($cliente) {
+                $nome = $cliente['nome_razao'] ?? $nome;
+                $email = $cliente['email'] ?? $email;
+                $telefone = $cliente['telefone'] ?? ($cliente['whatsapp'] ?? $telefone);
+            }
+        }
+
         $data = [
-            'cliente_id' => Session::get('cliente_id'),
-            'nome' => sanitize($_POST['nome'] ?? ''),
-            'email' => sanitize($_POST['email'] ?? ''),
-            'telefone' => sanitize($_POST['telefone'] ?? ''),
+            'cliente_id' => $clienteId,
+            'nome' => $nome,
+            'email' => $email,
+            'telefone' => $telefone,
             'produto_id' => (int) ($_POST['produto_id'] ?? 0),
             'mensagem' => sanitize($_POST['mensagem'] ?? ''),
             'status' => 'nova',
