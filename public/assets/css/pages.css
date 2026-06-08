@@ -327,6 +327,10 @@
         padding: 20px;
     }
 
+    .catalogo-main .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .produto-layout {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -336,6 +340,11 @@
 @media (max-width: 768px) {
     .catalogo-layout {
         grid-template-columns: 1fr;
+    }
+
+    .catalogo-main .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
     }
 
     .catalogo-sidebar {
@@ -351,5 +360,11 @@
 
     .produto-ctas {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .catalogo-main .products-grid {
+        grid-template-columns: 1fr;
     }
 }

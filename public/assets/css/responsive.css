@@ -43,7 +43,9 @@
         display: flex;
     }
 
+    /* Barra de categorias escondida por padrao no mobile; abre via hamburger */
     .categories-bar {
+        display: none;
         top: 56px;
     }
 
@@ -230,6 +232,7 @@
 
 /* === MOBILE NAV === */
 .nav-mobile-open .categories-bar {
+    display: block;
     position: fixed;
     top: 56px;
     left: 0;
@@ -246,6 +249,7 @@
     padding: 20px;
     gap: 0;
     align-items: stretch;
+    overflow-x: visible;
 }
 
 .nav-mobile-open .categories-list li a {
@@ -264,4 +268,20 @@
     border: none;
     box-shadow: none;
     padding: 0 0 0 16px;
+}
+
+.nav-mobile-open {
+    overflow: hidden;
+}
+
+.nav-mobile-open .menu-toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-mobile-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-mobile-open .menu-toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
