@@ -3,7 +3,7 @@
 
 <section style="padding-top: 32px; padding-bottom: 96px;">
     <div class="container" style="max-width: 800px;">
-        <h1 style="font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--color-primary); margin-bottom: 32px;">
+        <h1 style="font-family: var(--font); font-size: 32px; font-weight: 700; color: var(--color-accent); margin-bottom: 32px;">
             <?= sanitize($pagina['titulo'] ?? 'Página não encontrada') ?>
         </h1>
 
@@ -12,7 +12,7 @@
                 <?= $pagina['conteudo'] ?>
             </div>
         <?php else: ?>
-            <p style="color: var(--color-on-surface-variant);">Conteúdo em breve.</p>
+            <p style="color: var(--color-text-secondary);">Conteúdo em breve.</p>
         <?php endif; ?>
     </div>
 </section>

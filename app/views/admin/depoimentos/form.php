@@ -36,14 +36,14 @@
             <input type="number" name="ordem" value="<?= $depoimento['ordem'] ?? 0 ?>">
         </div>
         <div class="form-group" style="display: flex; align-items: center; gap: 10px; padding-top: 28px;">
-            <input type="checkbox" name="ativo" id="ativo" <?= ($depoimento['ativo'] ?? 1) ? 'checked' : '' ?> style="accent-color: var(--color-gold);">
-            <label for="ativo" style="text-transform: none; letter-spacing: 0; font-size: 14px; color: var(--color-on-surface);">Ativo</label>
+            <input type="checkbox" name="ativo" id="ativo" <?= ($depoimento['ativo'] ?? 1) ? 'checked' : '' ?> style="accent-color: var(--color-accent);">
+            <label for="ativo" style="text-transform: none; letter-spacing: 0; font-size: 14px; color: var(--color-text);">Ativo</label>
         </div>
     </div>
 
     <div class="form-group">
         <label>Foto</label>
-        <input type="file" name="foto" accept="image/*" style="color: var(--color-on-surface-variant);">
+        <input type="file" name="foto" accept="image/*" style="color: var(--color-text-secondary);">
         <?php if (!empty($depoimento['foto'])): ?>
             <img src="<?= url($depoimento['foto']) ?>" alt="" style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%; margin-top: 8px;">
         <?php endif; ?>

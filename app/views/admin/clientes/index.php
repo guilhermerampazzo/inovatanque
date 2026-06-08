@@ -21,7 +21,7 @@
         <tbody>
             <?php foreach ($clientes as $cli): ?>
                 <tr>
-                    <td><a href="/admin/clientes/<?= $cli['id'] ?>" style="color: var(--color-gold);"><?= sanitize($cli['nome_razao']) ?></a></td>
+                    <td><a href="/admin/clientes/<?= $cli['id'] ?>" style="color: var(--color-accent);"><?= sanitize($cli['nome_razao']) ?></a></td>
                     <td><?= sanitize($cli['email']) ?></td>
                     <td><?= strtoupper($cli['tipo']) ?></td>
                     <td><?= sanitize($cli['telefone'] ?? '-') ?></td>

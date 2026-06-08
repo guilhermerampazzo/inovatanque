@@ -87,7 +87,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Filtrar</button>
-                    <a href="/catalogo" style="display: block; text-align: center; margin-top: 12px; font-size: 13px; color: var(--color-on-surface-variant);">Limpar filtros</a>
+                    <a href="/catalogo" style="display: block; text-align: center; margin-top: 12px; font-size: 13px; color: var(--color-text-secondary);">Limpar filtros</a>
                 </form>
             </aside>
 
@@ -139,7 +139,7 @@
                             </a>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <p style="color: var(--color-on-surface-variant); grid-column: 1/-1; text-align: center; padding: 64px 0;">Nenhum equipamento encontrado com os filtros selecionados.</p>
+                        <p style="color: var(--color-text-secondary); grid-column: 1/-1; text-align: center; padding: 64px 0;">Nenhum equipamento encontrado com os filtros selecionados.</p>
                     <?php endif; ?>
                 </div>
 

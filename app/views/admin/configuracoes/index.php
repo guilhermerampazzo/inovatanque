@@ -8,7 +8,7 @@
 <form method="POST" action="/admin/configuracoes" style="max-width: 700px;">
     <?= csrf_field() ?>
 
-    <h3 style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--color-primary); margin-bottom: 16px;">Contato</h3>
+    <h3 style="font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--color-accent); margin-bottom: 16px;">Contato</h3>
 
     <div class="form-row">
         <div class="form-group">
@@ -42,7 +42,7 @@
         <input type="text" name="cep" value="<?= sanitize($configs['cep'] ?? '') ?>">
     </div>
 
-    <h3 style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--color-primary); margin: 32px 0 16px;">Redes Sociais</h3>
+    <h3 style="font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--color-accent); margin: 32px 0 16px;">Redes Sociais</h3>
 
     <div class="form-row">
         <div class="form-group">
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <h3 style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--color-primary); margin: 32px 0 16px;">Tracking</h3>
+    <h3 style="font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--color-accent); margin: 32px 0 16px;">Tracking</h3>
 
     <div class="form-row">
         <div class="form-group">
@@ -73,15 +73,15 @@
         <input type="text" name="google_ads_id" value="<?= sanitize($configs['google_ads_id'] ?? '') ?>">
     </div>
 
-    <h3 style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--color-primary); margin: 32px 0 16px;">WhatsApp</h3>
+    <h3 style="font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--color-accent); margin: 32px 0 16px;">WhatsApp</h3>
 
     <div class="form-group">
         <label>Mensagem pré-preenchida (produto)</label>
         <textarea name="whatsapp_msg_produto" rows="3"><?= sanitize($configs['whatsapp_msg_produto'] ?? '') ?></textarea>
-        <small style="color: var(--color-on-surface-variant); font-size: 12px;">Use {produto} e {codigo} como variáveis.</small>
+        <small style="color: var(--color-text-secondary); font-size: 12px;">Use {produto} e {codigo} como variáveis.</small>
     </div>
 
-    <h3 style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--color-primary); margin: 32px 0 16px;">SEO</h3>
+    <h3 style="font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--color-accent); margin: 32px 0 16px;">SEO</h3>
 
     <div class="form-group">
         <label>Meta Title (padrão)</label>

@@ -6,7 +6,7 @@
         <div class="cliente-layout">
             <aside class="cliente-sidebar">
                 <div style="margin-bottom: 24px;">
-                    <strong style="color: var(--color-primary); font-size: 16px;"><?= Session::get('cliente_nome') ?></strong>
+                    <strong style="color: var(--color-accent); font-size: 16px;"><?= Session::get('cliente_nome') ?></strong>
                 </div>
                 <nav>
                     <a href="/cliente/dashboard">Dashboard</a>
@@ -18,7 +18,7 @@
             </aside>
 
             <div class="cliente-main">
-                <h1 style="font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--color-primary); margin-bottom: 32px;">Meus Favoritos</h1>
+                <h1 style="font-family: var(--font); font-size: 28px; font-weight: 700; color: var(--color-accent); margin-bottom: 32px;">Meus Favoritos</h1>
 
                 <?php if (!empty($favoritos)): ?>
                     <div class="products-grid" style="grid-template-columns: repeat(3, 1fr);">
@@ -44,7 +44,7 @@
                         <?php endforeach; ?>
                     </div>
                 <?php else: ?>
-                    <p style="color: var(--color-on-surface-variant);">Você ainda não favoritou nenhum produto. <a href="/catalogo" style="color: var(--color-gold);">Explore nosso catálogo</a>.</p>
+                    <p style="color: var(--color-text-secondary);">Você ainda não favoritou nenhum produto. <a href="/catalogo" style="color: var(--color-accent);">Explore nosso catálogo</a>.</p>
                 <?php endif; ?>
             </div>
         </div>

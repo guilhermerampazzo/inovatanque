@@ -54,22 +54,22 @@
                 <div class="contato-info-item">
                     <div>
                         <strong>Telefone / WhatsApp</strong>
-                        <a href="<?= whatsapp_link(WHATSAPP_PRINCIPAL) ?>" style="color: var(--color-gold);"><?= TELEFONE ?></a>
+                        <a href="<?= whatsapp_link(WHATSAPP_PRINCIPAL) ?>" style="color: var(--color-accent);"><?= TELEFONE ?></a>
                     </div>
                 </div>
 
                 <div class="contato-info-item">
                     <div>
                         <strong>E-mail</strong>
-                        <a href="mailto:<?= EMAIL_CONTATO ?>" style="color: var(--color-gold);"><?= EMAIL_CONTATO ?></a>
+                        <a href="mailto:<?= EMAIL_CONTATO ?>" style="color: var(--color-accent);"><?= EMAIL_CONTATO ?></a>
                     </div>
                 </div>
 
                 <div class="contato-info-item">
                     <div>
                         <strong>Redes Sociais</strong>
-                        <a href="<?= FACEBOOK_URL ?>" target="_blank" rel="noopener" style="color: var(--color-gold);">Facebook</a> &middot;
-                        <a href="<?= INSTAGRAM_URL ?>" target="_blank" rel="noopener" style="color: var(--color-gold);">Instagram</a>
+                        <a href="<?= FACEBOOK_URL ?>" target="_blank" rel="noopener" style="color: var(--color-accent);">Facebook</a> &middot;
+                        <a href="<?= INSTAGRAM_URL ?>" target="_blank" rel="noopener" style="color: var(--color-accent);">Instagram</a>
                     </div>
                 </div>
 

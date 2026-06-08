@@ -51,7 +51,7 @@
                         </div>
                     <?php endif; ?>
                 <?php else: ?>
-                    <p style="color: var(--color-on-surface-variant); text-align: center; padding: 64px 0;">Nenhum post publicado ainda.</p>
+                    <p style="color: var(--color-text-secondary); text-align: center; padding: 64px 0;">Nenhum post publicado ainda.</p>
                 <?php endif; ?>
             </div>
 

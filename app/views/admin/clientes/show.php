@@ -20,7 +20,7 @@
 </div>
 
 <?php if (!empty($cotacoes)): ?>
-    <h2 style="font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--color-primary); margin-bottom: 16px;">Cotações deste cliente</h2>
+    <h2 style="font-family: var(--font); font-size: 20px; font-weight: 600; color: var(--color-accent); margin-bottom: 16px;">Cotações deste cliente</h2>
     <div class="table-responsive">
         <table class="data-table">
             <thead>

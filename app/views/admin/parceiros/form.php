@@ -20,14 +20,14 @@
             <input type="number" name="ordem" value="0">
         </div>
         <div class="form-group" style="display: flex; align-items: center; gap: 10px; padding-top: 28px;">
-            <input type="checkbox" name="ativo" id="ativo" checked style="accent-color: var(--color-gold);">
-            <label for="ativo" style="text-transform: none; letter-spacing: 0; font-size: 14px; color: var(--color-on-surface);">Ativo</label>
+            <input type="checkbox" name="ativo" id="ativo" checked style="accent-color: var(--color-accent);">
+            <label for="ativo" style="text-transform: none; letter-spacing: 0; font-size: 14px; color: var(--color-text);">Ativo</label>
         </div>
     </div>
 
     <div class="form-group">
         <label>Logo *</label>
-        <input type="file" name="logo" accept="image/*" required style="color: var(--color-on-surface-variant);">
+        <input type="file" name="logo" accept="image/*" required style="color: var(--color-text-secondary);">
     </div>
 
     <button type="submit" class="btn btn-primary btn-lg">Salvar</button>

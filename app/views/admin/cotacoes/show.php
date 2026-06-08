@@ -8,14 +8,14 @@
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 900px;">
     <div>
-        <h3 style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--color-primary); margin-bottom: 16px;">Dados do Lead</h3>
+        <h3 style="font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--color-accent); margin-bottom: 16px;">Dados do Lead</h3>
         <table class="produto-specs">
             <tr><td>Nome</td><td><?= sanitize($cotacao['nome']) ?></td></tr>
             <tr><td>E-mail</td><td><?= sanitize($cotacao['email']) ?></td></tr>
             <tr><td>Telefone</td><td><?= sanitize($cotacao['telefone'] ?? '-') ?></td></tr>
             <tr><td>Data</td><td><?= date('d/m/Y H:i', strtotime($cotacao['created_at'])) ?></td></tr>
             <?php if ($cliente): ?>
-                <tr><td>Cliente</td><td><a href="/admin/clientes/<?= $cliente['id'] ?>" style="color: var(--color-gold);"><?= sanitize($cliente['nome_razao']) ?></a></td></tr>
+                <tr><td>Cliente</td><td><a href="/admin/clientes/<?= $cliente['id'] ?>" style="color: var(--color-accent);"><?= sanitize($cliente['nome_razao']) ?></a></td></tr>
             <?php endif; ?>
             <?php if ($produto): ?>
                 <tr><td>Produto</td><td><?= sanitize($produto['titulo']) ?> (<?= $produto['codigo'] ?? '' ?>)</td></tr>
@@ -23,13 +23,13 @@
         </table>
 
         <?php if ($cotacao['mensagem']): ?>
-            <h3 style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--color-primary); margin: 24px 0 12px;">Mensagem</h3>
-            <p style="font-size: 14px; color: var(--color-on-surface-variant); line-height: 1.7; background: var(--color-surface-container); padding: 16px; border-radius: var(--radius-md);"><?= nl2br(sanitize($cotacao['mensagem'])) ?></p>
+            <h3 style="font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--color-accent); margin: 24px 0 12px;">Mensagem</h3>
+            <p style="font-size: 14px; color: var(--color-text-secondary); line-height: 1.7; background: var(--color-muted); padding: 16px; border-radius: var(--radius-md);"><?= nl2br(sanitize($cotacao['mensagem'])) ?></p>
         <?php endif; ?>
     </div>
 
     <div>
-        <h3 style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--color-primary); margin-bottom: 16px;">Atualizar</h3>
+        <h3 style="font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--color-accent); margin-bottom: 16px;">Atualizar</h3>
         <form method="POST" action="/admin/cotacoes/<?= $cotacao['id'] ?>">
             <?= csrf_field() ?>
             <div class="form-group">

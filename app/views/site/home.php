@@ -141,7 +141,7 @@
                     </a>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p style="color: var(--color-on-surface-variant); grid-column: 1/-1; text-align: center; padding: 48px 0;">Em breve novos equipamentos disponíveis.</p>
+                <p style="color: var(--color-text-muted); grid-column: 1/-1; text-align: center; padding: 48px 0;">Em breve novos equipamentos disponíveis.</p>
             <?php endif; ?>
         </div>
     </div>

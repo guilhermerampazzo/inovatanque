@@ -136,13 +136,9 @@
                         <li><a href="/catalogo?categoria=1">Aço</a></li>
                         <li><a href="/catalogo?categoria=2">Aço Carbono</a></li>
                         <li><a href="/catalogo?categoria=3">Inox</a></li>
-                        <li class="has-dropdown">
-                            <a href="/catalogo?categoria=4">Térmica</a>
-                            <ul class="cat-dropdown">
-                                <li><a href="/catalogo?categoria=5">Asfáltica</a></li>
-                                <li><a href="/catalogo?categoria=6">Vegetal</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="/catalogo?categoria=4">Térmica</a></li>
+                        <li style="padding-left: 8px;"><a href="/catalogo?categoria=5" style="font-size: 12px; color: var(--color-text-secondary);">↳ Asfáltica</a></li>
+                        <li style="padding-left: 8px;"><a href="/catalogo?categoria=6" style="font-size: 12px; color: var(--color-text-secondary);">↳ Vegetal</a></li>
                     </ul>
                 </li>
                 <li><a href="/sobre" class="<?= is_active('/sobre') ?>">Sobre</a></li>

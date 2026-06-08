@@ -7,7 +7,7 @@
             <!-- Sidebar -->
             <aside class="cliente-sidebar">
                 <div style="margin-bottom: 24px;">
-                    <strong style="color: var(--color-primary); font-size: 16px;"><?= Session::get('cliente_nome') ?></strong>
+                    <strong style="color: var(--color-accent); font-size: 16px;"><?= Session::get('cliente_nome') ?></strong>
                 </div>
                 <nav>
                     <a href="/cliente/dashboard" class="<?= is_active('/cliente/dashboard') ?>">Dashboard</a>
@@ -20,7 +20,7 @@
 
             <!-- Conteúdo -->
             <div class="cliente-main">
-                <h1 style="font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--color-primary); margin-bottom: 32px;">Dashboard</h1>
+                <h1 style="font-family: var(--font); font-size: 28px; font-weight: 700; color: var(--color-accent); margin-bottom: 32px;">Dashboard</h1>
 
                 <div class="cliente-stats">
                     <div class="cliente-stat-card">
@@ -34,7 +34,7 @@
                 </div>
 
                 <div style="margin-top: 48px;">
-                    <h2 style="font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--color-primary); margin-bottom: 16px;">Ações Rápidas</h2>
+                    <h2 style="font-family: var(--font); font-size: 20px; font-weight: 600; color: var(--color-accent); margin-bottom: 16px;">Ações Rápidas</h2>
                     <div style="display: flex; gap: 16px; flex-wrap: wrap;">
                         <a href="/catalogo" class="btn btn-primary">Ver Catálogo</a>
                         <a href="/cliente/cotacoes" class="btn btn-secondary">Ver Cotações</a>

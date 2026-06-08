@@ -6,7 +6,7 @@
         <div class="cliente-layout">
             <aside class="cliente-sidebar">
                 <div style="margin-bottom: 24px;">
-                    <strong style="color: var(--color-primary); font-size: 16px;"><?= Session::get('cliente_nome') ?></strong>
+                    <strong style="color: var(--color-accent); font-size: 16px;"><?= Session::get('cliente_nome') ?></strong>
                 </div>
                 <nav>
                     <a href="/cliente/dashboard">Dashboard</a>
@@ -18,7 +18,7 @@
             </aside>
 
             <div class="cliente-main">
-                <h1 style="font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--color-primary); margin-bottom: 32px;">Meu Perfil</h1>
+                <h1 style="font-family: var(--font); font-size: 28px; font-weight: 700; color: var(--color-accent); margin-bottom: 32px;">Meu Perfil</h1>
 
                 <form method="POST" action="/cliente/perfil" style="max-width: 600px;">
                     <?= csrf_field() ?>

@@ -25,7 +25,7 @@
             <span>/</span>
             <a href="/blog">Blog</a>
             <span>/</span>
-            <span style="color: var(--color-on-surface);"><?= sanitize($post['titulo']) ?></span>
+            <span style="color: var(--color-text);"><?= sanitize($post['titulo']) ?></span>
         </nav>
 
         <div class="blog-post-layout">

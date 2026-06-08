@@ -26,7 +26,7 @@
             <span>/</span>
             <a href="/catalogo">Catálogo</a>
             <span>/</span>
-            <span style="color: var(--color-on-surface);"><?= sanitize($produto['titulo']) ?></span>
+            <span style="color: var(--color-text);"><?= sanitize($produto['titulo']) ?></span>
         </nav>
 
         <!-- Produto -->
@@ -56,8 +56,8 @@
 
                 <?php if ($produto['status'] === 'pronta_entrega'): ?>
                     <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; background: rgba(245, 176, 65, 0.1); border: 1px solid rgba(245, 176, 65, 0.3); border-radius: var(--radius-md); margin-bottom: 24px;">
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-gold);"></span>
-                        <span style="font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--color-gold);">Pronta Entrega</span>
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent);"></span>
+                        <span style="font-size: 12px; font-weight: 600; text-transform: uppercase; color: var(--color-accent);">Pronta Entrega</span>
                     </div>
                 <?php endif; ?>
 
