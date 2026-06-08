@@ -1,9 +1,7 @@
 /* === HERO === */
 .hero-ecommerce {
     position: relative;
-    min-height: 320px;
     overflow: hidden;
-    background: #111827;
 }
 
 .hero-ecommerce .hero-slide {
@@ -53,23 +51,26 @@
 .hero-ecommerce .hero-content {
     position: relative;
     z-index: 2;
-    padding: 64px 0;
-    max-width: 600px;
+    padding: 56px 0;
+    max-width: 820px;
+    margin-left: 0;
+    margin-right: auto;
 }
 
 .hero-ecommerce .hero-content h2 {
-    font-size: 34px;
+    font-size: 38px;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 16px;
-    line-height: 1.2;
+    margin-bottom: 18px;
+    line-height: 1.15;
 }
 
 .hero-ecommerce .hero-content p {
-    font-size: 16px;
+    font-size: 17px;
     color: rgba(255,255,255,0.8);
-    margin-bottom: 28px;
+    margin-bottom: 32px;
     line-height: 1.6;
+    max-width: 620px;
 }
 
 .hero-ecommerce .hero-indicators {
