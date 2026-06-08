@@ -152,7 +152,7 @@
     align-items: center;
     justify-content: center;
     gap: 4px;
-    overflow-x: auto;
+    overflow: visible;
     scrollbar-width: none;
     padding: 10px 0;
 }

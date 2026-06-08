@@ -50,6 +50,7 @@
     .categories-list {
         padding: 8px 0;
         gap: 2px;
+        overflow-x: auto;
     }
 
     .categories-list li a {
