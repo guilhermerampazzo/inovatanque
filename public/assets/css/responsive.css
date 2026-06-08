@@ -67,6 +67,10 @@
         border-radius: 0;
     }
 
+    .hero-ecommerce a.hero-slide {
+        height: 200px;
+    }
+
     .hero-ecommerce .hero-content {
         padding: 40px 0;
     }
