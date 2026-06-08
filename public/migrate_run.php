@@ -3,7 +3,8 @@ if (($_GET['token'] ?? '') !== 'inovatanque_migrate_2026') { http_response_code(
 try {
     $pdo = new PDO('mysql:host=localhost;dbname=inova;charset=utf8mb4', 'inova', 'XDxbLEmy7HyRnmkL', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     $sqls = [
-        "ALTER TABLE banners ADD COLUMN IF NOT EXISTS tipo ENUM('image','color','gradient') NOT NULL DEFAULT 'color' AFTER id",
+        "ALTER TABLE banners ADD COLUMN IF NOT EXISTS tipo ENUM('cor_texto','imagem_texto','imagem_link') NOT NULL DEFAULT 'cor_texto' AFTER id",
+        "ALTER TABLE banners MODIFY COLUMN tipo ENUM('cor_texto','imagem_texto','imagem_link') NOT NULL DEFAULT 'cor_texto'",
         "ALTER TABLE banners ADD COLUMN IF NOT EXISTS cor_fundo VARCHAR(100) NULL AFTER tipo",
         "ALTER TABLE banners ADD COLUMN IF NOT EXISTS subtitulo VARCHAR(255) NULL AFTER titulo",
         "ALTER TABLE banners ADD COLUMN IF NOT EXISTS cta_texto VARCHAR(100) NULL AFTER subtitulo",
