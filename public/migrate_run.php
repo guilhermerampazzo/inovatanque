@@ -4,33 +4,28 @@ header('Content-Type: text/html; charset=utf-8');
 try {
     $pdo = new PDO('mysql:host=localhost;dbname=inova;charset=utf8mb4', 'inova', 'XDxbLEmy7HyRnmkL', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
-    // 1. Mostrar estrutura atual da coluna tipo
     echo "<h3>Estado ANTES:</h3><pre>";
-    foreach ($pdo->query("SHOW COLUMNS FROM banners WHERE Field='tipo'")->fetchAll(PDO::FETCH_ASSOC) as $col) {
-        echo htmlspecialchars(json_encode($col)) . "\n";
+    foreach ($pdo->query("SHOW COLUMNS FROM banners")->fetchAll(PDO::FETCH_ASSOC) as $col) {
+        echo htmlspecialchars($col['Field'] . " — " . $col['Type']) . "\n";
     }
     echo "</pre>";
 
-    // 2. Normaliza valores antigos que nao existem no novo enum (evita truncate)
-    $pdo->exec("UPDATE banners SET tipo='cor_texto' WHERE tipo NOT IN ('cor_texto','imagem_texto','imagem_link')");
-
-    // 3. Garante colunas
-    $sqls = [
-        "ALTER TABLE banners ADD COLUMN IF NOT EXISTS tipo VARCHAR(20) NOT NULL DEFAULT 'cor_texto' AFTER id",
-        "UPDATE banners SET tipo='cor_texto' WHERE tipo NOT IN ('cor_texto','imagem_texto','imagem_link')",
-        "ALTER TABLE banners MODIFY COLUMN tipo ENUM('cor_texto','imagem_texto','imagem_link') NOT NULL DEFAULT 'cor_texto'",
-        "ALTER TABLE banners ADD COLUMN IF NOT EXISTS cor_fundo VARCHAR(100) NULL AFTER tipo",
-        "ALTER TABLE banners ADD COLUMN IF NOT EXISTS subtitulo VARCHAR(255) NULL AFTER titulo",
-        "ALTER TABLE banners ADD COLUMN IF NOT EXISTS cta_texto VARCHAR(100) NULL AFTER subtitulo",
-        "ALTER TABLE banners ADD COLUMN IF NOT EXISTS cta_link VARCHAR(255) NULL AFTER cta_texto",
-        "ALTER TABLE banners ADD COLUMN IF NOT EXISTS link VARCHAR(255) NULL AFTER cta_link",
-    ];
-    foreach ($sqls as $sql) {
+    $run = function($sql) use ($pdo) {
         try { $pdo->exec($sql); echo "<p style='color:green'>OK: ".htmlspecialchars($sql)."</p>"; }
         catch (Exception $e) { echo "<p style='color:orange'>SKIP: ".htmlspecialchars($sql)." => ".htmlspecialchars($e->getMessage())."</p>"; }
-    }
+    };
 
-    // 4. Estado final
+    // Dropa a coluna tipo se existir (com enum errado) e recria do zero
+    $run("ALTER TABLE banners DROP COLUMN tipo");
+    $run("ALTER TABLE banners ADD COLUMN tipo ENUM('cor_texto','imagem_texto','imagem_link') NOT NULL DEFAULT 'cor_texto' AFTER id");
+
+    // Demais colunas
+    $run("ALTER TABLE banners ADD COLUMN IF NOT EXISTS cor_fundo VARCHAR(100) NULL AFTER tipo");
+    $run("ALTER TABLE banners ADD COLUMN IF NOT EXISTS subtitulo VARCHAR(255) NULL AFTER titulo");
+    $run("ALTER TABLE banners ADD COLUMN IF NOT EXISTS cta_texto VARCHAR(100) NULL AFTER subtitulo");
+    $run("ALTER TABLE banners ADD COLUMN IF NOT EXISTS cta_link VARCHAR(255) NULL AFTER cta_texto");
+    $run("ALTER TABLE banners ADD COLUMN IF NOT EXISTS link VARCHAR(255) NULL AFTER cta_link");
+
     echo "<h3>Estado DEPOIS:</h3><pre>";
     foreach ($pdo->query("SHOW COLUMNS FROM banners")->fetchAll(PDO::FETCH_ASSOC) as $col) {
         echo htmlspecialchars($col['Field'] . " — " . $col['Type']) . "\n";
