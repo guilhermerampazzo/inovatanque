@@ -100,6 +100,7 @@
             <div class="header-inner">
                 <a href="/" class="logo">
                     <img src="/logo.svg" alt="Inova Tanque">
+                    <span class="logo-text">Inova Tanque</span>
                 </a>
                 <form class="header-search" action="/catalogo" method="GET">
                     <input type="text" name="busca" placeholder="Buscar carretas-tanque por tipo, capacidade..." value="<?= sanitize($_GET['busca'] ?? '') ?>">
@@ -123,26 +124,30 @@
         </div>
     </header>
 
-    <!-- Categorias -->
+    <!-- Navegação principal -->
     <nav class="categories-bar">
         <div class="container">
             <ul class="categories-list">
-                <li><a href="/catalogo" class="<?= is_active('/catalogo') ?>">Todos</a></li>
-                <li><a href="/catalogo?categoria=1">Aço</a></li>
-                <li><a href="/catalogo?categoria=2">Aço Carbono</a></li>
-                <li><a href="/catalogo?categoria=3">Inox</a></li>
+                <li><a href="/" class="<?= is_active('/') ?>">Home</a></li>
+                <li><a href="/catalogo" class="<?= is_active('/catalogo') ?>">Catálogo</a></li>
                 <li class="has-dropdown">
-                    <a href="/catalogo?categoria=4">Térmica</a>
+                    <a href="/catalogo">Categoria</a>
                     <ul class="cat-dropdown">
-                        <li><a href="/catalogo?categoria=5">Asfáltica</a></li>
-                        <li><a href="/catalogo?categoria=6">Vegetal</a></li>
+                        <li><a href="/catalogo?categoria=1">Aço</a></li>
+                        <li><a href="/catalogo?categoria=2">Aço Carbono</a></li>
+                        <li><a href="/catalogo?categoria=3">Inox</a></li>
+                        <li class="has-dropdown">
+                            <a href="/catalogo?categoria=4">Térmica</a>
+                            <ul class="cat-dropdown">
+                                <li><a href="/catalogo?categoria=5">Asfáltica</a></li>
+                                <li><a href="/catalogo?categoria=6">Vegetal</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
-                <li class="cat-separator"></li>
-                <li><a href="/sobre">Sobre</a></li>
-                <li><a href="/nossa-historia">Nossa História</a></li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/contato">Contato</a></li>
+                <li><a href="/sobre" class="<?= is_active('/sobre') ?>">Sobre</a></li>
+                <li><a href="/blog" class="<?= is_active('/blog') ?>">Blog</a></li>
+                <li><a href="/contato" class="<?= is_active('/contato') ?>">Contato</a></li>
             </ul>
         </div>
     </nav>

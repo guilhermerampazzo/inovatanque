@@ -84,27 +84,31 @@ class AdminCategoriaController extends Controller
     public function destroy(string $id): void
     {
         $categoriaId = (int) $id;
-        $categoriaModel = new Categoria();
-
-        $produtoModel = new Produto();
-        $produtosVinculados = $produtoModel->count('categoria_id = ?', [$categoriaId]);
-        if ($produtosVinculados > 0) {
-            Session::flash('error', 'Não é possível excluir: existem ' . $produtosVinculados . ' produto(s) vinculado(s) a esta categoria. Mova ou exclua os produtos antes.');
-            $this->redirect('/admin/categorias');
-        }
-
-        $subcategorias = $categoriaModel->count('parent_id = ?', [$categoriaId]);
-        if ($subcategorias > 0) {
-            Session::flash('error', 'Não é possível excluir: existem ' . $subcategorias . ' subcategoria(s) vinculada(s). Exclua-as primeiro.');
-            $this->redirect('/admin/categorias');
-        }
 
         try {
+            $categoriaModel = new Categoria();
+            $produtoModel = new Produto();
+
+            $produtosVinculados = $produtoModel->count('categoria_id = ?', [$categoriaId]);
+            if ($produtosVinculados > 0) {
+                Session::flash('error', 'Não é possível excluir: existem ' . $produtosVinculados . ' produto(s) vinculado(s) a esta categoria. Mova ou exclua os produtos antes.');
+                $this->redirect('/admin/categorias');
+            }
+
+            $subcategorias = $categoriaModel->count('parent_id = ?', [$categoriaId]);
+            if ($subcategorias > 0) {
+                Session::flash('error', 'Não é possível excluir: existem ' . $subcategorias . ' subcategoria(s) vinculada(s). Exclua-as primeiro.');
+                $this->redirect('/admin/categorias');
+            }
+
             $categoriaModel->delete($categoriaId);
             Session::flash('success', 'Categoria excluída.');
-        } catch (PDOException $e) {
-            Session::flash('error', 'Não foi possível excluir a categoria por restrição de integridade.');
+        } catch (\PDOException $e) {
+            Session::flash('error', 'Não foi possível excluir: a categoria está sendo usada por produtos ou outras tabelas.');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Erro inesperado ao excluir a categoria.');
         }
+
         $this->redirect('/admin/categorias');
     }
 

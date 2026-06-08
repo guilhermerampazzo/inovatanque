@@ -20,6 +20,11 @@ class AuthController extends Controller
         $email = sanitize($_POST['email'] ?? '');
         $senha = $_POST['senha'] ?? '';
 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            Session::flash('error', 'E-mail inválido.');
+            $this->redirect('/login');
+        }
+
         $clienteModel = new Cliente();
         $cliente = $clienteModel->findBy('email', $email);
 
@@ -74,6 +79,31 @@ class AuthController extends Controller
 
         if (!$data['nome_razao'] || !$data['email'] || !$senha) {
             Session::flash('error', 'Preencha todos os campos obrigatórios.');
+            $this->redirect('/cadastro');
+        }
+
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            Session::flash('error', 'E-mail inválido.');
+            $this->redirect('/cadastro');
+        }
+
+        if (!$data['telefone'] && !$data['whatsapp']) {
+            Session::flash('error', 'Informe pelo menos um número de telefone ou WhatsApp.');
+            $this->redirect('/cadastro');
+        }
+
+        if (strlen($senha) < 8) {
+            Session::flash('error', 'A senha deve ter no mínimo 8 caracteres.');
+            $this->redirect('/cadastro');
+        }
+
+        if (!preg_match('/[A-Z]/', $senha)) {
+            Session::flash('error', 'A senha deve conter pelo menos uma letra maiúscula.');
+            $this->redirect('/cadastro');
+        }
+
+        if (!preg_match('/[0-9]/', $senha)) {
+            Session::flash('error', 'A senha deve conter pelo menos um número.');
             $this->redirect('/cadastro');
         }
 

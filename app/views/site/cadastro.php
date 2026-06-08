@@ -76,14 +76,15 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="telefone">Telefone</label>
+                        <label for="telefone">Telefone *</label>
                         <input type="tel" id="telefone" name="telefone" value="<?= old('telefone') ?>" placeholder="(00) 0000-0000">
                     </div>
                     <div class="form-group">
-                        <label for="whatsapp">WhatsApp</label>
+                        <label for="whatsapp">WhatsApp *</label>
                         <input type="tel" id="whatsapp" name="whatsapp" value="<?= old('whatsapp') ?>" placeholder="(00) 00000-0000">
                     </div>
                 </div>
+                <p style="font-size: 12px; color: var(--color-text-muted); margin-top: -8px; margin-bottom: 8px;">* Informe pelo menos um dos dois.</p>
 
                 <!-- Endereço -->
                 <div class="form-section-title">Endereço</div>
@@ -115,7 +116,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="senha">Senha *</label>
-                        <input type="password" id="senha" name="senha" required placeholder="Mínimo 6 caracteres">
+                        <input type="password" id="senha" name="senha" required placeholder="Mín. 8 chars, 1 maiúscula, 1 número">
                     </div>
                     <div class="form-group">
                         <label for="senha_confirmacao">Confirmar Senha *</label>

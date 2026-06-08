@@ -143,29 +143,29 @@
 </section>
 
 <!-- Modal Cotação -->
-<div id="cotacaoModal" style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; padding: 16px;" onclick="if(event.target===this)closeCotacaoModal()">
-    <div style="background: var(--color-surface-container); border: 1px solid var(--color-outline-variant); border-radius: var(--radius-lg); padding: 32px; max-width: 500px; width: 100%; position: relative;">
-        <button type="button" onclick="closeCotacaoModal()" aria-label="Fechar" style="position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--color-on-surface-variant); font-size: 24px; cursor: pointer;">&times;</button>
-        <h3 style="font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--color-primary); margin-bottom: 24px;">Solicitar Cotação</h3>
+<div id="cotacaoModal" style="display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; padding: 16px;" onclick="if(event.target===this)closeCotacaoModal()">
+    <div style="background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 32px; max-width: 500px; width: 100%; position: relative; box-shadow: var(--shadow-lg);">
+        <button type="button" onclick="closeCotacaoModal()" aria-label="Fechar" style="position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--color-text-secondary); font-size: 24px; cursor: pointer; line-height: 1;">&times;</button>
+        <h3 style="font-size: 20px; font-weight: 600; color: var(--color-text); margin-bottom: 24px;">Solicitar Cotação</h3>
         <form method="POST" action="/cotacao">
             <?= csrf_field() ?>
             <input type="hidden" name="produto_id" value="<?= $produto['id'] ?>">
             <?php if (!Session::isLoggedIn()): ?>
                 <div style="margin-bottom: 16px;">
-                    <input type="text" name="nome" placeholder="Seu nome *" required style="width: 100%; padding: 12px; background: var(--color-surface); border: 1px solid var(--color-outline-variant); border-radius: var(--radius-md); color: var(--color-on-surface); font-size: 14px;">
+                    <input type="text" name="nome" placeholder="Seu nome *" required style="width: 100%; padding: 12px; background: var(--color-muted); border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); font-size: 14px;">
                 </div>
                 <div style="margin-bottom: 16px;">
-                    <input type="email" name="email" placeholder="Seu e-mail *" required style="width: 100%; padding: 12px; background: var(--color-surface); border: 1px solid var(--color-outline-variant); border-radius: var(--radius-md); color: var(--color-on-surface); font-size: 14px;">
+                    <input type="email" name="email" placeholder="Seu e-mail *" required style="width: 100%; padding: 12px; background: var(--color-muted); border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); font-size: 14px;">
                 </div>
                 <div style="margin-bottom: 16px;">
-                    <input type="tel" name="telefone" placeholder="Telefone" style="width: 100%; padding: 12px; background: var(--color-surface); border: 1px solid var(--color-outline-variant); border-radius: var(--radius-md); color: var(--color-on-surface); font-size: 14px;">
+                    <input type="tel" name="telefone" placeholder="Telefone" style="width: 100%; padding: 12px; background: var(--color-muted); border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); font-size: 14px;">
                 </div>
             <?php else: ?>
                 <input type="hidden" name="nome" value="<?= Session::get('cliente_nome') ?>">
                 <input type="hidden" name="email" value="">
             <?php endif; ?>
             <div style="margin-bottom: 16px;">
-                <textarea name="mensagem" placeholder="Mensagem (opcional)" rows="3" style="width: 100%; padding: 12px; background: var(--color-surface); border: 1px solid var(--color-outline-variant); border-radius: var(--radius-md); color: var(--color-on-surface); font-size: 14px; resize: vertical;"></textarea>
+                <textarea name="mensagem" placeholder="Mensagem (opcional)" rows="3" style="width: 100%; padding: 12px; background: var(--color-muted); border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); font-size: 14px; resize: vertical;"></textarea>
             </div>
             <div style="display: flex; gap: 12px;">
                 <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeCotacaoModal()">Cancelar</button>

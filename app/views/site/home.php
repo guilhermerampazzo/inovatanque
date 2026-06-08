@@ -147,53 +147,6 @@
     </div>
 </section>
 
-<!-- Produtos por Categoria -->
-<?php if (!empty($produtosPorCategoria)): ?>
-    <?php foreach ($produtosPorCategoria as $grupo): ?>
-    <section class="section-produtos">
-        <div class="container">
-            <div class="section-header">
-                <div>
-                    <h2><?= sanitize($grupo['categoria']['nome']) ?></h2>
-                    <p><?= count($grupo['produtos']) ?> equipamentos</p>
-                </div>
-                <a href="/catalogo?categoria=<?= $grupo['categoria']['id'] ?>">Ver todos &rarr;</a>
-            </div>
-            <div class="products-grid">
-                <?php foreach ($grupo['produtos'] as $produto): ?>
-                    <a href="/produto/<?= $produto['slug'] ?>" class="product-card">
-                        <div class="product-image">
-                            <?php if ($produto['imagem_principal']): ?>
-                                <img src="<?= url($produto['imagem_principal']) ?>" alt="<?= sanitize($produto['titulo']) ?>">
-                            <?php else: ?>
-                                <div class="product-no-image"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-                            <?php endif; ?>
-                            <?php if ($produto['status'] === 'pronta_entrega'): ?>
-                                <span class="product-badge badge-pronta">Pronta Entrega</span>
-                            <?php endif; ?>
-                        </div>
-                        <div class="product-info">
-                            <h3><?= sanitize($produto['titulo']) ?></h3>
-                            <div class="product-specs">
-                                <?php if ($produto['capacidade']): ?>
-                                    <span class="spec"><?= number_format($produto['capacidade'], 0, ',', '.') ?>L</span>
-                                <?php endif; ?>
-                                <?php if (!empty($produto['configuracao'])): ?>
-                                    <span class="spec"><?= sanitize($produto['configuracao']) ?></span>
-                                <?php endif; ?>
-                            </div>
-                            <div class="product-bottom">
-                                <span class="product-modalidade"><?= sanitize($produto['modalidade'] ?? 'Consulte') ?></span>
-                                <span class="product-cta">Solicitar Cotação →</span>
-                            </div>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
-    <?php endforeach; ?>
-<?php endif; ?>
 
 <!-- Faixa de Urgência -->
 <section class="urgency-bar">

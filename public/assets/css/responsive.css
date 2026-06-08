@@ -215,7 +215,11 @@
     }
 
     .logo img {
-        height: 28px;
+        height: 36px;
+    }
+
+    .logo-text {
+        display: none;
     }
 }
 
