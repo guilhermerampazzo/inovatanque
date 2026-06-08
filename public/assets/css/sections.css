@@ -28,8 +28,17 @@
     object-fit: cover;
 }
 
+/* Tipo "imagem inteira" (imagem_link): a imagem define a altura do hero */
+.hero-ecommerce a.hero-slide {
+    display: block;
+}
+
 .hero-ecommerce a.hero-slide img {
-    opacity: 1;
+    position: static;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .hero-ecommerce .hero-overlay {
