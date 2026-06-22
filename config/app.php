@@ -12,5 +12,6 @@ define('TELEFONE', '(19) 97406-0706');
 
 define('FACEBOOK_URL', 'https://facebook.com/inovatanque');
 define('INSTAGRAM_URL', 'https://instagram.com/inovatanque');
+define('LINKEDIN_URL', 'https://linkedin.com/company/inovatanque');
 
 define('ITEMS_PER_PAGE', 12);

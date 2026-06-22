@@ -217,6 +217,14 @@
         padding: 12px 14px;
     }
 
+    .header-tagline {
+        display: none;
+    }
+
+    .btn-header-social {
+        display: none;
+    }
+
     .header-inner {
         gap: 10px;
     }

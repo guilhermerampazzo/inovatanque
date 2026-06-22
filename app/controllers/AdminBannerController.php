@@ -19,12 +19,6 @@ class AdminBannerController extends Controller
 
     public function create(): void
     {
-        $bannerModel = new Banner();
-        $total = count($bannerModel->findAll());
-        if ($total >= 5) {
-            Session::flash('error', 'Máximo de 5 banners atingido.');
-            $this->redirect('/admin/banners');
-        }
         $this->view('admin/banners/form', ['banner' => null]);
     }
 
@@ -33,13 +27,6 @@ class AdminBannerController extends Controller
         if (!csrf_verify()) {
             Session::flash('error', 'Token inválido.');
             $this->redirect('/admin/banners/criar');
-        }
-
-        $bannerModel = new Banner();
-        $total = count($bannerModel->findAll());
-        if ($total >= 5) {
-            Session::flash('error', 'Máximo de 5 banners atingido.');
-            $this->redirect('/admin/banners');
         }
 
         $tipo = $_POST['tipo'] ?? 'cor_texto';

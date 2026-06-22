@@ -58,6 +58,7 @@ class Produto extends Model
             'capacidade ASC' => 'p.capacidade ASC',
             'capacidade DESC' => 'p.capacidade DESC',
             'ano DESC' => 'p.ano DESC',
+            'ano ASC' => 'p.ano ASC',
         ];
         $order = $allowedOrders[$orderBy] ?? 'p.created_at DESC';
 
@@ -89,13 +90,22 @@ class Produto extends Model
             $where .= " AND {$p}modalidade LIKE ?";
             $params[] = '%' . $filters['modalidade'] . '%';
         }
-        if (!empty($filters['ano'])) {
-            $where .= " AND {$p}ano = ?";
-            $params[] = (int) $filters['ano'];
+        if (!empty($filters['ano_min'])) {
+            $where .= " AND {$p}ano >= ?";
+            $params[] = (int) $filters['ano_min'];
+        }
+        if (!empty($filters['ano_max'])) {
+            $where .= " AND {$p}ano <= ?";
+            $params[] = (int) $filters['ano_max'];
         }
         if (!empty($filters['fabricante'])) {
             $where .= " AND {$p}fabricante = ?";
             $params[] = $filters['fabricante'];
+        }
+        if (!empty($filters['busca'])) {
+            $where .= " AND ({$p}titulo LIKE ? OR {$p}codigo LIKE ?)";
+            $params[] = '%' . $filters['busca'] . '%';
+            $params[] = '%' . $filters['busca'] . '%';
         }
         return $where;
     }

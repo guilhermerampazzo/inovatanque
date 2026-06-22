@@ -183,8 +183,8 @@ INSERT INTO admins (nome, email, senha, role, ativo) VALUES
 -- Categorias padrão
 INSERT INTO categorias (nome, slug, parent_id, ordem, ativo) VALUES
 ('Aço', 'aco', 0, 1, 1),
-('Aço Carbono', 'aco-carbono', 0, 2, 1),
-('Inox', 'inox', 0, 3, 1),
+('Aço Carbono', 'aco-carbono', 1, 2, 1),
+('Aço Inox', 'inox', 1, 1, 1),
 ('Térmica', 'termica', 0, 4, 1);
 
 INSERT INTO categorias (nome, slug, parent_id, ordem, ativo) VALUES

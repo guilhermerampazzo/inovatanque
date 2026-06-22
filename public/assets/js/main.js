@@ -55,6 +55,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 4000);
     });
 
+    // Testimonials carousel
+    var depCarousel = document.getElementById('testimonialsCarousel');
+    if (depCarousel) {
+        var depSlides = depCarousel.querySelectorAll('.testimonial-card');
+        var depDots = document.querySelectorAll('.testimonials-dot');
+        var depCurrent = 0;
+        var depInterval;
+
+        function goToDep(index) {
+            depSlides[depCurrent].classList.remove('active');
+            if (depDots[depCurrent]) depDots[depCurrent].classList.remove('active');
+            depCurrent = (index + depSlides.length) % depSlides.length;
+            depSlides[depCurrent].classList.add('active');
+            if (depDots[depCurrent]) depDots[depCurrent].classList.add('active');
+        }
+
+        function startDepAutoplay() {
+            depInterval = setInterval(function() { goToDep(depCurrent + 1); }, 5000);
+        }
+
+        depDots.forEach(function(dot, i) {
+            dot.addEventListener('click', function() {
+                clearInterval(depInterval);
+                goToDep(i);
+                startDepAutoplay();
+            });
+        });
+
+        var prevBtn = document.getElementById('depPrev');
+        var nextBtn = document.getElementById('depNext');
+        if (prevBtn) prevBtn.addEventListener('click', function() { clearInterval(depInterval); goToDep(depCurrent - 1); startDepAutoplay(); });
+        if (nextBtn) nextBtn.addEventListener('click', function() { clearInterval(depInterval); goToDep(depCurrent + 1); startDepAutoplay(); });
+
+        if (depSlides.length > 1) startDepAutoplay();
+    }
+
     // Gallery - product page
     window.changeImage = function(thumb, src) {
         var mainImg = document.getElementById('mainImg');

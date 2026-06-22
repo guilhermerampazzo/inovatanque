@@ -10,7 +10,7 @@
 
             <?php if ($tipo === 'imagem_link'): ?>
                 <!-- Tipo: só imagem clicável -->
-                <a href="<?= sanitize($banner['link'] ?? '#') ?>" class="hero-slide <?= $i === 0 ? 'active' : '' ?>" style="cursor: pointer;">
+                <a href="<?= sanitize($banner['link'] ?? '#') ?>" class="hero-slide <?= $i === 0 ? 'active' : '' ?>" target="_blank" style="cursor: pointer;">
                     <img src="<?= url($banner['imagem']) ?>" alt="<?= sanitize($banner['titulo'] ?? 'Banner') ?>">
                 </a>
 
@@ -87,19 +87,15 @@
         <div class="highlights-grid">
             <div class="highlight-item">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>Pronta Entrega Imediata</span>
+                <span>Entrega Imediata</span>
             </div>
             <div class="highlight-item">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span>Seguro Total Incluso</span>
+                <span>Seguro Incluso</span>
             </div>
             <div class="highlight-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                <span>Manutenção Própria</span>
-            </div>
-            <div class="highlight-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span>Documentação em Dia</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                <span>Contrato Flexível</span>
             </div>
         </div>
     </div>
@@ -201,7 +197,7 @@
             <div class="diferencial-card">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 <div>
-                    <h3>ANTT, INMETRO, NR-13</h3>
+                    <h3>ANTT, INMETRO, CIV, CIPP</h3>
                     <p>Toda documentação e certificações em dia. Conformidade garantida.</p>
                 </div>
             </div>
@@ -222,9 +218,27 @@
                 <p>Grandes transportadoras são nossos clientes</p>
             </div>
         </div>
-        <div class="clientes-logos">
-            <?php foreach ($parceiros as $parceiro): ?>
-                <div class="cliente-logo">
+    </div>
+    <?php
+        $total_p = count($parceiros);
+        $mid = (int) ceil($total_p / 2);
+        $row1 = array_slice($parceiros, 0, $mid);
+        $row2 = array_slice($parceiros, $mid);
+        // Duplicate for seamless loop
+        $row1 = array_merge($row1, $row1);
+        $row2 = array_merge($row2, $row2);
+    ?>
+    <div class="clientes-marquee-wrap">
+        <div class="clientes-marquee clientes-marquee--left">
+            <?php foreach ($row1 as $parceiro): ?>
+                <div class="cliente-logo-item">
+                    <img src="<?= url($parceiro['logo']) ?>" alt="<?= sanitize($parceiro['nome']) ?>">
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="clientes-marquee clientes-marquee--right">
+            <?php foreach ($row2 as $parceiro): ?>
+                <div class="cliente-logo-item">
                     <img src="<?= url($parceiro['logo']) ?>" alt="<?= sanitize($parceiro['nome']) ?>">
                 </div>
             <?php endforeach; ?>
@@ -242,7 +256,7 @@
                 <div class="prova-label">Carretas locadas</div>
             </div>
             <div class="prova-social-item">
-                <div class="prova-numero">15</div>
+                <div class="prova-numero">+20</div>
                 <div class="prova-label">Anos de mercado</div>
             </div>
             <div class="prova-social-item">
@@ -254,27 +268,21 @@
                 <div class="prova-label">Frota segurada</div>
             </div>
         </div>
-        <div class="prova-certificacoes">
-            <span class="prova-cert-badge">ANTT</span>
-            <span class="prova-cert-badge">INMETRO</span>
-            <span class="prova-cert-badge">NR-13</span>
-            <span class="prova-cert-badge">ISO 9001</span>
-        </div>
     </div>
 </section>
 
 <!-- Depoimentos -->
 <?php if (!empty($depoimentos)): ?>
-<section style="padding: 64px 0;">
+<section class="section-testimonials" style="padding: 64px 0;">
     <div class="container">
         <div class="section-header">
             <div>
                 <h2>Avaliações de Clientes</h2>
             </div>
         </div>
-        <div class="testimonials-grid">
-            <?php foreach (array_slice($depoimentos, 0, 3) as $dep): ?>
-                <div class="testimonial-card">
+        <div class="testimonials-carousel" id="testimonialsCarousel">
+            <?php foreach ($depoimentos as $i => $dep): ?>
+                <div class="testimonial-card <?= $i === 0 ? 'active' : '' ?>">
                     <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                     <p><?= sanitize($dep['texto']) ?></p>
                     <div class="author">
@@ -289,6 +297,17 @@
                 </div>
             <?php endforeach; ?>
         </div>
+        <?php if (count($depoimentos) > 1): ?>
+        <div class="testimonials-controls">
+            <button class="testimonials-arrow" id="depPrev" aria-label="Anterior">&#8592;</button>
+            <div class="testimonials-dots">
+                <?php foreach ($depoimentos as $i => $dep): ?>
+                    <button class="testimonials-dot <?= $i === 0 ? 'active' : '' ?>" data-dep="<?= $i ?>"></button>
+                <?php endforeach; ?>
+            </div>
+            <button class="testimonials-arrow" id="depNext" aria-label="Próximo">&#8594;</button>
+        </div>
+        <?php endif; ?>
     </div>
 </section>
 <?php endif; ?>

@@ -78,12 +78,21 @@
 
                     <div class="filter-group">
                         <h3>Ano</h3>
-                        <select name="ano">
-                            <option value="">Todos</option>
-                            <?php for ($y = date('Y'); $y >= 2000; $y--): ?>
-                                <option value="<?= $y ?>" <?= ($filters['ano'] ?? '') == $y ? 'selected' : '' ?>><?= $y ?></option>
-                            <?php endfor; ?>
-                        </select>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <select name="ano_min" style="flex: 1;">
+                                <option value="">De</option>
+                                <?php for ($y = 2000; $y <= date('Y'); $y++): ?>
+                                    <option value="<?= $y ?>" <?= ($filters['ano_min'] ?? '') == $y ? 'selected' : '' ?>><?= $y ?></option>
+                                <?php endfor; ?>
+                            </select>
+                            <span style="color: var(--color-text-secondary); font-size: 12px;">até</span>
+                            <select name="ano_max" style="flex: 1;">
+                                <option value="">Até</option>
+                                <?php for ($y = date('Y'); $y >= 2000; $y--): ?>
+                                    <option value="<?= $y ?>" <?= ($filters['ano_max'] ?? '') == $y ? 'selected' : '' ?>><?= $y ?></option>
+                                <?php endfor; ?>
+                            </select>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Filtrar</button>
@@ -103,6 +112,7 @@
                         <option value="capacidade DESC" <?= ($_GET['ordem'] ?? '') === 'capacidade DESC' ? 'selected' : '' ?>>Maior capacidade</option>
                         <option value="capacidade ASC" <?= ($_GET['ordem'] ?? '') === 'capacidade ASC' ? 'selected' : '' ?>>Menor capacidade</option>
                         <option value="ano DESC" <?= ($_GET['ordem'] ?? '') === 'ano DESC' ? 'selected' : '' ?>>Ano (mais novo)</option>
+                        <option value="ano ASC" <?= ($_GET['ordem'] ?? '') === 'ano ASC' ? 'selected' : '' ?>>Ano (mais antigo)</option>
                     </select>
                 </div>
 

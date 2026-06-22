@@ -13,8 +13,10 @@ class CatalogoController extends Controller
             'configuracao' => $_GET['configuracao'] ?? null,
             'carregamento' => $_GET['carregamento'] ?? null,
             'modalidade' => $_GET['modalidade'] ?? null,
-            'ano' => $_GET['ano'] ?? null,
+            'ano_min' => $_GET['ano_min'] ?? null,
+            'ano_max' => $_GET['ano_max'] ?? null,
             'fabricante' => $_GET['fabricante'] ?? null,
+            'busca' => $_GET['busca'] ?? null,
         ];
         $orderBy = $_GET['ordem'] ?? 'created_at DESC';
 

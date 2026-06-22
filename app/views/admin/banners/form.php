@@ -66,7 +66,7 @@
     <div class="form-row">
         <div class="form-group">
             <label>Ordem</label>
-            <input type="number" name="ordem" value="<?= $banner['ordem'] ?? 0 ?>" min="0" max="4">
+            <input type="number" name="ordem" value="<?= $banner['ordem'] ?? 0 ?>" min="0">
         </div>
         <div class="form-group" style="display: flex; align-items: center; gap: 10px; padding-top: 28px;">
             <input type="checkbox" name="ativo" id="ativo" <?= ($banner['ativo'] ?? 1) ? 'checked' : '' ?>>
