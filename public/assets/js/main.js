@@ -41,6 +41,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
 
+            var prevBtn = heroContainer.querySelector('.hero-prev');
+            var nextBtn = heroContainer.querySelector('.hero-next');
+            if (prevBtn) prevBtn.addEventListener('click', function() {
+                clearInterval(interval);
+                goToSlide((current - 1 + slides.length) % slides.length);
+                startAutoplay();
+            });
+            if (nextBtn) nextBtn.addEventListener('click', function() {
+                clearInterval(interval);
+                goToSlide((current + 1) % slides.length);
+                startAutoplay();
+            });
+
             startAutoplay();
         }
     }

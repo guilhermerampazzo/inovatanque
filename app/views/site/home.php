@@ -73,6 +73,8 @@
         </div>
     <?php endif; ?>
     <?php if (count($banners ?? []) > 1): ?>
+    <button class="hero-arrow hero-prev" aria-label="Anterior">&#8249;</button>
+    <button class="hero-arrow hero-next" aria-label="Próximo">&#8250;</button>
     <div class="hero-indicators">
         <?php foreach ($banners as $i => $b): ?>
             <button class="hero-dot <?= $i === 0 ? 'active' : '' ?>" data-slide="<?= $i ?>"></button>

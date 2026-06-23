@@ -11,6 +11,12 @@
             </div>
         </div>
 
+        <?php if (!empty($pagina['imagem'])): ?>
+        <div style="margin-bottom: 40px; border-radius: 12px; overflow: hidden; max-height: 420px;">
+            <img src="<?= url($pagina['imagem']) ?>" alt="Sobre a Inova Tanque" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
+        <?php endif; ?>
+
         <div class="blog-post-layout">
             <div class="blog-post-content">
                 <?php if (!empty($pagina['conteudo'])): ?>
