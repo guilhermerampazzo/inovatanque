@@ -38,7 +38,7 @@
     /* Barra de categorias escondida por padrao no mobile; abre via hamburger */
     .categories-bar {
         display: none;
-        top: 80px;
+        top: 96px;
     }
 
     .categories-list {
@@ -210,20 +210,31 @@
     }
 
     .header-inner {
-        gap: 10px;
+        gap: 8px;
     }
 
     .logo img {
-        height: 40px;
+        height: 52px;
+    }
+
+    /* Esconde Facebook e LinkedIn no mobile mínimo, mantém busca + WhatsApp + conta */
+    .btn-header-icon[aria-label="Facebook"],
+    .btn-header-icon[aria-label="LinkedIn"],
+    .btn-header-icon[aria-label="Instagram"] {
+        display: none;
+    }
+
+    .logo-tagline span {
+        display: none;
+    }
+
+    .logo-tagline strong {
+        font-size: 13px;
     }
 
     .btn-header-icon {
-        width: 32px;
-        height: 32px;
-    }
-
-    .header-tagline-inline {
-        display: none;
+        width: 34px;
+        height: 34px;
     }
 
     .testimonials-grid {
@@ -249,7 +260,7 @@
 .nav-mobile-open .categories-bar {
     display: block;
     position: fixed;
-    top: 93px;
+    top: 96px;
     left: 0;
     right: 0;
     bottom: 0;

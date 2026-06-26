@@ -7,47 +7,63 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--color-accent);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    background: #111827;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
     padding: 0;
 }
 
-.header-tagline-inline {
-    background: rgba(0,0,0,0.12);
-    text-align: center;
-    padding: 5px 24px;
-}
-
-.header-tagline-inline span {
-    font-size: 11px;
-    font-weight: 600;
-    color: rgba(0,0,0,0.7);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
 .header .container {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
 .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 20px;
 }
 
+/* Logo + tagline lado a lado */
 .logo {
     flex-shrink: 0;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
+    text-decoration: none;
 }
 
 .logo img {
-    height: 48px;
+    height: 72px;
     width: auto;
+}
+
+.logo-tagline {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.logo-tagline strong {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.logo-tagline span {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+}
+
+/* Remove a barrinha inline (tagline fica ao lado da logo) */
+.header-tagline-inline {
+    display: none;
 }
 
 /* === HEADER ACTIONS === */
@@ -61,12 +77,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.18);
     background: none;
-    color: #1a1a1a;
+    color: rgba(255,255,255,0.85);
     cursor: pointer;
     transition: all var(--transition);
     flex-shrink: 0;
@@ -74,19 +90,21 @@
 }
 
 .btn-header-icon:hover {
-    background: rgba(0,0,0,0.1);
-    border-color: rgba(0,0,0,0.35);
-}
-
-.btn-header-icon--whatsapp {
-    background: var(--color-whatsapp);
-    border-color: var(--color-whatsapp);
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.4);
     color: #fff;
 }
 
+.btn-header-icon--whatsapp {
+    background: none;
+    border-color: rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.85);
+}
+
 .btn-header-icon--whatsapp:hover {
-    background: #1da851;
-    border-color: #1da851;
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.4);
+    color: #fff;
 }
 
 /* === SEARCH OVERLAY === */
@@ -178,7 +196,7 @@
     background: var(--color-bg);
     border-bottom: 1px solid var(--color-border-light);
     position: sticky;
-    top: 93px;
+    top: 96px;
     z-index: 99;
 }
 
@@ -322,9 +340,9 @@ section {
     text-decoration: underline;
 }
 
-/* === MENU TOGGLE on orange header === */
+/* === MENU TOGGLE === */
 .menu-toggle span {
-    background: #1a1a1a;
+    background: rgba(255,255,255,0.85);
 }
 
 /* === CATEGORIAS MENU UPPERCASE === */
