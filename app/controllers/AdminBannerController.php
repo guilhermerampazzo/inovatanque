@@ -43,6 +43,7 @@ class AdminBannerController extends Controller
             'cta_link' => sanitize($_POST['cta_link'] ?? ''),
             'link' => sanitize($_POST['link'] ?? ''),
             'ordem' => (int) ($_POST['ordem'] ?? 0),
+            'duracao' => max(1000, (int) ($_POST['duracao_segundos'] ?? 5) * 1000),
             'ativo' => isset($_POST['ativo']) ? 1 : 0,
         ];
 
@@ -87,6 +88,7 @@ class AdminBannerController extends Controller
             'cta_link' => sanitize($_POST['cta_link'] ?? ''),
             'link' => sanitize($_POST['link'] ?? ''),
             'ordem' => (int) ($_POST['ordem'] ?? 0),
+            'duracao' => max(1000, (int) ($_POST['duracao_segundos'] ?? 5) * 1000),
             'ativo' => isset($_POST['ativo']) ? 1 : 0,
         ];
 

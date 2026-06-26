@@ -30,7 +30,7 @@
         "name": "Inova Tanque",
         "description": "Locação e venda de carretas-tanque em Paulínia/SP",
         "url": "<?= APP_URL ?>",
-        "logo": "<?= url('/logo.svg') ?>",
+        "logo": "<?= url('/logonova.svg') ?>",
         "telephone": "<?= TELEFONE ?>",
         "email": "<?= EMAIL_CONTATO ?>",
         "address": {
@@ -96,31 +96,35 @@
 
     <!-- Header -->
     <header class="header">
+        <div class="header-tagline-inline">
+            <span>Soluções em vendas e locações de carretas tanque</span>
+        </div>
         <div class="container">
             <div class="header-inner">
                 <a href="/" class="logo">
-                    <img src="/logo.svg" alt="Inova Tanque">
-                    <span class="logo-text">Inova Tanque</span>
+                    <img src="/logonova.svg" alt="Inova Tanque">
                 </a>
-                <form class="header-search" action="/catalogo" method="GET">
-                    <input type="text" name="busca" placeholder="Buscar por tipo, capacidade, código..." value="<?= sanitize($_GET['busca'] ?? '') ?>">
-                    <button type="submit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
-                </form>
                 <div class="header-actions">
-                    <a href="<?= INSTAGRAM_URL ?>" class="btn-header-social" target="_blank" aria-label="Instagram">
+                    <!-- Search icon button -->
+                    <button class="btn-header-icon search-toggle" aria-label="Buscar">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </button>
+                    <a href="<?= INSTAGRAM_URL ?>" class="btn-header-icon" target="_blank" aria-label="Instagram">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                     </a>
-                    <a href="<?= LINKEDIN_URL ?>" class="btn-header-social" target="_blank" aria-label="LinkedIn">
+                    <a href="<?= LINKEDIN_URL ?>" class="btn-header-icon" target="_blank" aria-label="LinkedIn">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                     </a>
-                    <a href="<?= whatsapp_link(WHATSAPP_PRINCIPAL, 'Olá! Gostaria de informações.') ?>" class="btn-header-whatsapp" target="_blank">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-                        <span>WhatsApp</span>
+                    <a href="<?= FACEBOOK_URL ?>" class="btn-header-icon" target="_blank" aria-label="Facebook">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="<?= whatsapp_link(WHATSAPP_PRINCIPAL, 'Olá! Gostaria de informações.') ?>" class="btn-header-icon btn-header-icon--whatsapp" target="_blank" aria-label="WhatsApp">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
                     </a>
                     <?php if (Session::isLoggedIn()): ?>
-                        <a href="/cliente/dashboard" class="btn-header-account"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Minha Conta</a>
+                        <a href="/cliente/dashboard" class="btn-header-icon" aria-label="Minha Conta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
                     <?php else: ?>
-                        <a href="/login" class="btn-header-account"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Entrar</a>
+                        <a href="/login" class="btn-header-icon" aria-label="Entrar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
                     <?php endif; ?>
                 </div>
                 <button class="menu-toggle" aria-label="Abrir menu">
@@ -130,9 +134,19 @@
         </div>
     </header>
 
-    <!-- Tagline -->
-    <div class="header-tagline">
-        <span>Soluções em vendas e locações de carretas tanque</span>
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-overlay-inner">
+            <form class="search-overlay-form" action="/catalogo" method="GET">
+                <input type="text" name="busca" placeholder="Buscar por tipo, capacidade, código..." value="<?= sanitize($_GET['busca'] ?? '') ?>" autofocus>
+                <button type="submit" aria-label="Buscar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+            </form>
+            <button class="search-overlay-close" id="searchClose" aria-label="Fechar busca">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
     </div>
 
     <!-- Navegação principal -->
@@ -142,14 +156,13 @@
                 <li><a href="/" class="<?= is_active('/') ?>">Home</a></li>
                 <li><a href="/catalogo" class="<?= is_active('/catalogo') ?>">Catálogo</a></li>
                 <li class="has-dropdown">
-                    <a href="/catalogo">Categoria</a>
+                    <a href="/catalogo">Configuração</a>
                     <ul class="cat-dropdown">
-                        <li><a href="/catalogo?categoria=1">Aço</a></li>
-                        <li class="cat-sub"><a href="/catalogo?categoria=3">↳ Aço Inox</a></li>
-                        <li class="cat-sub"><a href="/catalogo?categoria=2">↳ Aço Carbono</a></li>
-                        <li><a href="/catalogo?categoria=4">Térmica</a></li>
-                        <li class="cat-sub"><a href="/catalogo?categoria=5">↳ Asfáltica</a></li>
-                        <li class="cat-sub"><a href="/catalogo?categoria=6">↳ Vegetal</a></li>
+                        <li><a href="/catalogo?configuracao=Carreta">Carreta Simples</a></li>
+                        <li><a href="/catalogo?configuracao=Bitrem">Bitrem</a></li>
+                        <li><a href="/catalogo?configuracao=Bitrenzao">Bitrenzão</a></li>
+                        <li><a href="/catalogo?configuracao=Rodotrem">Rodotrem</a></li>
+                        <li><a href="/catalogo?configuracao=Vanderleia+3ED">Vanderleia 3ED</a></li>
                     </ul>
                 </li>
                 <li><a href="/sobre" class="<?= is_active('/sobre') ?>">Sobre</a></li>

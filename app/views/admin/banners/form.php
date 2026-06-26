@@ -68,6 +68,10 @@
             <label>Ordem</label>
             <input type="number" name="ordem" value="<?= $banner['ordem'] ?? 0 ?>" min="0">
         </div>
+        <div class="form-group">
+            <label>Tempo de exibição (segundos)</label>
+            <input type="number" name="duracao_segundos" value="<?= (int)(($banner['duracao'] ?? 5000) / 1000) ?>" min="1" max="30" placeholder="5">
+        </div>
         <div class="form-group" style="display: flex; align-items: center; gap: 10px; padding-top: 28px;">
             <input type="checkbox" name="ativo" id="ativo" <?= ($banner['ativo'] ?? 1) ? 'checked' : '' ?>>
             <label for="ativo" style="font-size: 14px;">Ativo</label>

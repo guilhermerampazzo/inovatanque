@@ -4,12 +4,45 @@
 
 <section style="padding-top: 48px; padding-bottom: 96px;">
     <div class="container">
-        <div class="catalogo-layout">
+        <div class="catalogo-layout" id="catalogoLayout">
+            <div class="catalogo-sidebar-overlay" id="filterOverlay" onclick="toggleCatalogoFilter()"></div>
             <!-- Sidebar Filtros -->
             <aside class="catalogo-sidebar" id="filterSidebar">
                 <form method="GET" action="/catalogo">
                     <div class="filter-group">
+                        <h3>Configuração</h3>
+                        <label>
+                            <input type="radio" name="configuracao" value="" <?= empty($filters['configuracao']) ? 'checked' : '' ?>>
+                            Todas
+                        </label>
+                        <label>
+                            <input type="radio" name="configuracao" value="Carreta" <?= ($filters['configuracao'] ?? '') === 'Carreta' ? 'checked' : '' ?>>
+                            Carreta Simples
+                        </label>
+                        <label>
+                            <input type="radio" name="configuracao" value="Bitrem" <?= ($filters['configuracao'] ?? '') === 'Bitrem' ? 'checked' : '' ?>>
+                            Bitrem
+                        </label>
+                        <label>
+                            <input type="radio" name="configuracao" value="Bitrenzao" <?= ($filters['configuracao'] ?? '') === 'Bitrenzao' ? 'checked' : '' ?>>
+                            Bitrenzão
+                        </label>
+                        <label>
+                            <input type="radio" name="configuracao" value="Rodotrem" <?= ($filters['configuracao'] ?? '') === 'Rodotrem' ? 'checked' : '' ?>>
+                            Rodotrem
+                        </label>
+                        <label>
+                            <input type="radio" name="configuracao" value="Vanderleia 3ED" <?= ($filters['configuracao'] ?? '') === 'Vanderleia 3ED' ? 'checked' : '' ?>>
+                            Vanderleia 3ED
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
                         <h3>Material</h3>
+                        <label>
+                            <input type="radio" name="categoria" value="" <?= empty($filters['categoria_id']) ? 'checked' : '' ?>>
+                            Todos
+                        </label>
                         <?php foreach ($categorias as $cat): ?>
                             <?php if ($cat['parent_id'] == 0): ?>
                                 <label>
@@ -22,22 +55,10 @@
                             <?php if ($cat['parent_id'] != 0): ?>
                                 <label style="padding-left: 20px;">
                                     <input type="radio" name="categoria" value="<?= $cat['id'] ?>" <?= ($filters['categoria_id'] ?? '') == $cat['id'] ? 'checked' : '' ?>>
-                                    <?= sanitize($cat['nome']) ?>
+                                    ↳ <?= sanitize($cat['nome']) ?>
                                 </label>
                             <?php endif; ?>
                         <?php endforeach; ?>
-                    </div>
-
-                    <div class="filter-group">
-                        <h3>Configuração</h3>
-                        <select name="configuracao">
-                            <option value="">Todas</option>
-                            <option value="Carreta" <?= ($filters['configuracao'] ?? '') === 'Carreta' ? 'selected' : '' ?>>Carreta Simples</option>
-                            <option value="Bitrem" <?= ($filters['configuracao'] ?? '') === 'Bitrem' ? 'selected' : '' ?>>Bitrem</option>
-                            <option value="Bitrenzao" <?= ($filters['configuracao'] ?? '') === 'Bitrenzao' ? 'selected' : '' ?>>Bitrenzão</option>
-                            <option value="Rodotrem" <?= ($filters['configuracao'] ?? '') === 'Rodotrem' ? 'selected' : '' ?>>Rodotrem</option>
-                            <option value="Vanderleia 3ED" <?= ($filters['configuracao'] ?? '') === 'Vanderleia 3ED' ? 'selected' : '' ?>>Vanderleia 3ED</option>
-                        </select>
                     </div>
 
                     <div class="filter-group">
@@ -69,10 +90,6 @@
                         <label>
                             <input type="radio" name="modalidade" value="Venda" <?= ($filters['modalidade'] ?? '') === 'Venda' ? 'checked' : '' ?>>
                             Venda
-                        </label>
-                        <label>
-                            <input type="radio" name="modalidade" value="Consignação" <?= ($filters['modalidade'] ?? '') === 'Consignação' ? 'checked' : '' ?>>
-                            Consignação
                         </label>
                     </div>
 
@@ -106,7 +123,10 @@
                     <div class="result-count">
                         <strong><?= $pagination['total'] ?></strong> equipamento<?= $pagination['total'] !== 1 ? 's' : '' ?> encontrado<?= $pagination['total'] !== 1 ? 's' : '' ?>
                     </div>
-                    <button class="btn btn-secondary filter-toggle" style="display: none;" onclick="document.getElementById('filterSidebar').classList.toggle('open')">Filtros</button>
+                    <button class="btn btn-secondary filter-toggle" onclick="toggleCatalogoFilter()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+                        Filtros
+                    </button>
                     <select onchange="window.location.href='/catalogo?ordem='+this.value+'&<?= http_build_query(array_filter($filters)) ?>'">
                         <option value="created_at DESC" <?= ($_GET['ordem'] ?? '') === 'created_at DESC' ? 'selected' : '' ?>>Mais recentes</option>
                         <option value="capacidade DESC" <?= ($_GET['ordem'] ?? '') === 'capacidade DESC' ? 'selected' : '' ?>>Maior capacidade</option>

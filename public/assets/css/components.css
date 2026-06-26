@@ -7,9 +7,28 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--color-bg);
-    box-shadow: var(--shadow-xs);
-    padding: 12px 0;
+    background: var(--color-accent);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    padding: 0;
+}
+
+.header-tagline-inline {
+    background: rgba(0,0,0,0.12);
+    text-align: center;
+    padding: 5px 24px;
+}
+
+.header-tagline-inline span {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.7);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.header .container {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .header-inner {
@@ -27,115 +46,131 @@
 }
 
 .logo img {
-    height: 52px;
+    height: 48px;
     width: auto;
-}
-
-.logo-text {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--color-text);
-    white-space: nowrap;
-    letter-spacing: -0.02em;
-}
-
-.header-search {
-    flex: 1;
-    max-width: 480px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.header-search input {
-    width: 100%;
-    padding: 10px 16px;
-    padding-right: 44px;
-    background: var(--color-muted);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-pill);
-    color: var(--color-text);
-    font-size: 14px;
-    transition: all var(--transition);
-}
-
-.header-search input:focus {
-    outline: none;
-    border-color: var(--color-accent);
-    background: var(--color-bg);
-    box-shadow: 0 0 0 3px rgba(249, 178, 51, 0.15);
-}
-
-.header-search input::placeholder {
-    color: var(--color-text-muted);
-}
-
-.header-search button {
-    position: absolute;
-    right: 4px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--color-accent);
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: #1a1a1a;
-    transition: background var(--transition);
-}
-
-.header-search button:hover {
-    background: var(--color-accent-hover);
 }
 
 /* === HEADER ACTIONS === */
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
-.btn-header-whatsapp {
+.btn-header-icon {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 9px 16px;
-    background: var(--color-whatsapp);
-    color: #fff;
-    border-radius: var(--radius-pill);
-    font-size: 13px;
-    font-weight: 500;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.2);
+    background: none;
+    color: #1a1a1a;
+    cursor: pointer;
     transition: all var(--transition);
-}
-
-.btn-header-whatsapp:hover {
-    background: #1da851;
-    box-shadow: var(--shadow-sm);
-}
-
-.btn-header-whatsapp svg {
     flex-shrink: 0;
+    text-decoration: none;
 }
 
-.btn-header-account {
+.btn-header-icon:hover {
+    background: rgba(0,0,0,0.1);
+    border-color: rgba(0,0,0,0.35);
+}
+
+.btn-header-icon--whatsapp {
+    background: var(--color-whatsapp);
+    border-color: var(--color-whatsapp);
+    color: #fff;
+}
+
+.btn-header-icon--whatsapp:hover {
+    background: #1da851;
+    border-color: #1da851;
+}
+
+/* === SEARCH OVERLAY === */
+.search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: flex-start;
+    padding-top: 80px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.search-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-overlay-inner {
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 9px 16px;
-    border: 1px solid var(--color-border);
+    gap: 12px;
+}
+
+.search-overlay-form {
+    flex: 1;
+    position: relative;
+}
+
+.search-overlay-form input {
+    width: 100%;
+    padding: 16px 52px 16px 20px;
+    background: #fff;
+    border: none;
     border-radius: var(--radius-pill);
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 16px;
     color: var(--color-text);
+    box-shadow: var(--shadow-lg);
+    outline: none;
+}
+
+.search-overlay-form button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-accent);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #1a1a1a;
+}
+
+.search-overlay-close {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    flex-shrink: 0;
     transition: all var(--transition);
 }
 
-.btn-header-account:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+.search-overlay-close:hover {
+    background: rgba(255,255,255,0.25);
 }
 
 /* === BARRA DE CATEGORIAS === */
@@ -143,7 +178,7 @@
     background: var(--color-bg);
     border-bottom: 1px solid var(--color-border-light);
     position: sticky;
-    top: 64px;
+    top: 93px;
     z-index: 99;
 }
 
@@ -287,38 +322,9 @@ section {
     text-decoration: underline;
 }
 
-/* === HEADER TAGLINE === */
-.header-tagline {
-    background: #1e2328;
-    text-align: center;
-    padding: 7px 24px;
-}
-
-.header-tagline span {
-    font-size: 12px;
-    font-weight: 500;
-    color: #b0b8c4;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-}
-
-/* === SOCIAL ICONS === */
-.btn-header-social {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: 1px solid var(--color-border);
-    color: var(--color-text-secondary);
-    transition: all var(--transition);
-    flex-shrink: 0;
-}
-
-.btn-header-social:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+/* === MENU TOGGLE on orange header === */
+.menu-toggle span {
+    background: #1a1a1a;
 }
 
 /* === CATEGORIAS MENU UPPERCASE === */

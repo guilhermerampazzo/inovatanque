@@ -7,7 +7,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Hero carousel
+    // Search overlay
+    var searchToggle = document.querySelector('.search-toggle');
+    var searchOverlay = document.getElementById('searchOverlay');
+    var searchClose = document.getElementById('searchClose');
+    if (searchToggle && searchOverlay) {
+        searchToggle.addEventListener('click', function() {
+            searchOverlay.classList.add('open');
+            var inp = searchOverlay.querySelector('input');
+            if (inp) setTimeout(function() { inp.focus(); }, 50);
+        });
+        if (searchClose) {
+            searchClose.addEventListener('click', function() {
+                searchOverlay.classList.remove('open');
+            });
+        }
+        searchOverlay.addEventListener('click', function(e) {
+            if (e.target === searchOverlay) searchOverlay.classList.remove('open');
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') searchOverlay.classList.remove('open');
+        });
+    }
+
+    // Hero carousel with per-slide duration
     var heroContainer = document.querySelector('.hero-ecommerce') || document.querySelector('.hero');
     if (heroContainer) {
         var slides = heroContainer.querySelectorAll('.hero-slide');
@@ -16,6 +39,28 @@ document.addEventListener('DOMContentLoaded', function() {
         if (slides.length > 1) {
             var current = 0;
             var interval;
+            var progressBar = null;
+            var progressAnim = null;
+
+            // Create progress bar
+            progressBar = document.createElement('div');
+            progressBar.className = 'hero-progress-bar';
+            heroContainer.appendChild(progressBar);
+
+            function getSlideDuration(index) {
+                var dur = parseInt(slides[index].getAttribute('data-duration'));
+                return isNaN(dur) ? 5000 : dur;
+            }
+
+            function startProgress(duration) {
+                if (!progressBar) return;
+                progressBar.style.transition = 'none';
+                progressBar.style.width = '0%';
+                // force reflow
+                progressBar.offsetWidth;
+                progressBar.style.transition = 'width ' + duration + 'ms linear';
+                progressBar.style.width = '100%';
+            }
 
             function goToSlide(index) {
                 slides[current].classList.remove('active');
@@ -30,7 +75,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             function startAutoplay() {
-                interval = setInterval(nextSlide, 5000);
+                clearInterval(interval);
+                var dur = getSlideDuration(current);
+                startProgress(dur);
+                interval = setInterval(function() {
+                    nextSlide();
+                    dur = getSlideDuration(current);
+                    startProgress(dur);
+                    clearInterval(interval);
+                    interval = setInterval(arguments.callee, dur);
+                }, dur);
             }
 
             dots.forEach(function(dot, i) {
@@ -68,42 +122,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 4000);
     });
 
-    // Testimonials carousel
-    var depCarousel = document.getElementById('testimonialsCarousel');
-    if (depCarousel) {
-        var depSlides = depCarousel.querySelectorAll('.testimonial-card');
-        var depDots = document.querySelectorAll('.testimonials-dot');
-        var depCurrent = 0;
-        var depInterval;
-
-        function goToDep(index) {
-            depSlides[depCurrent].classList.remove('active');
-            if (depDots[depCurrent]) depDots[depCurrent].classList.remove('active');
-            depCurrent = (index + depSlides.length) % depSlides.length;
-            depSlides[depCurrent].classList.add('active');
-            if (depDots[depCurrent]) depDots[depCurrent].classList.add('active');
-        }
-
-        function startDepAutoplay() {
-            depInterval = setInterval(function() { goToDep(depCurrent + 1); }, 5000);
-        }
-
-        depDots.forEach(function(dot, i) {
-            dot.addEventListener('click', function() {
-                clearInterval(depInterval);
-                goToDep(i);
-                startDepAutoplay();
-            });
-        });
-
-        var prevBtn = document.getElementById('depPrev');
-        var nextBtn = document.getElementById('depNext');
-        if (prevBtn) prevBtn.addEventListener('click', function() { clearInterval(depInterval); goToDep(depCurrent - 1); startDepAutoplay(); });
-        if (nextBtn) nextBtn.addEventListener('click', function() { clearInterval(depInterval); goToDep(depCurrent + 1); startDepAutoplay(); });
-
-        if (depSlides.length > 1) startDepAutoplay();
-    }
-
     // Gallery - product page
     window.changeImage = function(thumb, src) {
         var mainImg = document.getElementById('mainImg');
@@ -116,3 +134,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 });
+
+// Catalogo filter toggle (global for onclick)
+function toggleCatalogoFilter() {
+    var sidebar = document.getElementById('filterSidebar');
+    var overlay = document.getElementById('filterOverlay');
+    if (sidebar) sidebar.classList.toggle('open');
+    if (overlay) overlay.classList.toggle('open');
+}
