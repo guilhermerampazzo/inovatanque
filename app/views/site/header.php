@@ -101,7 +101,6 @@
                 <a href="/" class="logo">
                     <img src="/logonova.svg" alt="Inova Tanque">
                     <div class="logo-tagline">
-                        <strong>Inova Tanque</strong>
                         <span>Soluções em vendas e locações de carretas tanque</span>
                     </div>
                 </a>
