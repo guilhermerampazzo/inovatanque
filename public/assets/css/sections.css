@@ -1012,9 +1012,10 @@
 /* === BLOG POST SIDEBAR === */
 .blog-post-layout--with-sidebar {
     display: grid;
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: minmax(0, 1fr) 320px;
     gap: 48px;
     align-items: start;
+    max-width: none;
 }
 
 .blog-post-sidebar {
