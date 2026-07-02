@@ -1,8 +1,13 @@
 /* === CATÁLOGO === */
 .catalogo-layout {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 280px minmax(0, 1fr);
     gap: 32px;
+}
+
+/* Overlay do filtro mobile: nunca ocupa celula do grid no desktop */
+.catalogo-sidebar-overlay {
+    display: none;
 }
 
 .catalogo-sidebar {

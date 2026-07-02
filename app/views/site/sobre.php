@@ -50,14 +50,7 @@
             </div>
 
             <div class="sobre-media">
-                <div class="sobre-map">
-                    <iframe
-                        src="https://www.openstreetmap.org/export/embed.html?bbox=-47.1451713%2C-22.8045201%2C-47.1251713%2C-22.7845201&layer=mapnik&marker=-22.7945201%2C-47.1351713"
-                        title="Localização da Inova Tanque no mapa"
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
+                <div id="sobreMap" class="sobre-map"></div>
                 <div class="sobre-map-endereco">
                     <strong>Rodovia Professor Zeferino Vaz (SP 332) — KM 125</strong>
                     <span>Santa Terezinha, Paulínia - SP, CEP 13140-774</span>
@@ -67,5 +60,33 @@
         </div>
     </div>
 </section>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+(function() {
+    var el = document.getElementById('sobreMap');
+    if (!el || typeof L === 'undefined') return;
+    var lat = -22.7945201, lon = -47.1351713;
+    var map = L.map(el, {
+        center: [lat, lon],
+        zoom: 15,
+        scrollWheelZoom: false,
+        attributionControl: false
+    });
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19
+    }).addTo(map);
+    var icon = L.divIcon({
+        className: 'sobre-map-pin',
+        html: '<span></span>',
+        iconSize: [24, 24],
+        iconAnchor: [12, 24]
+    });
+    L.marker([lat, lon], { icon: icon }).addTo(map);
+})();
+</script>
 
 <?php require APP_ROOT . '/app/views/site/footer.php'; ?>
