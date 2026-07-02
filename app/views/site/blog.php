@@ -68,6 +68,12 @@
                     </div>
                 <?php endif; ?>
 
+                <div class="sidebar-widget">
+                    <!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
+                    <script src="https://elfsightcdn.com/platform.js" async></script>
+                    <div class="elfsight-app-bb7d012a-4c35-4896-9580-1bc156fb3b00" data-elfsight-app-lazy></div>
+                </div>
+
                 <?php if (!empty($categorias)): ?>
                     <div class="sidebar-widget">
                         <h4>Categorias</h4>

@@ -49,14 +49,14 @@
                                     <input type="radio" name="categoria" value="<?= $cat['id'] ?>" <?= ($filters['categoria_id'] ?? '') == $cat['id'] ? 'checked' : '' ?>>
                                     <?= sanitize($cat['nome']) ?>
                                 </label>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                        <?php foreach ($categorias as $cat): ?>
-                            <?php if ($cat['parent_id'] != 0): ?>
-                                <label style="padding-left: 20px;">
-                                    <input type="radio" name="categoria" value="<?= $cat['id'] ?>" <?= ($filters['categoria_id'] ?? '') == $cat['id'] ? 'checked' : '' ?>>
-                                    ↳ <?= sanitize($cat['nome']) ?>
-                                </label>
+                                <?php foreach ($categorias as $filha): ?>
+                                    <?php if ($filha['parent_id'] == $cat['id']): ?>
+                                        <label style="padding-left: 20px;">
+                                            <input type="radio" name="categoria" value="<?= $filha['id'] ?>" <?= ($filters['categoria_id'] ?? '') == $filha['id'] ? 'checked' : '' ?>>
+                                            ↳ <?= sanitize($filha['nome']) ?>
+                                        </label>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </div>

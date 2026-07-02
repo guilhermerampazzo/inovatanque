@@ -139,7 +139,7 @@
                     </div>
                     <a href="/catalogo">Ver todos &rarr;</a>
                 </div>
-                <div class="products-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="products-grid">
                     <?php foreach ($relacionados as $rel): ?>
                         <a href="/produto/<?= $rel['slug'] ?>" class="card-metallic">
                             <div class="card-image">

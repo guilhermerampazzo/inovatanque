@@ -231,6 +231,10 @@
     gap: 20px;
 }
 
+.products-grid--3col {
+    grid-template-columns: repeat(3, 1fr);
+}
+
 .product-card {
     background: var(--color-bg);
     border: 1px solid var(--color-border-light);
@@ -647,6 +651,67 @@
     .urgency-text {
         justify-content: center;
     }
+}
+
+/* === PÁGINA SOBRE === */
+.sobre-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.sobre-media {
+    position: sticky;
+    top: 140px;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    min-height: 420px;
+}
+
+.sobre-map {
+    width: 100%;
+    height: 420px;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--color-border-light);
+}
+
+.sobre-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+.sobre-map-endereco {
+    margin-top: 16px;
+    padding: 16px 20px;
+    border-radius: var(--radius-lg);
+    background: var(--color-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+}
+
+.sobre-map-endereco strong {
+    color: var(--color-text);
+}
+
+.sobre-map-endereco span {
+    color: var(--color-text-secondary);
+}
+
+.sobre-map-endereco a {
+    margin-top: 8px;
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.sobre-map-endereco a:hover {
+    text-decoration: underline;
 }
 
 /* === PROVA SOCIAL === */

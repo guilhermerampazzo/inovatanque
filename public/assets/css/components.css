@@ -185,8 +185,8 @@
 
 /* === BARRA DE CATEGORIAS === */
 .categories-bar {
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border-light);
+    background: #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
     position: sticky;
     top: 96px;
     z-index: 99;
@@ -215,7 +215,7 @@
     padding: 7px 16px;
     font-size: 13px;
     font-weight: 500;
-    color: var(--color-text-secondary);
+    color: #d1d5db;
     white-space: nowrap;
     border-radius: var(--radius-pill);
     transition: all var(--transition);
@@ -223,8 +223,8 @@
 
 .categories-list li a:hover,
 .categories-list li a.active {
-    background: var(--color-muted);
-    color: var(--color-accent);
+    background: #333333;
+    color: #ffffff;
 }
 
 .categories-list .cat-separator {
@@ -273,6 +273,33 @@
     padding: 8px 12px;
     border-radius: var(--radius-md);
     font-size: 13px;
+}
+
+.cat-dropdown--material {
+    min-width: 220px;
+    padding: 16px;
+}
+
+.cat-dropdown-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text);
+    padding: 0 0 12px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.cat-dropdown--material li a {
+    padding: 9px 4px;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--color-text-secondary);
+}
+
+.cat-dropdown--material li a:hover {
+    background: none;
+    color: var(--color-accent);
 }
 
 .cat-dropdown li a:hover {

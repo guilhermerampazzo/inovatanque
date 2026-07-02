@@ -149,22 +149,45 @@
         </div>
     </div>
 
+    <?php
+    $materiaisTree = (new Categoria())->getArvore();
+    // Achata a árvore: categoria-pai só entra sozinha se não tiver filhas.
+    $materiaisLeaf = [];
+    foreach ($materiaisTree as $pai) {
+        if (!empty($pai['filhas'])) {
+            foreach ($pai['filhas'] as $filha) {
+                $materiaisLeaf[] = $filha;
+            }
+        } else {
+            $materiaisLeaf[] = $pai;
+        }
+    }
+    $configuracoes = [
+        'Carreta'       => 'Carreta Simples',
+        'Bitrem'        => 'Bitrem',
+        'Bitrenzao'     => 'Bitrenzão',
+        'Rodotrem'      => 'Rodotrem',
+        'Vanderleia 3ED' => 'Vanderleia 3ED',
+    ];
+    ?>
+
     <!-- Navegação principal -->
     <nav class="categories-bar">
         <div class="container">
             <ul class="categories-list">
                 <li><a href="/" class="<?= is_active('/') ?>">Home</a></li>
                 <li><a href="/catalogo" class="<?= is_active('/catalogo') ?>">Catálogo</a></li>
-                <li class="has-dropdown">
-                    <a href="/catalogo">Configuração</a>
-                    <ul class="cat-dropdown">
-                        <li><a href="/catalogo?configuracao=Carreta">Carreta Simples</a></li>
-                        <li><a href="/catalogo?configuracao=Bitrem">Bitrem</a></li>
-                        <li><a href="/catalogo?configuracao=Bitrenzao">Bitrenzão</a></li>
-                        <li><a href="/catalogo?configuracao=Rodotrem">Rodotrem</a></li>
-                        <li><a href="/catalogo?configuracao=Vanderleia+3ED">Vanderleia 3ED</a></li>
-                    </ul>
-                </li>
+                <?php foreach ($materiaisLeaf as $mat): ?>
+                    <li class="has-dropdown">
+                        <a href="/catalogo?categoria=<?= $mat['id'] ?>"><?= sanitize($mat['nome']) ?></a>
+                        <ul class="cat-dropdown cat-dropdown--material">
+                            <li class="cat-dropdown-title"><?= sanitize($mat['nome']) ?></li>
+                            <?php foreach ($configuracoes as $valor => $label): ?>
+                                <li><a href="/catalogo?categoria=<?= $mat['id'] ?>&configuracao=<?= urlencode($valor) ?>"><?= sanitize($label) ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </li>
+                <?php endforeach; ?>
                 <li><a href="/sobre" class="<?= is_active('/sobre') ?>">Sobre</a></li>
                 <li><a href="/blog" class="<?= is_active('/blog') ?>">Blog</a></li>
                 <li><a href="/contato" class="<?= is_active('/contato') ?>">Contato</a></li>

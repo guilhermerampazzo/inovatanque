@@ -21,7 +21,7 @@
                 <h1 style="font-family: var(--font); font-size: 28px; font-weight: 700; color: var(--color-accent); margin-bottom: 32px;">Meus Favoritos</h1>
 
                 <?php if (!empty($favoritos)): ?>
-                    <div class="products-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="products-grid products-grid--3col">
                         <?php foreach ($favoritos as $fav): ?>
                             <div class="card-metallic">
                                 <div class="card-image">

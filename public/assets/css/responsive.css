@@ -186,27 +186,58 @@
 
 @media (max-width: 480px) {
     .products-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 
     .card-metallic .card-image {
-        height: 180px;
+        height: 110px;
     }
 
-    .product-card {
-        flex-direction: row;
+    .card-metallic .card-body {
+        padding: 10px;
+        gap: 4px;
+    }
+
+    .card-metallic .card-body h3 {
+        font-size: 12px;
+    }
+
+    .card-metallic .card-body > p {
+        font-size: 11px;
+    }
+
+    .card-metallic .card-footer {
+        padding-top: 8px;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .card-metallic .card-footer .btn {
+        font-size: 11px;
+        padding: 5px 10px;
     }
 
     .product-image {
-        width: 120px;
-        height: auto;
-        min-height: 120px;
-        border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+        height: 110px;
     }
 
     .product-info {
-        padding: 12px 14px;
+        padding: 10px;
+    }
+
+    .product-info h3 {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .product-specs {
+        margin-bottom: 8px;
+    }
+
+    .product-bottom {
+        flex-wrap: wrap;
+        gap: 4px;
     }
 
     .header-inner {
@@ -249,6 +280,16 @@
 
     .blog-post-sidebar {
         position: static;
+    }
+
+    .sobre-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .sobre-media {
+        position: static;
+        order: -1;
     }
 
     .testimonials-grid {

@@ -11,14 +11,8 @@
             </div>
         </div>
 
-        <?php if (!empty($pagina['imagem'])): ?>
-        <div style="margin-bottom: 40px; border-radius: 12px; overflow: hidden; max-height: 420px;">
-            <img src="<?= url($pagina['imagem']) ?>" alt="Sobre a Inova Tanque" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-        </div>
-        <?php endif; ?>
-
-        <div class="blog-post-layout">
-            <div class="blog-post-content">
+        <div class="sobre-grid">
+            <div class="sobre-content">
                 <?php if (!empty($pagina['conteudo'])): ?>
                     <?= $pagina['conteudo'] ?>
                 <?php else: ?>
@@ -53,6 +47,22 @@
                         <a href="/catalogo" class="btn btn-secondary">Ver Equipamentos</a>
                     </p>
                 <?php endif; ?>
+            </div>
+
+            <div class="sobre-media">
+                <div class="sobre-map">
+                    <iframe
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-47.1451713%2C-22.8045201%2C-47.1251713%2C-22.7845201&layer=mapnik&marker=-22.7945201%2C-47.1351713"
+                        title="Localização da Inova Tanque no mapa"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="sobre-map-endereco">
+                    <strong>Rodovia Professor Zeferino Vaz (SP 332) — KM 125</strong>
+                    <span>Santa Terezinha, Paulínia - SP, CEP 13140-774</span>
+                    <a href="https://www.openstreetmap.org/?mlat=-22.7945201&mlon=-47.1351713#map=15/-22.7945201/-47.1351713" target="_blank" rel="noopener">Ver mapa ampliado →</a>
+                </div>
             </div>
         </div>
     </div>
