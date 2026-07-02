@@ -214,8 +214,8 @@
     display: block;
     padding: 7px 16px;
     font-size: 13px;
-    font-weight: 500;
-    color: #d1d5db;
+    font-weight: 600;
+    color: #f5f6f7;
     white-space: nowrap;
     border-radius: var(--radius-pill);
     transition: all var(--transition);

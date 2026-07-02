@@ -227,12 +227,31 @@
 /* === PRODUCT CARDS === */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 20px;
 }
 
 .products-grid--3col {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Impede que imagens/textos forcem a coluna a ultrapassar a largura da tela */
+.products-grid > .card-metallic,
+.products-grid > .product-card {
+    min-width: 0;
+}
+
+.card-metallic .card-image,
+.card-metallic .card-body,
+.product-image,
+.product-info {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.card-metallic .card-body h3,
+.product-info h3 {
+    overflow-wrap: anywhere;
 }
 
 .product-card {

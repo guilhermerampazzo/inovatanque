@@ -122,7 +122,7 @@
 }
 
 .catalogo-main .products-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 24px;
 }
 
@@ -328,7 +328,7 @@
     }
 
     .catalogo-main .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .produto-layout {
@@ -343,8 +343,27 @@
     }
 
     .catalogo-main .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
+    }
+
+    .catalogo-topbar {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .catalogo-topbar .result-count {
+        flex-basis: 100%;
+    }
+
+    .catalogo-topbar .filter-toggle {
+        flex: 1;
+    }
+
+    .catalogo-topbar select {
+        flex: 1;
+        min-width: 0;
+        max-width: 100%;
     }
 
     .catalogo-sidebar {
@@ -365,7 +384,7 @@
 
 @media (max-width: 480px) {
     .catalogo-main .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
     }
 }
