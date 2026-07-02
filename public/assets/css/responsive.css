@@ -74,12 +74,27 @@
     }
 
     .hero-ecommerce {
-        min-height: 240px;
+        min-height: 0;
         border-radius: 0;
     }
 
+    /* Banner "só imagem" (clicável): mostra a imagem INTEIRA, sem cortar */
     .hero-ecommerce a.hero-slide {
-        height: 200px;
+        height: auto;
+        min-height: 0;
+        display: block;
+    }
+
+    .hero-ecommerce a.hero-slide img {
+        position: static;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* Banners com texto: altura enxuta no mobile */
+    .hero-ecommerce .hero-slide {
+        min-height: 300px;
     }
 
     .hero-ecommerce .hero-content {
