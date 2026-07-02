@@ -7,6 +7,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Menu mobile: acordeão dos itens com submenu (Material)
+    document.querySelectorAll('.cat-dropdown-toggle').forEach(function(toggle) {
+        toggle.addEventListener('click', function() {
+            var li = toggle.closest('.has-dropdown');
+            if (!li) return;
+            var expanded = li.classList.toggle('expanded');
+            toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        });
+    });
+
     // Search overlay
     var searchToggle = document.querySelector('.search-toggle');
     var searchOverlay = document.getElementById('searchOverlay');
@@ -14,19 +24,27 @@ document.addEventListener('DOMContentLoaded', function() {
     if (searchToggle && searchOverlay) {
         searchToggle.addEventListener('click', function() {
             searchOverlay.classList.add('open');
+            document.body.classList.add('no-scroll');
             var inp = searchOverlay.querySelector('input');
             if (inp) setTimeout(function() { inp.focus(); }, 50);
         });
         if (searchClose) {
             searchClose.addEventListener('click', function() {
                 searchOverlay.classList.remove('open');
+                document.body.classList.remove('no-scroll');
             });
         }
         searchOverlay.addEventListener('click', function(e) {
-            if (e.target === searchOverlay) searchOverlay.classList.remove('open');
+            if (e.target === searchOverlay) {
+                searchOverlay.classList.remove('open');
+                document.body.classList.remove('no-scroll');
+            }
         });
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') searchOverlay.classList.remove('open');
+            if (e.key === 'Escape') {
+                searchOverlay.classList.remove('open');
+                document.body.classList.remove('no-scroll');
+            }
         });
     }
 
@@ -139,6 +157,16 @@ document.addEventListener('DOMContentLoaded', function() {
 function toggleCatalogoFilter() {
     var sidebar = document.getElementById('filterSidebar');
     var overlay = document.getElementById('filterOverlay');
+    var isOpen = sidebar && sidebar.classList.contains('open');
     if (sidebar) sidebar.classList.toggle('open');
     if (overlay) overlay.classList.toggle('open');
+    document.body.classList.toggle('no-scroll', !isOpen);
 }
+
+document.addEventListener('keydown', function(e) {
+    if (e.key !== 'Escape') return;
+    var sidebar = document.getElementById('filterSidebar');
+    if (sidebar && sidebar.classList.contains('open')) {
+        toggleCatalogoFilter();
+    }
+});

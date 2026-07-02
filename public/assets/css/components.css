@@ -234,6 +234,10 @@
     margin: 0 8px;
 }
 
+.cat-dropdown-toggle {
+    display: none;
+}
+
 .categories-list .has-dropdown > a::after {
     content: '';
     display: inline-block;

@@ -180,6 +180,7 @@
                 <?php foreach ($materiaisLeaf as $mat): ?>
                     <li class="has-dropdown">
                         <a href="/catalogo?categoria=<?= $mat['id'] ?>"><?= sanitize($mat['nome']) ?></a>
+                        <button type="button" class="cat-dropdown-toggle" aria-label="Expandir <?= sanitize($mat['nome']) ?>" aria-expanded="false"></button>
                         <ul class="cat-dropdown cat-dropdown--material">
                             <li class="cat-dropdown-title"><?= sanitize($mat['nome']) ?></li>
                             <?php foreach ($configuracoes as $valor => $label): ?>
