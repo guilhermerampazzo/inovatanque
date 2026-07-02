@@ -79,8 +79,9 @@ class Produto extends Model
             $params[] = (int) $filters['categoria_id'];
         }
         if (!empty($filters['configuracao'])) {
-            $where .= " AND {$p}configuracao = ?";
-            $params[] = $filters['configuracao'];
+            // Campo livre no banco (com acentos/variações): casa por LIKE tolerante.
+            $where .= " AND LOWER({$p}configuracao) LIKE ?";
+            $params[] = '%' . mb_strtolower($filters['configuracao']) . '%';
         }
         if (!empty($filters['carregamento'])) {
             $where .= " AND {$p}carregamento = ?";

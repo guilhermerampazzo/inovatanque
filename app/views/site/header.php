@@ -150,15 +150,16 @@
     </div>
 
     <?php
-    // Menu por Configuração (Bitrem, Bitrenzão...) com materiais como subitens.
-    $menuConfigs = (new Categoria())->getMenuPorConfiguracao();
-    $confLabels = [
-        'Carreta'        => 'Carreta Simples',
-        'Bitrem'         => 'Bitrem',
-        'Bitrenzao'      => 'Bitrenzão',
-        'Rodotrem'       => 'Rodotrem',
-        'Vanderleia 3ED' => 'Vanderleia 3ED',
+    // Menu por Configuração (lista fixa) com materiais como subitens.
+    // 'like' = termo usado para casar o campo livre 'configuracao' dos produtos.
+    $configsFixas = [
+        ['label' => 'Carreta Simples', 'valor' => 'carreta',    'like' => 'carreta'],
+        ['label' => 'Bitrem',          'valor' => 'bitrem',     'like' => 'bitrem'],
+        ['label' => 'Bitrenzão',       'valor' => 'bitrenz',    'like' => 'bitrenz'],
+        ['label' => 'Rodotrem',        'valor' => 'rodotrem',   'like' => 'rodotrem'],
+        ['label' => 'Vanderleia 3ED',  'valor' => 'vanderleia', 'like' => 'vanderleia'],
     ];
+    $menuConfigs = (new Categoria())->getMenuPorConfiguracao($configsFixas);
     ?>
 
     <!-- Navegação principal -->
@@ -168,14 +169,13 @@
                 <li><a href="/" class="<?= is_active('/') ?>">Home</a></li>
                 <li><a href="/catalogo" class="<?= is_active('/catalogo') ?>">Catálogo</a></li>
                 <?php foreach ($menuConfigs as $conf): ?>
-                    <?php $label = $confLabels[$conf['configuracao']] ?? $conf['configuracao']; ?>
                     <li class="has-dropdown">
-                        <a href="/catalogo?configuracao=<?= urlencode($conf['configuracao']) ?>"><?= sanitize($label) ?></a>
-                        <button type="button" class="cat-dropdown-toggle" aria-label="Expandir <?= sanitize($label) ?>" aria-expanded="false"></button>
+                        <a href="/catalogo?configuracao=<?= urlencode($conf['valor']) ?>"><?= sanitize($conf['label']) ?></a>
+                        <button type="button" class="cat-dropdown-toggle" aria-label="Expandir <?= sanitize($conf['label']) ?>" aria-expanded="false"></button>
                         <ul class="cat-dropdown cat-dropdown--material">
-                            <li class="cat-dropdown-title"><?= sanitize($label) ?></li>
+                            <li class="cat-dropdown-title"><?= sanitize($conf['label']) ?></li>
                             <?php foreach ($conf['materiais'] as $mat): ?>
-                                <li><a href="/catalogo?configuracao=<?= urlencode($conf['configuracao']) ?>&categoria=<?= $mat['id'] ?>"><?= sanitize($mat['nome']) ?></a></li>
+                                <li><a href="/catalogo?configuracao=<?= urlencode($conf['valor']) ?>&categoria=<?= $mat['id'] ?>"><?= sanitize($mat['nome']) ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </li>

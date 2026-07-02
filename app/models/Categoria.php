@@ -24,33 +24,39 @@ class Categoria extends Model
     }
 
     /**
-     * Monta o menu do header por CONFIGURAÇÃO (Bitrem, Bitrenzão...),
-     * tendo como subitens os MATERIAIS (categorias) que possuem produtos
-     * naquela configuração. Configurações/materiais sem produto não aparecem.
+     * Monta o menu do header a partir de uma LISTA FIXA de configurações
+     * (Carreta Simples, Bitrem, Bitrenzão, Rodotrem, Vanderleia 3ED), tendo como
+     * subitens os MATERIAIS (categorias) que possuem produtos naquela configuração.
+     * Configurações e materiais sem produto não aparecem.
      *
-     * Retorna: [ ['configuracao' => 'Bitrem', 'materiais' => [ ['id'=>.., 'nome'=>..], ... ] ], ... ]
+     * @param array $configs Lista de ['label'=>, 'valor'=>, 'like'=>] (valor = valor usado no filtro)
+     * @return array [ ['label'=>, 'valor'=>, 'materiais'=>[['id'=>,'nome'=>], ...]], ... ]
      */
-    public function getMenuPorConfiguracao(): array
+    public function getMenuPorConfiguracao(array $configs): array
     {
-        $sql = "
-            SELECT p.configuracao AS conf, c.id AS cat_id, c.nome AS cat_nome
-            FROM produtos p
-            JOIN categorias c ON c.id = p.categoria_id
-            WHERE p.configuracao IS NOT NULL AND p.configuracao <> ''
-              AND c.ativo = 1
-            GROUP BY p.configuracao, c.id, c.nome
-            ORDER BY p.configuracao ASC, c.nome ASC
-        ";
-        $rows = $this->db->query($sql)->fetchAll();
-
         $menu = [];
-        foreach ($rows as $r) {
-            $conf = $r['conf'];
-            if (!isset($menu[$conf])) {
-                $menu[$conf] = ['configuracao' => $conf, 'materiais' => []];
+        foreach ($configs as $cfg) {
+            $stmt = $this->db->prepare("
+                SELECT DISTINCT c.id AS cat_id, c.nome AS cat_nome
+                FROM produtos p
+                JOIN categorias c ON c.id = p.categoria_id
+                WHERE c.ativo = 1
+                  AND LOWER(p.configuracao) LIKE ?
+                ORDER BY c.nome ASC
+            ");
+            $stmt->execute(['%' . mb_strtolower($cfg['like']) . '%']);
+            $materiais = [];
+            foreach ($stmt->fetchAll() as $r) {
+                $materiais[] = ['id' => (int) $r['cat_id'], 'nome' => $r['cat_nome']];
             }
-            $menu[$conf]['materiais'][] = ['id' => (int) $r['cat_id'], 'nome' => $r['cat_nome']];
+            if (!empty($materiais)) {
+                $menu[] = [
+                    'label' => $cfg['label'],
+                    'valor' => $cfg['valor'],
+                    'materiais' => $materiais,
+                ];
+            }
         }
-        return array_values($menu);
+        return $menu;
     }
 }

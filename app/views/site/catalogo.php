@@ -15,26 +15,20 @@
                             <input type="radio" name="configuracao" value="" <?= empty($filters['configuracao']) ? 'checked' : '' ?>>
                             Todas
                         </label>
-                        <label>
-                            <input type="radio" name="configuracao" value="Carreta" <?= ($filters['configuracao'] ?? '') === 'Carreta' ? 'checked' : '' ?>>
-                            Carreta Simples
-                        </label>
-                        <label>
-                            <input type="radio" name="configuracao" value="Bitrem" <?= ($filters['configuracao'] ?? '') === 'Bitrem' ? 'checked' : '' ?>>
-                            Bitrem
-                        </label>
-                        <label>
-                            <input type="radio" name="configuracao" value="Bitrenzao" <?= ($filters['configuracao'] ?? '') === 'Bitrenzao' ? 'checked' : '' ?>>
-                            Bitrenzão
-                        </label>
-                        <label>
-                            <input type="radio" name="configuracao" value="Rodotrem" <?= ($filters['configuracao'] ?? '') === 'Rodotrem' ? 'checked' : '' ?>>
-                            Rodotrem
-                        </label>
-                        <label>
-                            <input type="radio" name="configuracao" value="Vanderleia 3ED" <?= ($filters['configuracao'] ?? '') === 'Vanderleia 3ED' ? 'checked' : '' ?>>
-                            Vanderleia 3ED
-                        </label>
+                        <?php
+                        $configOpcoes = [
+                            'carreta'    => 'Carreta Simples',
+                            'bitrem'     => 'Bitrem',
+                            'bitrenz'    => 'Bitrenzão',
+                            'rodotrem'   => 'Rodotrem',
+                            'vanderleia' => 'Vanderleia 3ED',
+                        ];
+                        foreach ($configOpcoes as $valor => $label): ?>
+                            <label>
+                                <input type="radio" name="configuracao" value="<?= $valor ?>" <?= ($filters['configuracao'] ?? '') === $valor ? 'checked' : '' ?>>
+                                <?= $label ?>
+                            </label>
+                        <?php endforeach; ?>
                     </div>
 
                     <div class="filter-group">
