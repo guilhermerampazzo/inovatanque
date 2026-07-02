@@ -39,10 +39,23 @@
         display: flex;
     }
 
+    /* Header mais compacto no mobile */
+    .logo img {
+        height: 60px;
+    }
+
+    .logo-tagline {
+        display: none;
+    }
+
+    .header-actions {
+        gap: 6px;
+    }
+
     /* Barra de categorias escondida por padrao no mobile; abre via hamburger */
     .categories-bar {
         display: none;
-        top: 96px;
+        top: 88px;
     }
 
     .categories-list {
@@ -309,7 +322,7 @@
 .nav-mobile-open .categories-bar {
     display: block;
     position: fixed;
-    top: 96px;
+    top: 88px;
     left: 0;
     right: 0;
     bottom: 0;
