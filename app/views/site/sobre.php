@@ -4,7 +4,7 @@
 
 <section style="padding-top: 48px; padding-bottom: 96px;">
     <div class="container">
-        <div class="section-header" style="margin-bottom: 48px;">
+        <div class="section-header" style="margin-bottom: 20px;">
             <div>
                 <h2>Sobre Nós</h2>
                 <p>Soluções em vendas e locações de carretas-tanque</p>
