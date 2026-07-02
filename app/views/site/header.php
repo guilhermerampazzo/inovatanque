@@ -150,23 +150,13 @@
     </div>
 
     <?php
-    $materiaisTree = (new Categoria())->getArvore();
-    // Achata a árvore: categoria-pai só entra sozinha se não tiver filhas.
-    $materiaisLeaf = [];
-    foreach ($materiaisTree as $pai) {
-        if (!empty($pai['filhas'])) {
-            foreach ($pai['filhas'] as $filha) {
-                $materiaisLeaf[] = $filha;
-            }
-        } else {
-            $materiaisLeaf[] = $pai;
-        }
-    }
-    $configuracoes = [
-        'Carreta'       => 'Carreta Simples',
-        'Bitrem'        => 'Bitrem',
-        'Bitrenzao'     => 'Bitrenzão',
-        'Rodotrem'      => 'Rodotrem',
+    // Menu por Configuração (Bitrem, Bitrenzão...) com materiais como subitens.
+    $menuConfigs = (new Categoria())->getMenuPorConfiguracao();
+    $confLabels = [
+        'Carreta'        => 'Carreta Simples',
+        'Bitrem'         => 'Bitrem',
+        'Bitrenzao'      => 'Bitrenzão',
+        'Rodotrem'       => 'Rodotrem',
         'Vanderleia 3ED' => 'Vanderleia 3ED',
     ];
     ?>
@@ -177,14 +167,15 @@
             <ul class="categories-list">
                 <li><a href="/" class="<?= is_active('/') ?>">Home</a></li>
                 <li><a href="/catalogo" class="<?= is_active('/catalogo') ?>">Catálogo</a></li>
-                <?php foreach ($materiaisLeaf as $mat): ?>
+                <?php foreach ($menuConfigs as $conf): ?>
+                    <?php $label = $confLabels[$conf['configuracao']] ?? $conf['configuracao']; ?>
                     <li class="has-dropdown">
-                        <a href="/catalogo?categoria=<?= $mat['id'] ?>"><?= sanitize($mat['nome']) ?></a>
-                        <button type="button" class="cat-dropdown-toggle" aria-label="Expandir <?= sanitize($mat['nome']) ?>" aria-expanded="false"></button>
+                        <a href="/catalogo?configuracao=<?= urlencode($conf['configuracao']) ?>"><?= sanitize($label) ?></a>
+                        <button type="button" class="cat-dropdown-toggle" aria-label="Expandir <?= sanitize($label) ?>" aria-expanded="false"></button>
                         <ul class="cat-dropdown cat-dropdown--material">
-                            <li class="cat-dropdown-title"><?= sanitize($mat['nome']) ?></li>
-                            <?php foreach ($configuracoes as $valor => $label): ?>
-                                <li><a href="/catalogo?categoria=<?= $mat['id'] ?>&configuracao=<?= urlencode($valor) ?>"><?= sanitize($label) ?></a></li>
+                            <li class="cat-dropdown-title"><?= sanitize($label) ?></li>
+                            <?php foreach ($conf['materiais'] as $mat): ?>
+                                <li><a href="/catalogo?configuracao=<?= urlencode($conf['configuracao']) ?>&categoria=<?= $mat['id'] ?>"><?= sanitize($mat['nome']) ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </li>

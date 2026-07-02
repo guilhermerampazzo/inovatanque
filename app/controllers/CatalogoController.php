@@ -18,7 +18,7 @@ class CatalogoController extends Controller
             'fabricante' => $_GET['fabricante'] ?? null,
             'busca' => $_GET['busca'] ?? null,
         ];
-        $orderBy = $_GET['ordem'] ?? 'created_at DESC';
+        $orderBy = $_GET['ordem'] ?? 'titulo ASC';
 
         $total = $produtoModel->countFiltered($filters);
         $pagination = paginate($total, ITEMS_PER_PAGE, $page);

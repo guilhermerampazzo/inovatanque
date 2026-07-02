@@ -127,12 +127,15 @@
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
                         Filtros
                     </button>
+                    <?php $ordemAtual = $_GET['ordem'] ?? 'titulo ASC'; ?>
                     <select onchange="window.location.href='/catalogo?ordem='+this.value+'&<?= http_build_query(array_filter($filters)) ?>'">
-                        <option value="created_at DESC" <?= ($_GET['ordem'] ?? '') === 'created_at DESC' ? 'selected' : '' ?>>Mais recentes</option>
-                        <option value="capacidade DESC" <?= ($_GET['ordem'] ?? '') === 'capacidade DESC' ? 'selected' : '' ?>>Maior capacidade</option>
-                        <option value="capacidade ASC" <?= ($_GET['ordem'] ?? '') === 'capacidade ASC' ? 'selected' : '' ?>>Menor capacidade</option>
-                        <option value="ano DESC" <?= ($_GET['ordem'] ?? '') === 'ano DESC' ? 'selected' : '' ?>>Ano (mais novo)</option>
-                        <option value="ano ASC" <?= ($_GET['ordem'] ?? '') === 'ano ASC' ? 'selected' : '' ?>>Ano (mais antigo)</option>
+                        <option value="titulo ASC" <?= $ordemAtual === 'titulo ASC' ? 'selected' : '' ?>>Ordem alfabética (A-Z)</option>
+                        <option value="titulo DESC" <?= $ordemAtual === 'titulo DESC' ? 'selected' : '' ?>>Ordem alfabética (Z-A)</option>
+                        <option value="created_at DESC" <?= $ordemAtual === 'created_at DESC' ? 'selected' : '' ?>>Mais recentes</option>
+                        <option value="capacidade DESC" <?= $ordemAtual === 'capacidade DESC' ? 'selected' : '' ?>>Maior capacidade</option>
+                        <option value="capacidade ASC" <?= $ordemAtual === 'capacidade ASC' ? 'selected' : '' ?>>Menor capacidade</option>
+                        <option value="ano DESC" <?= $ordemAtual === 'ano DESC' ? 'selected' : '' ?>>Ano (mais novo)</option>
+                        <option value="ano ASC" <?= $ordemAtual === 'ano ASC' ? 'selected' : '' ?>>Ano (mais antigo)</option>
                     </select>
                 </div>
 

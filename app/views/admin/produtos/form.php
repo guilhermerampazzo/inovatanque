@@ -75,7 +75,7 @@
     <div class="form-row">
         <div class="form-group">
             <label>Modalidade</label>
-            <input type="text" name="modalidade" placeholder="Locação, Venda, Consignação" value="<?= sanitize($produto['modalidade'] ?? '') ?>">
+            <input type="text" name="modalidade" placeholder="Locação, Venda" value="<?= sanitize($produto['modalidade'] ?? '') ?>">
         </div>
         <div class="form-group">
             <label>Status</label>
