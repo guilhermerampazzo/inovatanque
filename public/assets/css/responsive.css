@@ -41,7 +41,7 @@
 
     /* Header mais compacto no mobile */
     .logo img {
-        height: 60px;
+        height: 80px;
     }
 
     .logo-tagline {
@@ -55,7 +55,7 @@
     /* Barra de categorias escondida por padrao no mobile; abre via hamburger */
     .categories-bar {
         display: none;
-        top: 88px;
+        top: 108px;
     }
 
     .categories-list {
@@ -262,7 +262,7 @@
     }
 
     .logo img {
-        height: 52px;
+        height: 68px;
     }
 
     /* Esconde Facebook e LinkedIn no mobile mínimo, mantém busca + WhatsApp + conta */
@@ -322,7 +322,7 @@
 .nav-mobile-open .categories-bar {
     display: block;
     position: fixed;
-    top: 88px;
+    top: 108px;
     left: 0;
     right: 0;
     bottom: 0;
