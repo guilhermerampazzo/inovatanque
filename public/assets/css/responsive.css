@@ -9,7 +9,11 @@
     }
 
     .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .testimonials-grid--carousel .testimonial-card {
+        flex-basis: calc((100% - 2 * 16px) / 3);
     }
 
     .footer-grid {
@@ -294,6 +298,10 @@
 
     .testimonials-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonials-grid--carousel .testimonial-card {
+        flex-basis: 82%;
     }
 }
 

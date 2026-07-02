@@ -169,11 +169,15 @@
 
 /* Cor-texto banners: botão e texto com espaçamento generoso */
 .hero-ecommerce .hero-slide .hero-content h2 {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .hero-ecommerce .hero-slide .hero-content p {
-    margin-bottom: 36px;
+    margin-bottom: 44px;
+}
+
+.hero-ecommerce .hero-content .btn {
+    margin-top: 8px;
 }
 
 .btn-outline-light {
@@ -576,8 +580,23 @@
 /* === DEPOIMENTOS === */
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+}
+
+/* Carrossel horizontal quando há mais de 5 avaliações */
+.testimonials-grid--carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 12px;
+    scrollbar-width: thin;
+}
+
+.testimonials-grid--carousel .testimonial-card {
+    flex: 0 0 calc((100% - 4 * 16px) / 5);
+    scroll-snap-align: start;
 }
 
 .testimonial-card {
@@ -1186,12 +1205,6 @@
 }
 
 /* === TESTIMONIALS GRID === */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
 /* === HERO PROGRESS BAR === */
 .hero-progress-bar {
     position: absolute;

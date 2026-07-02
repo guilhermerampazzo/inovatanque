@@ -282,7 +282,7 @@
                 <h2>Avaliações de Clientes</h2>
             </div>
         </div>
-        <div class="testimonials-grid">
+        <div class="testimonials-grid <?= count($depoimentos) > 5 ? 'testimonials-grid--carousel' : '' ?>">
             <?php foreach ($depoimentos as $dep): ?>
                 <div class="testimonial-card">
                     <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
