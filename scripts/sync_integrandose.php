@@ -44,6 +44,7 @@ require APP_ROOT . '/config/app.php';
 require APP_ROOT . '/config/database.php';
 require APP_ROOT . '/app/core/Autoload.php';
 require APP_ROOT . '/app/helpers/functions.php';
+require APP_ROOT . '/app/helpers/produto_parser.php';
 
 $pdo = Database::connect();
 
@@ -166,38 +167,9 @@ function parse_titulo(string $titulo): array
 {
     $t = mb_strtolower($titulo, 'UTF-8');
 
-    // Configuração (Tipo Implemento do menu). Ordem importa: termos mais
-    // especificos (ex: "vanderleia") vem antes de termos genericos (ex: "carreta"),
-    // pois um produto "Carreta ... Vanderleia (3ED) ..." e classificado como Vanderleia.
-    $config = null;
-    $configs = [
-        'vanderleia 3ed' => 'Vanderléia',
-        'vanderleia'     => 'Vanderléia',
-        'vanderléia'     => 'Vanderléia',
-        'britrenzao'     => '9 Eixos / Bitrenzão',
-        'britrenzão'     => '9 Eixos / Bitrenzão',
-        'bitrenzao'      => '9 Eixos / Bitrenzão',
-        'bitrenzão'      => '9 Eixos / Bitrenzão',
-        '9 eixos'        => '9 Eixos / Bitrenzão',
-        'bitrem'         => 'Bitrem',
-        'rodotrem'       => 'Rodotrem',
-        ' ls '           => 'LS',
-        'carreta'        => '4 Eixos (Simples)',
-        '4 eixos'        => '4 Eixos (Simples)',
-    ];
-    foreach ($configs as $key => $val) {
-        if (str_contains($t, $key)) { $config = $val; break; }
-    }
-
-    // Carroceria (Tipo Carroceria do menu)
-    $carroceria = 'Tanque';
-    if (str_contains($t, 'rodocaçamba') || str_contains($t, 'rodocacamba')) {
-        $carroceria = 'Tanque Rodocaçamba';
-    } elseif (str_contains($t, 'sider')) {
-        $carroceria = 'Tanque Sider';
-    } elseif (str_contains($t, 'graneleiro') || str_contains($t, 'graneleira')) {
-        $carroceria = str_contains($t, 'tanque') ? 'Tanque Graneleiro' : 'Graneleiro';
-    }
+    // Configuração (Implemento) e Carroceria — logica compartilhada com o
+    // backfill em migrate_produtos.php (app/helpers/produto_parser.php).
+    ['config' => $config, 'carroceria' => $carroceria] = parse_implemento_carroceria($titulo);
 
     // Capacidade (ex: 62000L ou 62.000L)
     $capacidade = null;

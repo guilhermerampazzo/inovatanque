@@ -2,8 +2,11 @@
 /**
  * Migration da tabela PRODUTOS (executável via navegador).
  *
- *   Adiciona a coluna produtos.carroceria (nível intermediário do menu:
- *   Implemento > Carroceria > Material).
+ *   1) Adiciona a coluna produtos.carroceria (nível intermediário do menu:
+ *      Implemento > Carroceria > Material).
+ *   2) Backfill: para produtos já existentes sem carroceria preenchida,
+ *      deriva Implemento/Carroceria a partir do título (sem depender da
+ *      API da Loja Integrada — roda direto sobre o banco local).
  *
  * USO (protegido por token):
  *   https://seusite.com.br/migrate_produtos.php?token=INOVA2025
@@ -21,6 +24,7 @@ if (($_GET['token'] ?? '') !== $webToken) {
 $dryRun = isset($_GET['dry_run']);
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../app/helpers/produto_parser.php';
 
 header('Content-Type: text/html; charset=utf-8');
 echo "<pre style='font:14px/1.5 monospace;padding:24px;background:#111;color:#eee'>";
@@ -49,6 +53,24 @@ try {
         if ($dryRun) continue;
         $pdo->exec($sql);
         echo "  -> criada com sucesso\n";
+    }
+
+    echo "\n== Backfill de Implemento/Carroceria (produtos sem carroceria) ==\n";
+    $produtos = $pdo->query("SELECT id, titulo, configuracao, carroceria FROM produtos WHERE carroceria IS NULL OR carroceria = ''")->fetchAll();
+    if (empty($produtos)) {
+        echo "Nenhum produto pendente — todos já têm carroceria preenchida.\n";
+    } else {
+        $upd = $pdo->prepare("UPDATE produtos SET configuracao = ?, carroceria = ? WHERE id = ?");
+        foreach ($produtos as $p) {
+            $parsed = parse_implemento_carroceria($p['titulo']);
+            $config = $parsed['config'] ?: $p['configuracao'];
+            $carroceria = $parsed['carroceria'];
+            echo "[{$p['id']}] {$p['titulo']}\n  -> implemento: " . ($config ?: '(nao identificado)') . " | carroceria: {$carroceria}\n";
+            if (!$dryRun) {
+                $upd->execute([$config, $carroceria, $p['id']]);
+            }
+        }
+        echo "\nTotal processado: " . count($produtos) . "\n";
     }
 
     echo "\n== Colunas atuais da tabela produtos ==\n";
