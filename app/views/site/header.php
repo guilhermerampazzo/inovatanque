@@ -117,6 +117,11 @@
                     <button class="btn-header-icon search-toggle" aria-label="Buscar">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     </button>
+                    <?php if (Session::isLoggedIn()): ?>
+                        <a href="/cliente/dashboard" class="btn-header-icon" aria-label="Minha Conta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+                    <?php else: ?>
+                        <a href="/login" class="btn-header-icon" aria-label="Entrar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+                    <?php endif; ?>
                 </div>
                 <button class="menu-toggle" aria-label="Abrir menu">
                     <span></span><span></span><span></span>
@@ -143,14 +148,17 @@
     <?php
     // Menu por Configuração (lista fixa) com materiais como subitens.
     // 'like' = termo usado para casar o campo livre 'configuracao' dos produtos.
+    // 'valor' e 'like' precisam ser o mesmo termo: 'valor' vai na URL e volta em $_GET,
+    // e e usado tal-qual como termo do LIKE contra produtos.configuracao no CatalogoController.
     $configsFixas = [
-        ['label' => 'Carreta Simples', 'valor' => 'carreta',    'like' => 'carreta'],
-        ['label' => 'Bitrem',          'valor' => 'bitrem',     'like' => 'bitrem'],
-        ['label' => 'Bitrenzão',       'valor' => 'bitrenz',    'like' => 'bitrenz'],
-        ['label' => 'Rodotrem',        'valor' => 'rodotrem',   'like' => 'rodotrem'],
-        ['label' => 'Vanderleia 3ED',  'valor' => 'vanderleia', 'like' => 'vanderleia'],
+        ['label' => '4 Eixos (Simples)',   'valor' => '4 eixos',   'like' => '4 eixos'],
+        ['label' => 'Bitrem',              'valor' => 'bitrem',    'like' => 'bitrem'],
+        ['label' => '9 Eixos / Bitrenzão', 'valor' => 'bitrenz',   'like' => 'bitrenz'],
+        ['label' => 'Rodotrem',            'valor' => 'rodotrem',  'like' => 'rodotrem'],
+        ['label' => 'Vanderléia',          'valor' => 'vanderl',   'like' => 'vanderl'],
+        ['label' => 'LS',                  'valor' => 'ls',        'like' => 'ls'],
     ];
-    $menuConfigs = (new Categoria())->getMenuPorConfiguracao($configsFixas);
+    $menuConfigs = (new Categoria())->getMenuTresNiveis($configsFixas);
     ?>
 
     <!-- Navegação principal -->
@@ -163,10 +171,19 @@
                     <li class="has-dropdown">
                         <a href="/catalogo?configuracao=<?= urlencode($conf['valor']) ?>"><?= sanitize($conf['label']) ?></a>
                         <button type="button" class="cat-dropdown-toggle" aria-label="Expandir <?= sanitize($conf['label']) ?>" aria-expanded="false"></button>
-                        <ul class="cat-dropdown cat-dropdown--material">
+                        <ul class="cat-dropdown cat-dropdown--carroceria">
                             <li class="cat-dropdown-title"><?= sanitize($conf['label']) ?></li>
-                            <?php foreach ($conf['materiais'] as $mat): ?>
-                                <li><a href="/catalogo?configuracao=<?= urlencode($conf['valor']) ?>&categoria=<?= $mat['id'] ?>"><?= sanitize($mat['nome']) ?></a></li>
+                            <?php foreach ($conf['carrocerias'] as $carr): ?>
+                                <li class="has-subdropdown">
+                                    <a href="/catalogo?configuracao=<?= urlencode($conf['valor']) ?>&carroceria=<?= urlencode($carr['nome']) ?>"><?= sanitize($carr['nome']) ?></a>
+                                    <button type="button" class="cat-dropdown-toggle cat-dropdown-toggle--sub" aria-label="Expandir <?= sanitize($carr['nome']) ?>" aria-expanded="false"></button>
+                                    <ul class="cat-dropdown cat-dropdown--material">
+                                        <li class="cat-dropdown-title"><?= sanitize($carr['nome']) ?></li>
+                                        <?php foreach ($carr['materiais'] as $mat): ?>
+                                            <li><a href="/catalogo?configuracao=<?= urlencode($conf['valor']) ?>&carroceria=<?= urlencode($carr['nome']) ?>&categoria=<?= $mat['id'] ?>"><?= sanitize($mat['nome']) ?></a></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </li>
                             <?php endforeach; ?>
                         </ul>
                     </li>

@@ -92,6 +92,7 @@ class AdminProdutoController extends Controller
             'slug' => $this->slugify($titulo),
             'categoria_id' => (int) ($_POST['categoria_id'] ?? 0),
             'configuracao' => sanitize($_POST['configuracao'] ?? ''),
+            'carroceria' => sanitize($_POST['carroceria'] ?? ''),
             'capacidade' => (int) ($_POST['capacidade'] ?? 0),
             'ano' => (int) ($_POST['ano'] ?? 0),
             'fabricante' => sanitize($_POST['fabricante'] ?? ''),

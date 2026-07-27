@@ -11,6 +11,7 @@ class CatalogoController extends Controller
         $filters = [
             'categoria_id' => $_GET['categoria'] ?? null,
             'configuracao' => $_GET['configuracao'] ?? null,
+            'carroceria' => $_GET['carroceria'] ?? null,
             'carregamento' => $_GET['carregamento'] ?? null,
             'modalidade' => $_GET['modalidade'] ?? null,
             'ano_min' => $_GET['ano_min'] ?? null,

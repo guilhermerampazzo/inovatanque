@@ -425,6 +425,23 @@
     color: var(--color-text-secondary);
 }
 
+.nav-mobile-open .has-subdropdown > a {
+    padding-right: 40px;
+}
+
+.nav-mobile-open .has-subdropdown .cat-dropdown--material {
+    display: none;
+    padding-left: 16px;
+}
+
+.nav-mobile-open .has-subdropdown.expanded > .cat-dropdown--material {
+    display: block;
+}
+
+.nav-mobile-open .has-subdropdown.expanded > .cat-dropdown-toggle::after {
+    transform: rotate(-135deg);
+}
+
 .nav-mobile-open {
     overflow: hidden;
 }

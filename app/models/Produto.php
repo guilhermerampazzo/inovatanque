@@ -83,6 +83,10 @@ class Produto extends Model
             $where .= " AND LOWER({$p}configuracao) LIKE ?";
             $params[] = '%' . mb_strtolower($filters['configuracao']) . '%';
         }
+        if (!empty($filters['carroceria'])) {
+            $where .= " AND LOWER({$p}carroceria) LIKE ?";
+            $params[] = '%' . mb_strtolower($filters['carroceria']) . '%';
+        }
         if (!empty($filters['carregamento'])) {
             $where .= " AND {$p}carregamento = ?";
             $params[] = $filters['carregamento'];

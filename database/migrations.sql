@@ -50,6 +50,7 @@ CREATE TABLE produtos (
     slug VARCHAR(255) NOT NULL UNIQUE,
     categoria_id INT NOT NULL,
     configuracao VARCHAR(100) DEFAULT NULL,
+    carroceria VARCHAR(100) DEFAULT NULL,
     capacidade INT DEFAULT NULL,
     ano INT DEFAULT NULL,
     fabricante VARCHAR(100) DEFAULT NULL,

@@ -59,4 +59,47 @@ class Categoria extends Model
         }
         return $menu;
     }
+
+    /**
+     * Monta o menu do header em 3 niveis a partir de uma LISTA FIXA de Implementos
+     * (config): Implemento > Carroceria (produtos.carroceria) > Material (categorias).
+     * Implementos, carrocerias e materiais sem produto nao aparecem.
+     *
+     * @param array $configs Lista de ['label'=>, 'valor'=>, 'like'=>] (like = filtro em produtos.configuracao)
+     * @return array [ ['label'=>, 'valor'=>, 'carrocerias'=>[ ['nome'=>, 'materiais'=>[['id'=>,'nome'=>], ...]] ] ] ]
+     */
+    public function getMenuTresNiveis(array $configs): array
+    {
+        $menu = [];
+        foreach ($configs as $cfg) {
+            $stmt = $this->db->prepare("
+                SELECT DISTINCT p.carroceria AS carroceria, c.id AS cat_id, c.nome AS cat_nome
+                FROM produtos p
+                JOIN categorias c ON c.id = p.categoria_id
+                WHERE c.ativo = 1
+                  AND LOWER(p.configuracao) LIKE ?
+                  AND p.carroceria IS NOT NULL AND p.carroceria <> ''
+                ORDER BY p.carroceria ASC, c.nome ASC
+            ");
+            $stmt->execute(['%' . mb_strtolower($cfg['like']) . '%']);
+
+            $carrocerias = [];
+            foreach ($stmt->fetchAll() as $r) {
+                $nomeCarroceria = $r['carroceria'];
+                if (!isset($carrocerias[$nomeCarroceria])) {
+                    $carrocerias[$nomeCarroceria] = ['nome' => $nomeCarroceria, 'materiais' => []];
+                }
+                $carrocerias[$nomeCarroceria]['materiais'][] = ['id' => (int) $r['cat_id'], 'nome' => $r['cat_nome']];
+            }
+
+            if (!empty($carrocerias)) {
+                $menu[] = [
+                    'label' => $cfg['label'],
+                    'valor' => $cfg['valor'],
+                    'carrocerias' => array_values($carrocerias),
+                ];
+            }
+        }
+        return $menu;
+    }
 }

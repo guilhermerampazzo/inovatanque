@@ -226,6 +226,10 @@
         $mid = (int) ceil($total_p / 2);
         $row1 = array_slice($parceiros, 0, $mid);
         $row2 = array_slice($parceiros, $mid);
+        // Garante largura mínima suficiente para preencher a tela antes de duplicar para o loop
+        $min_items = 10;
+        while (count($row1) < $min_items) { $row1 = array_merge($row1, $row1); }
+        while (count($row2) < $min_items) { $row2 = array_merge($row2, $row2); }
         // Duplicate for seamless loop
         $row1 = array_merge($row1, $row1);
         $row2 = array_merge($row2, $row2);
