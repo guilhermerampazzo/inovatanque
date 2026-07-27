@@ -7,10 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Menu mobile: acordeão dos itens com submenu (Material)
+    // Menu mobile: acordeão dos itens com submenu (Carroceria / Material)
     document.querySelectorAll('.cat-dropdown-toggle').forEach(function(toggle) {
-        toggle.addEventListener('click', function() {
-            var li = toggle.closest('.has-dropdown');
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var closestClass = toggle.classList.contains('cat-dropdown-toggle--sub') ? '.has-subdropdown' : '.has-dropdown';
+            var li = toggle.closest(closestClass);
             if (!li) return;
             var expanded = li.classList.toggle('expanded');
             toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');

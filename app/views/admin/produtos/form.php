@@ -36,10 +36,10 @@
             </select>
         </div>
         <div class="form-group">
-            <label>Configuração</label>
+            <label>Configuração (Tipo Implemento)</label>
             <select name="configuracao">
                 <option value="">Selecione</option>
-                <?php foreach (['Carreta', 'Bitrem', 'Bitrenzao', 'Rodotrem', 'Vanderleia 3ED'] as $cfg): ?>
+                <?php foreach (['4 Eixos (Simples)', 'Bitrem', '9 Eixos / Bitrenzão', 'Rodotrem', 'Vanderléia', 'LS'] as $cfg): ?>
                     <option value="<?= $cfg ?>" <?= ($produto['configuracao'] ?? '') === $cfg ? 'selected' : '' ?>><?= $cfg ?></option>
                 <?php endforeach; ?>
             </select>
@@ -48,9 +48,21 @@
 
     <div class="form-row">
         <div class="form-group">
+            <label>Carroceria</label>
+            <select name="carroceria">
+                <option value="">Selecione</option>
+                <?php foreach (['Tanque Graneleiro', 'Tanque Sider', 'Tanque Rodocaçamba', 'Tanque'] as $carr): ?>
+                    <option value="<?= $carr ?>" <?= ($produto['carroceria'] ?? '') === $carr ? 'selected' : '' ?>><?= $carr ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="form-group">
             <label>Capacidade (L)</label>
             <input type="number" name="capacidade" value="<?= $produto['capacidade'] ?? '' ?>">
         </div>
+    </div>
+
+    <div class="form-row">
         <div class="form-group">
             <label>Ano</label>
             <input type="number" name="ano" value="<?= $produto['ano'] ?? '' ?>">

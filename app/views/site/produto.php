@@ -66,6 +66,9 @@
                     <?php if ($produto['configuracao']): ?>
                         <tr><td>Configuração</td><td><?= sanitize($produto['configuracao']) ?></td></tr>
                     <?php endif; ?>
+                    <?php if (!empty($produto['carroceria'])): ?>
+                        <tr><td>Carroceria</td><td><?= sanitize($produto['carroceria']) ?></td></tr>
+                    <?php endif; ?>
                     <?php if ($produto['capacidade']): ?>
                         <tr><td>Capacidade</td><td><?= number_format($produto['capacidade'], 0, ',', '.') ?> litros</td></tr>
                     <?php endif; ?>

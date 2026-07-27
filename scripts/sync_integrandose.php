@@ -166,19 +166,37 @@ function parse_titulo(string $titulo): array
 {
     $t = mb_strtolower($titulo, 'UTF-8');
 
-    // Configuração
+    // Configuração (Tipo Implemento do menu). Ordem importa: termos mais
+    // especificos (ex: "vanderleia") vem antes de termos genericos (ex: "carreta"),
+    // pois um produto "Carreta ... Vanderleia (3ED) ..." e classificado como Vanderleia.
     $config = null;
     $configs = [
-        'vanderleia 3ed' => 'Vanderleia 3ED',
-        'vanderleia'     => 'Vanderleia 3ED',
-        'bitrenzao'      => 'Bitrenzao',
-        'bitrenzão'      => 'Bitrenzao',
+        'vanderleia 3ed' => 'Vanderléia',
+        'vanderleia'     => 'Vanderléia',
+        'vanderléia'     => 'Vanderléia',
+        'britrenzao'     => '9 Eixos / Bitrenzão',
+        'britrenzão'     => '9 Eixos / Bitrenzão',
+        'bitrenzao'      => '9 Eixos / Bitrenzão',
+        'bitrenzão'      => '9 Eixos / Bitrenzão',
+        '9 eixos'        => '9 Eixos / Bitrenzão',
         'bitrem'         => 'Bitrem',
         'rodotrem'       => 'Rodotrem',
-        'carreta'        => 'Carreta',
+        ' ls '           => 'LS',
+        'carreta'        => '4 Eixos (Simples)',
+        '4 eixos'        => '4 Eixos (Simples)',
     ];
     foreach ($configs as $key => $val) {
         if (str_contains($t, $key)) { $config = $val; break; }
+    }
+
+    // Carroceria (Tipo Carroceria do menu)
+    $carroceria = 'Tanque';
+    if (str_contains($t, 'rodocaçamba') || str_contains($t, 'rodocacamba')) {
+        $carroceria = 'Tanque Rodocaçamba';
+    } elseif (str_contains($t, 'sider')) {
+        $carroceria = 'Tanque Sider';
+    } elseif (str_contains($t, 'graneleiro') || str_contains($t, 'graneleira')) {
+        $carroceria = str_contains($t, 'tanque') ? 'Tanque Graneleiro' : 'Graneleiro';
     }
 
     // Capacidade (ex: 62000L ou 62.000L)
@@ -212,7 +230,7 @@ function parse_titulo(string $titulo): array
     if (str_contains($t, 'locaç'))       $modalidade = 'Locação';
     if (str_contains($t, 'consignaç'))   $modalidade = 'Consignação';
 
-    return compact('config', 'capacidade', 'carregamento', 'fabricante', 'ano', 'modalidade');
+    return compact('config', 'carroceria', 'capacidade', 'carregamento', 'fabricante', 'ano', 'modalidade');
 }
 
 /**
@@ -420,6 +438,7 @@ function processar_produto(array $p, PDO $pdo, string $uploadDir, bool $dryRun, 
     // ── Parseia campos técnicos do título ─────────────────────────────────────
     $parsed = parse_titulo($nome);
     $configuracao = $parsed['config'];
+    $carroceria   = $parsed['carroceria'];
     $capacidade   = $parsed['capacidade'];
     $carregamento = $parsed['carregamento'];
     $fabricante   = $parsed['fabricante'];
@@ -435,6 +454,7 @@ function processar_produto(array $p, PDO $pdo, string $uploadDir, bool $dryRun, 
             case 'capacidade': $capacidade = (int) preg_replace('/\D/', '', $valor); break;
             case 'configuracao':
             case 'configuração': $configuracao = $valor; break;
+            case 'carroceria':   $carroceria = $valor; break;
             case 'carregamento': $carregamento = in_array($valor, ['top','bottom']) ? $valor : null; break;
             case 'fabricante':   $fabricante = $valor; break;
             case 'ano':          $ano = (int) $valor; break;
@@ -494,6 +514,7 @@ function processar_produto(array $p, PDO $pdo, string $uploadDir, bool $dryRun, 
     try {
         $pdo->exec("ALTER TABLE produtos ADD COLUMN IF NOT EXISTS externo_id VARCHAR(100) DEFAULT NULL AFTER codigo");
         $pdo->exec("ALTER TABLE produtos ADD COLUMN IF NOT EXISTS externo_fonte VARCHAR(50) DEFAULT NULL AFTER externo_id");
+        $pdo->exec("ALTER TABLE produtos ADD COLUMN IF NOT EXISTS carroceria VARCHAR(100) DEFAULT NULL AFTER configuracao");
     } catch (PDOException $e) { /* ignora se já existir */ }
 
     // ── Insere ou atualiza produto ────────────────────────────────────────────
@@ -505,6 +526,7 @@ function processar_produto(array $p, PDO $pdo, string $uploadDir, bool $dryRun, 
         'externo_fonte' => 'integrandose',
         'categoria_id'  => $categoriaId,
         'configuracao'  => $configuracao,
+        'carroceria'    => $carroceria,
         'capacidade'    => $capacidade,
         'ano'           => $ano,
         'fabricante'    => $fabricante,
