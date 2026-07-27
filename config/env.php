@@ -16,8 +16,11 @@ if (!defined('ENV_LOADED')) {
             [$key, $value] = explode('=', $line, 2);
             $key = trim($key);
             $value = trim($value);
-            if (getenv($key) === false) {
-                putenv("{$key}={$value}");
+            // putenv() costuma vir desabilitado em hospedagem compartilhada;
+            // $_SERVER/$_ENV bastam, pois e o que config/*.php le primeiro.
+            if (!isset($_SERVER[$key]) && !isset($_ENV[$key])) {
+                $_SERVER[$key] = $value;
+                $_ENV[$key] = $value;
             }
         }
     }
