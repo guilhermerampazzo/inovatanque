@@ -265,7 +265,7 @@
     box-shadow: var(--shadow-lg);
 }
 
-.categories-list .has-dropdown:hover .cat-dropdown {
+.categories-list .has-dropdown:hover > .cat-dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
