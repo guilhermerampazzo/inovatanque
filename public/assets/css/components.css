@@ -97,6 +97,30 @@
     color: #fff;
 }
 
+.btn-header-account {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 38px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid var(--color-accent);
+    background: var(--color-accent);
+    color: #1a1a1a;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all var(--transition);
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.btn-header-account:hover {
+    background: transparent;
+    color: var(--color-accent);
+}
+
 /* === SEARCH OVERLAY === */
 .search-overlay {
     position: fixed;

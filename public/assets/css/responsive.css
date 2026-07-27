@@ -300,6 +300,19 @@
         height: 34px;
     }
 
+    /* Botao de conta vira so-icone no mobile minimo, pra caber no header */
+    .btn-header-account {
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .btn-header-account span {
+        display: none;
+    }
+
     .testimonials-grid {
         grid-template-columns: 1fr;
     }
