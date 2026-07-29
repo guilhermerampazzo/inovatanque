@@ -48,6 +48,11 @@
         display: none;
     }
 
+    /* Sem espaco sobrando no header mobile pra caber a pantera sem espremer */
+    .header-pantera {
+        display: none;
+    }
+
     .header-actions {
         gap: 6px;
     }
