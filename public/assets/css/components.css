@@ -8,9 +8,11 @@
     top: 0;
     z-index: 100;
     /* Fundo preto com a pantera. Zoom (background-size > cover) para abrir
-       espaco de reposicionamento e centralizar os olhos sem cortar o topo. */
+       espaco de reposicionamento e centralizar os olhos sem cortar o topo.
+       Gradiente clareia mais cedo (ate 45%) para nao afogar os olhos, que
+       agora ficam no centro do header, na sombra escura do overlay antigo. */
     background:
-        linear-gradient(90deg, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.45) 68%, rgba(0,0,0,0.05) 100%),
+        linear-gradient(90deg, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.2) 45%, rgba(0,0,0,0.1) 100%),
         #000 url('/panteranova.png') no-repeat 92% 46% / 220%;
     box-shadow: 0 2px 10px rgba(0,0,0,0.35);
     padding: 0;
