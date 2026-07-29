@@ -60,14 +60,17 @@
 }
 
 /* Olhos da pantera: bloco pequeno e nitido (nao esticado), centralizado
-   no espaco vazio entre a logo e os icones. */
+   no espaco vazio entre a logo e os icones. Mascara radial dissolve as
+   bordas no preto do header, em vez de aparecer como "quadrado de foto". */
 .header-pantera {
     flex-shrink: 0;
-    width: 220px;
-    height: 100px;
-    max-width: 30vw;
-    background: url('/panteranova.png') no-repeat 73% 46% / 160%;
+    width: 260px;
+    height: 110px;
+    max-width: 32vw;
+    background: url('/panteranova.png') no-repeat 73% 46% / 150%;
     margin: 0 auto;
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 49%, transparent 92%);
+    mask-image: radial-gradient(ellipse at center, #000 49%, transparent 92%);
 }
 
 /* === HEADER ACTIONS === */
